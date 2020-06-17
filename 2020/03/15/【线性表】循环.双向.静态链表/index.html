@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="WRY">
+  <meta name="keywords" content="">
+  <title>【线性表】循环双向静态链表 - WRY&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atom-one-dark.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>WRY's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/2.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-03-15 00:00">
+      2020年3月15日 凌晨
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <table><tr><td bgcolor=#E6E6FA><font  size=6> 循环链表</td></tr></table>
+
+<ol>
+<li>定义：首尾相接的链表</li>
+<li>结构：尾结点的指针域指向头结点或表的首元结点</li>
+<li>特点：表中所有结点都链接在一个环上</li>
+<li>判断循环链表空链表的条件：头指针的指针域指向自己（head-&gt;next==head）<table><tr><td bgcolor=#FFC0CB><font  size=5> 循环链表的合并算法</td></tr></table>
+
+</li>
+</ol>
+<p>算法思路：</p>
+<ol>
+<li>遍历两表找表尾</li>
+<li>将第一表尾链接第二表头，将第二表尾链接第一表头 </li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200311210658984.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function">linklist <span class="hljs-title">merge_1</span><span class="hljs-params">(linklist la,linklist lb)</span></span>&#123;
+<span class="hljs-comment">/*将两个采用头指针的循环单链表的首尾连接起来*/</span>
+	node *p,*q;
+	p=la;
+	q=lb;
+	<span class="hljs-keyword">while</span>(p-&gt;next!=la) p=p-&gt;next;
+	<span class="hljs-comment">/*找到表la的表尾，用p指向它*/</span>
+	<span class="hljs-keyword">while</span>(q-&gt;next!=lb) q=q-&gt;next;
+	<span class="hljs-comment">/*找到表lb的表尾，用p指向它*/</span>
+	q-&gt;next=la;
+	<span class="hljs-comment">/*修改表lb的尾指针，使之指向表la的头结点*/</span>	
+	p-&gt;next=lb-&gt;next;
+	<span class="hljs-comment">/*修改表la的尾指针，使之指向表lb的第一个结点*/</span>
+	<span class="hljs-built_in">free</span>(lb);
+	<span class="hljs-keyword">return</span>(la);		
+&#125;</code></pre></div>
+
+<p><img src="https://img-blog.csdnimg.cn/20200311210706579.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function">linklist <span class="hljs-title">merge_2</span><span class="hljs-params">(linklist ra,linklist rb)</span></span>&#123;
+<span class="hljs-comment">/*将两个采用尾指针的循环单链表的首尾连接起来*/</span>
+	node *p;
+	p=ra-&gt;next;
+	<span class="hljs-comment">/*保存链表ra的头结点的地址*/</span>
+	ra-&gt;next=rb-&gt;next-&gt;next;
+	<span class="hljs-comment">/*链表rb的开始接待你链到链表ra的终端结点之后*/</span>	
+	<span class="hljs-built_in">free</span>(rb-&gt;next);
+	rb-&gt;next=p;
+	<span class="hljs-comment">/*链表ra的头结点链到链表rb 的终端节点之后*/</span>
+	<span class="hljs-keyword">return</span> rb;
+	<span class="hljs-comment">/*返回新循环链表的尾指针*/</span>		
+&#125;</code></pre></div>
+<table><tr><td bgcolor=#E6E6FA><font  size=6>双向链表</td></tr></table>
+
+<ol>
+<li><p>定义：链表中每个结点增加一个指向其前驱的指针。每个结点包含两个指针域</p>
+</li>
+<li><p>特点：任一结点均可沿前驱和后继两个方向操作。<br><img src="https://img-blog.csdnimg.cn/20200312051202800.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<table><tr><td bgcolor=#FFC0CB><font  size=6>c语言结构定义</td></tr></table>
+
+</li>
+</ol>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">dnode</span>&#123;</span>
+	elemtype data;
+	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">dnode</span> *<span class="hljs-title">prior</span>,*<span class="hljs-title">next</span>;</span>
+&#125;dnode,*doublelist;</code></pre></div>
+ <table><tr><td bgcolor=#FFC0CB><font  size=6> 操作</td></tr></table>
+ <table><tr><td bgcolor=#99CCFF><font  size=4>1.前插操作 </td></tr></table>
+
+<p><img src="https://img-blog.csdnimg.cn/20200313040255210.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dlinkins</span><span class="hljs-params">(doublelist l,<span class="hljs-keyword">int</span> i,elemtype e)</span></span>&#123;
+	dnode *p,*s;
+	<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;
+	p=l;
+	<span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>&amp;&amp;k&lt;(i))
+	<span class="hljs-comment">/*在第i个元素之前插入，则先找到第i个数据元素的存储位置</span>
+<span class="hljs-comment">	使p指针指向它*/</span>
+	&#123;
+		p=p-&gt;next;
+		k++; 
+	&#125;
+	<span class="hljs-keyword">if</span>(!p)<span class="hljs-comment">/*如果当前位置p为空，表示已找完但还未数到第i个</span>
+<span class="hljs-comment">	说明插入位置不合理*/</span>
+	&#123;
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">"插入位置不合理"</span>);
+		<span class="hljs-keyword">return</span> error; 
+	&#125;
+	s=(dnode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(dnode));
+	<span class="hljs-comment">/*为s申请一个新结点并由s指向它*/</span>
+	<span class="hljs-keyword">if</span>(s)&#123;
+		s-&gt;data=e;
+		s-&gt;prior=p-&gt;prior;<span class="hljs-comment">//① </span>
+		p-&gt;prior-&gt;next=s;<span class="hljs-comment">//② </span>
+		s-&gt;next=p;<span class="hljs-comment">//③ </span>
+		p-&gt;prior=s;<span class="hljs-comment">//④ </span>
+		<span class="hljs-keyword">return</span> TRUE;
+	&#125;
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> FALSE;	 
+&#125;</code></pre></div>
+  <table><tr><td bgcolor=#99CCFF><font  size=4>2.删除操作 </td></tr></table>
+
+<p><img src="https://img-blog.csdnimg.cn/20200313040713676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dlinkdel</span><span class="hljs-params">(doublelist l,<span class="hljs-keyword">int</span> i,elemtype *e)</span></span>
+<span class="hljs-function"><span class="hljs-comment">/*在双向链表中删除第i个元素，</span></span>
+<span class="hljs-function"><span class="hljs-comment">并将删除的元素保存到变量*e中。*/</span></span>
+<span class="hljs-function"></span>&#123;
+	dnode *p;
+	<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;
+	p=l;
+	<span class="hljs-keyword">while</span>(p-&gt;next!=<span class="hljs-literal">NULL</span>&amp;&amp;k&lt;(i))
+		<span class="hljs-comment">/*寻找被删除结点i使p指向它*/</span>
+	&#123;
+		p=p-&gt;next;
+		k++;
+	&#125;
+	<span class="hljs-keyword">if</span>(k!=i)
+		<span class="hljs-comment">/*即循环是因为p-&gt;next=NULL而跳出来的*/</span>
+	&#123;
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">"删除位置i不合理"</span>);
+		<span class="hljs-keyword">return</span> error;
+	&#125;
+	*e=p-&gt;data;
+	p-&gt;prior-&gt;next=p-&gt;next;
+	p-&gt;next-&gt;prior=p-&gt;prior;
+	<span class="hljs-built_in">free</span>(p);<span class="hljs-comment">/*释放被删除结点所占内存空间*/</span>
+	<span class="hljs-keyword">return</span> TRUE;
+&#125;</code></pre></div>
+ <table><tr><td bgcolor=#FFC0CB><font  size=5> 双向循环列表</td></tr></table>
+
+<p><img src="https://img-blog.csdnimg.cn/20200313042242567.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<table><tr><td bgcolor=#E6E6FA><font  size=6>静态链表</td></tr></table>
+ <table><tr><td bgcolor=#FFC0CB><font  size=4> 静态链表的基本特征</td></tr></table>
+
+<ol>
+<li>存储池：定义一个较大的<strong>结构数组</strong>作为备用结点空间</li>
+<li>游标机制：每个结点应该应该含有两个域，data域和next（或者cursor）域。<ul>
+<li>data域用来存放结点的数据信息。</li>
+<li>cuisor域为游标指示器，指示<strong>后继结点在结构数组中的相对位置</strong>（即<strong>数组下标值</strong>）数组的第0个分量可以设计成表的头结点，头结点的cursor域指示了表中第一个结点的位置，cursor值为0表示静态单链表结束。</li>
+</ul>
+</li>
+<li>结点结构<div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxsize <span class="hljs-comment">//链表可能达到的最大长度</span></span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span>
+	elemtype data;
+	<span class="hljs-keyword">int</span> <span class="hljs-built_in">cursor</span>;
+&#125; component,staticlist[maxsize];</code></pre></div>
+<table><tr><td bgcolor=#FFC0CB><font  size=4>静态链表的插入和删除操作示例</td></tr></table>
+
+
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200313044655434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>插入：</p>
+<ul>
+<li>step1：申请一个空闲空间并置入元素 e，即：使 S[9].data=e</li>
+<li>step2：修改第四个元素的游标域，将 e 插入到链表中。即：S[9].cursor= S[4].cursor，S[4].cursor=9。</li>
+</ul>
+<p>删除：</p>
+<ul>
+<li>若要删除第 8 个元素 h，则先顺着游标链通过记数找到第 7 个元素存储位置 6，令 S[6].cursor=S[7].cursor。</li>
+</ul>
+<p>缺点 ：</p>
+<ul>
+<li>上述例子中未考虑对已释放空间的回收，这样在经过多次插入和删除后，会造成静态链表的“假满”。即表中有很多的空闲空间，但却无法再插入元素。造成这种现象的原因是未对已删除的元素所占的空间进行回收。</li>
+</ul>
+<p>解决方法：</p>
+<ul>
+<li>将所有未被分配的结点空间以及因删除操作而回收的结点空间用游标 链成一个备用静态链表。</li>
+<li>当进行插入操作时，先从备用链表上取一个分量来存放待插入的元素，然后将其插入到已用链表的相应位置。</li>
+<li>当进行删除操作时，则将被删除的结点空间链接到备用链表上以备后用。</li>
+<li>这种方法是指在已申请的大的存储空间中有一个已用的静态单链表，还有一个备用单链表。已用静态单链表的头指针为 0，备用静态单链表的头指针需另设一个变量 av 来表示。</li>
+</ul>
+<table><tr><td bgcolor=#FFC0CB><font  size=6> 基本操作</td></tr></table>
+<table><tr><td bgcolor=#99CCFF><font  size=4>1.初始化 </td></tr></table>
+  算法描述：初始化为一个备用静态单链表。
+
+<p><img src="https://img-blog.csdnimg.cn/20200313050122667.png" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>ps：这里的maxsize=11</p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">initial</span><span class="hljs-params">(straticlist space,<span class="hljs-keyword">int</span> *av)</span></span>
+<span class="hljs-function"><span class="hljs-comment">/*构建两个表，已用空间为空表，其余空间为备用空间表*/</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-keyword">int</span> k;
+	space[<span class="hljs-number">0</span>]-&gt;<span class="hljs-built_in">cursor</span>=<span class="hljs-number">-1</span>;
+	<span class="hljs-keyword">for</span>(k=<span class="hljs-number">1</span>;k&lt;(maxsize<span class="hljs-number">-1</span>);k++)&#123;
+		space[k]-&gt;<span class="hljs-built_in">cursor</span>=k+<span class="hljs-number">1</span>
+	&#125; 
+	space[maxsize<span class="hljs-number">-1</span>]=<span class="hljs-number">-1</span>;
+	*av=<span class="hljs-number">1</span>;
+&#125;</code></pre></div>
+
+<table><tr><td bgcolor=#99CCFF><font  size=4>2.分配结点 </td></tr></table>
+
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-comment">/*从可用区申请新结点*/</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getnode</span> <span class="hljs-params">(staticlis space, <span class="hljs-keyword">int</span> *av)</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-keyword">int</span> i;
+	i=*av;
+	*av=space[av].<span class="hljs-built_in">cursor</span>;
+	<span class="hljs-keyword">return</span> i;<span class="hljs-comment">//返回可用新结点i </span>
+&#125;</code></pre></div>
+
+<ul>
+<li>对系统而言，相当于备用链表中减少一个结点 i。</li>
+<li>对使用者而言，相当于申请得到了一个可用的新结点 i。</li>
+</ul>
+<table><tr><td bgcolor=#99CCFF><font  size=4>3.结点回收 </td></tr></table>
+
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-comment">/*备用区回收空闲节点*/</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">freenode</span><span class="hljs-params">(staticlist space,<span class="hljs-keyword">int</span> *av,<span class="hljs-keyword">int</span> k)</span></span>
+<span class="hljs-function"><span class="hljs-comment">//增加一个新结点k</span></span>
+<span class="hljs-function"></span>&#123;
+	spcae[k].<span class="hljs-built_in">cursor</span>=*av;
+	*av=k;
+&#125;</code></pre></div>
+
+<ul>
+<li>对系统而言，回收空闲结点相当于备用链表中增加一个结点 k。</li>
+<li>对使用者而言，相当于释放了一个不用的结点 k。</li>
+</ul>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/%E7%BA%BF%E6%80%A7%E8%A1%A8/">线性表</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【线性表】顺序表与链表的综合比较</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BA%94%E7%94%A8%E2%80%94%E4%B8%80%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%9B%B8%E5%8A%A0/">
+                        <span class="hidden-mobile">【线性表】应用—一元多项式的表示及相加</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "【线性表】循环双向静态链表&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
