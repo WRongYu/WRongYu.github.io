@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="WRY">
+  <meta name="keywords" content="">
+  <title>【树】线索二叉树的基本概念及遍历 - WRY&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atom-one-dark.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>WRY's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/2.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-06-17 16:24">
+      2020年6月17日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <table><tr><td bgcolor=#E6E6FA><font  size=6>基本概念</td></tr></table>
+
+<blockquote>
+<p>我们知道，在有 n 个结点的二叉链表中共有 2n 个链域，但只有 n-1 个有用的非空链域，其余 n+1 个链域是空的。可以利用剩下的 n+1 个空链域来存放遍历过程中结点的前驱和后继信息。</p>
+</blockquote>
+<p>现作如下规定：</p>
+<ul>
+<li>若结点有左子树，则其 LChild 域指向其左孩子，否则 LChild 域指向其前驱结点；</li>
+<li>若结点有右子树，则其 RChild 域指向其右孩子，否则 RChild 域指向其后继结点。</li>
+</ul>
+<p>为了区分孩子结点和前驱、后继结点，为结点结构增设两个标志域，如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200325222156168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200325222248343.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<table><tr><td bgcolor=#E6E6FA><font  size=6>二叉树的线索化</td></tr></table>
+
+<p>线索化实质是将二叉链表中的空指针域，填上相应结点的遍历前驱或后继结点的地址，而前驱和后继的地址只能在动态的遍历过程中才能得到。==因此线索化的过程即为在遍历过程中修改空指针域的过程。==</p>
+<p>对二叉树按照不同的遍历次序进行线索化，可以得到不同的线索二叉树，包括先序线索二叉树、中序线索二叉树和后序线索二叉树。这里重点介绍<strong>中序线索化</strong>的算法。 </p>
+<p>【算法思想】<br>（1）中序线索化采用中序递归遍历算法框架。<br>（2）加线索操作就是访问结点操作。<br>（3）加线索操作需要利用刚访问过结点与当前结点的关系，因此设置一个指针 pre，始终记录刚访问过的结点，其操作如下：<br>①如果当前遍历结点 root 的左子域为空，则让左子域指向 pre ；<br>②如果前驱 pre 的右子域为空，则让右子域指向当前遍历结点 root；<br>③为下次做准备，当前访问结点 root 作为下一个访问结点的前驱 pre。<br>【算法描述】</p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-comment">/* 对 root 所指的二叉树进行中序线索化，其中 pre 始终指向刚访问过的结点，其初值为NULL*/</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Inthread</span><span class="hljs-params">(BiTree root)</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span> (root != <span class="hljs-literal">NULL</span>)
+    &#123;
+        Inthread(root-&gt;LChild); <span class="hljs-comment">/* 线索化左子树 */</span>
+        <span class="hljs-keyword">if</span> (root-&gt;LChild == <span class="hljs-literal">NULL</span>)
+        &#123;
+            root-&gt;Ltag = <span class="hljs-number">1</span>;
+            root-&gt;LChild = pre;
+            / *置前驱线索 * /
+        &#125;
+        <span class="hljs-keyword">if</span> (pre != <span class="hljs-literal">NULL</span> &amp;&amp; pre-&gt;RChild == <span class="hljs-literal">NULL</span>) <span class="hljs-comment">/* 置后继线索 */</span>
+        &#123;
+            pre-&gt;RChild = root;
+            pre-&gt;Rtag = <span class="hljs-number">1</span>;
+        &#125;
+        pre = root；                <span class="hljs-comment">/*当前访问结点为下一个访问结点的前驱*/</span>
+            Inthread(root-&gt;RChild); <span class="hljs-comment">/*线索化右子树*/</span>
+    &#125;
+&#125;</code></pre></div>
+
+<table><tr><td bgcolor=#E6E6FA><font  size=6>在线索二叉树中找前驱，后继结点</td></tr></table>
+
+<p>以中序线索二叉树为例，来讨论如何在线索二叉树中查找结点的前驱和后继。<br>(1）找结点的中序前驱结点<br>根据线索二叉树的基本概念和存储结构可知，对于结点 p，</p>
+<ul>
+<li>当 p-&gt;Ltag=1 时，p-&gt;LChild 指 向 p 的前驱。</li>
+<li>当 p-&gt;Ltag=0 时，p-&gt;LChild 指向 p 的左孩子。由中序遍历的规律可知，作为根 p 的前驱结点，它是中序遍历 p 的左子树时访问的最后一个结点，即左子树的“最右下端”结点。</li>
+</ul>
+<p>【算法描述】</p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function">BiTNode *<span class="hljs-title">InPre</span><span class="hljs-params">(BiTNode *p)</span></span>
+<span class="hljs-function"><span class="hljs-comment">/* 在中序线索二叉树中查找 p 的中序前驱, 并用 pre 指针返回结果 */</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span> (p-&gt;Ltag == <span class="hljs-number">1</span>)
+        pre = p-&gt;LChild; <span class="hljs-comment">/*直接利用线索*/</span>
+    <span class="hljs-keyword">else</span>
+    &#123; <span class="hljs-comment">/* 在 p 的左子树中查找“最右下端”结点 */</span>
+        <span class="hljs-keyword">for</span> (q = p-&gt;LChild; q-&gt;Rtag == <span class="hljs-number">0</span>; q = q-&gt;RChild)
+            ;
+        pre = q;
+    &#125;
+    <span class="hljs-keyword">return</span> (pre);
+&#125;</code></pre></div>
+<p><img src="https://img-blog.csdnimg.cn/20200325223823932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>(2）在中序线索树中找结点后继对于结点 p，若要找其后继结点，</p>
+<ul>
+<li><p>当 p-&gt;Rtag=1 时，p-&gt;RChild 即为 p 的后继结点；</p>
+</li>
+<li><p>当 p-&gt;Rtag=0时，说明 p 有右子树，此时 p 的中序后继结点即为其右子树的“最左下端”的结点。</p>
+<p>【算法描述】</p>
+</li>
+</ul>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function">BiTNode *<span class="hljs-title">InNext</span><span class="hljs-params">(BiTNode *p)</span></span>
+<span class="hljs-function"><span class="hljs-comment">/*在中序线索二叉树中查找 p 的中序后继结点，并用 Next 指针返回结果*/</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span> (p-&gt;Rtag == <span class="hljs-number">1</span>)
+        Next = p-&gt;RChild; <span class="hljs-comment">/*直接利用线索*/</span>
+    <span class="hljs-keyword">else</span>
+    &#123; <span class="hljs-comment">/*在 p 的右子树中查找“最左下端”结点*/</span>
+        <span class="hljs-keyword">if</span> (p-&gt;RChild != <span class="hljs-literal">NULL</span>)
+        &#123;
+            <span class="hljs-keyword">for</span> (q = p-&gt;RChild; q-&gt;Ltag == <span class="hljs-number">0</span>; q = q-&gt;LChild)
+                ;
+            Next = q;
+        &#125;
+        <span class="hljs-keyword">else</span>
+            Next = <span class="hljs-literal">NULL</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> (Next)
+&#125;</code></pre></div>
+
+
+<p>在先序线索树中找结点的后继比较容易，根据先序线索树的遍历过程可知，</p>
+<ul>
+<li>若结点 p 存在左子树，则 p 的左孩子结点即为 p 的后继；</li>
+<li>若结点 p 没有左子树，但有右子树，则 p 的右孩子结点即为 p 的后继；</li>
+<li>若结点 p 既没有左子树，也没有右子树，则结点 p 的 RChild 指针域所指的结点即为 p 的后继。</li>
+</ul>
+<p>用语句表示则为</p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-keyword">if</span> (p-&gt;Ltag==<span class="hljs-number">0</span>) Next=p-&gt;Lchild; 
+<span class="hljs-keyword">else</span> Next =p-&gt;RChild;</code></pre></div>
+<p>同样，在后序线索树中查找结点 p 的前驱也很方便。</p>
+<p>在先序线索树中找结点的前驱比较困难。</p>
+<ul>
+<li>若结点 p 是二叉树的根，则 p 的前驱为空；</li>
+<li>若 p是其双亲的左孩子，或者 p 是其双亲的右孩子并且其双亲无左孩子，则 p 的前驱是 p 的双亲<br>结点</li>
+<li>若 p 是双亲的右孩子且双亲有左孩子，则 p 的前驱是其双亲的左子树中按先序遍历时最后访问的那个结点。<table><tr><td bgcolor=#E6E6FA><font  size=6>遍历中序线索树</td></tr></table>
+
+</li>
+</ul>
+<p>遍历线索树的问题可以分解成两步，第一步是求出某种遍历次序下第一个被访问结点；然后连续求出刚访问结点的后继结点，直至所有的结点均被访问。以遍历中序线索树为例。<br>(1)在中序线索树上求中序遍历的第一个结点<br>【算法描述】</p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function">BiTNode *<span class="hljs-title">InFirst</span><span class="hljs-params">(BiTree Bt)</span></span>
+<span class="hljs-function"></span>&#123;
+    BiTNode *p = Bt;
+    If(!p) <span class="hljs-keyword">return</span> (<span class="hljs-literal">NULL</span>);
+    <span class="hljs-keyword">while</span> (p-&gt;LTag == <span class="hljs-number">0</span>)
+        p = p-&gt;Lchild;
+    <span class="hljs-keyword">return</span> p;
+&#125;</code></pre></div>
+<p>(2)遍历中序二叉线索树：<br>通过调用 InFirst 和 InNext ,可以实现对中序线索树的中序遍历，且不需要使用递归栈。函数 TInOrder 实现了这种遍历</p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TInOrder</span><span class="hljs-params">(BiTree Bt)</span></span>
+<span class="hljs-function"></span>&#123;
+    BITNode *p;
+    P = InFirst(Bt);
+    While(p)
+    &#123;
+        Visit(p);
+        p = InNext(p);
+    &#125;
+&#125;</code></pre></div>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/%E6%A0%91/">树</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/17/%E3%80%90%E6%A0%91%E3%80%91%E7%94%B1%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E7%A1%AE%E5%AE%9A%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【树】由遍历序列确定的二叉树</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/17/%E3%80%90%E6%A0%91%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95%E5%9F%BA%E4%BA%8E%E6%A0%88%E7%9A%84%E9%80%92%E5%BD%92%E6%B6%88%E9%99%A4/">
+                        <span class="hidden-mobile">【树】二叉树遍历算法基于栈的递归消除</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "【树】线索二叉树的基本概念及遍历&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

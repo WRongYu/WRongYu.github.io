@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="WRY">
+  <meta name="keywords" content="">
+  <title>【栈】栈的应用与递归 - WRY&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atom-one-dark.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>WRY's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/2.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-03-18 00:00">
+      2020年3月18日 凌晨
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      38
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <table><tr><td bgcolor=#E6E6FA><font  size=6> 括号表达式</td></tr></table>
+
+<p>【题目描述】<br>假设表达式中包含三种括号：圆括号、方括号和花括号，它们可互相嵌套，如 ( [ { } ] ( [ ] ) )或( { ( [ ] [ ( ) ] ) } )等均为正确的格式，而 { [ ] } ) }或 { [ ( ) ] 或 ( [ ] }均为不正确的格式。在检验算法中可设置一个栈，每读入一个括号。</p>
+<ol>
+<li><p>若读入左括号，则直接入栈，等待相匹配的同类右括号；</p>
+</li>
+<li><p>若读入右括号，且与当前栈顶的左括号同类型，则二者匹配，将栈顶的左括号出栈，否则属于不合法的情况。</p>
+</li>
+<li><p>另外，如果输入序列已读尽，而栈中仍有等待匹配的左括号，或者读入了一个右括号，而栈中已无等待匹配的左括号，均属不合法的情况。当输入序列和栈同时变为空时，说明所有括号完全匹配。</p>
+<p>【算法描述】</p>
+</li>
+</ol>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-comment">/*构造一个空栈 S*/</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">InitStack</span><span class="hljs-params">(SeqStack *S)</span> </span>&#123;
+	S-&gt;top= <span class="hljs-number">-1</span>;
+&#125;
+<span class="hljs-comment">/*判栈空*/</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Isempty</span><span class="hljs-params">(SeqStack *S)</span> </span>&#123;
+	<span class="hljs-keyword">return</span> (S-&gt;top==<span class="hljs-number">-1</span>?TRUE:FALSE);
+&#125;
+<span class="hljs-comment">/*读栈顶元素*/</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">GetTop</span><span class="hljs-params">(SeqStack *S, StackElementType *x)</span> </span>&#123; <span class="hljs-comment">/* 将栈 S 的栈顶元素弹出，放到 x 所指的存储空间中，但栈顶指针保持不变 */</span>
+	<span class="hljs-keyword">if</span>(S-&gt;top==<span class="hljs-number">-1</span>) <span class="hljs-comment">/*栈为空*/</span>
+		<span class="hljs-keyword">return</span>(FALSE);
+	<span class="hljs-keyword">else</span> &#123;
+		*x = S-&gt;elem[S-&gt;top];
+		<span class="hljs-keyword">return</span>(TRUE);
+	&#125;
+&#125;
+<span class="hljs-comment">/*出栈*/</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Pop</span><span class="hljs-params">(SeqStack * S, StackElementType *x)</span> </span>&#123;
+	<span class="hljs-comment">/* 将栈 S 的栈顶元素弹出，放到 x 所指的存储空间中 */</span>
+	<span class="hljs-keyword">if</span>(S-&gt;top= =<span class="hljs-number">-1</span>) <span class="hljs-comment">/*栈为空*/</span>
+		<span class="hljs-keyword">return</span>(FALSE);
+	<span class="hljs-keyword">else</span> &#123;
+		*x= S-&gt;elem[S-&gt;top];
+		S-&gt;top--; <span class="hljs-comment">/* 修改栈顶指针 */</span>
+		<span class="hljs-keyword">return</span>(TRUE);
+	&#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">BracketMatch</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *str)</span></span>
+<span class="hljs-function"><span class="hljs-comment">/* str[]中为输入的字符串，利用堆栈技术来检查该字符串中的括号是否匹配*/</span></span>
+<span class="hljs-function"></span>&#123;
+	Stack S;
+	<span class="hljs-keyword">int</span> i;
+	<span class="hljs-keyword">char</span> ch;
+	InitStack(&amp;S);
+	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>; str[i]!=<span class="hljs-string">'\0'</span>; i++) &#123;
+		<span class="hljs-keyword">switch</span>(str[i]) &#123;
+			<span class="hljs-keyword">case</span> <span class="hljs-string">'('</span>:
+			<span class="hljs-keyword">case</span> <span class="hljs-string">'['</span>:
+			<span class="hljs-keyword">case</span> <span class="hljs-string">'&#123;'</span>:
+				Push(&amp;S,str[i]);
+				<span class="hljs-keyword">break</span>;
+			<span class="hljs-keyword">case</span> <span class="hljs-string">')'</span>:
+			<span class="hljs-keyword">case</span> <span class="hljs-string">']'</span>:
+			<span class="hljs-keyword">case</span> <span class="hljs-string">'&#125;'</span>:
+				<span class="hljs-keyword">if</span>(IsEmpty(&amp;S)) &#123;
+					<span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n 右括号多余!"</span>);
+					<span class="hljs-keyword">return</span>;
+				&#125; <span class="hljs-keyword">else</span> &#123;
+					GetTop (&amp;S,&amp;ch);
+					<span class="hljs-keyword">if</span>(Match(ch,str[i])) <span class="hljs-comment">/*用 Match 判断两个括号是否匹配*/</span>
+						Pop(&amp;S,&amp;ch); <span class="hljs-comment">/*已匹配的左括号出栈*/</span>
+					<span class="hljs-keyword">else</span> &#123;
+						<span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n 对应的左右括号不同类!"</span>);
+						<span class="hljs-keyword">return</span>;
+					&#125;
+				&#125;
+		&#125;
+	&#125;
+	<span class="hljs-keyword">if</span>(IsEmpty(&amp;S))
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n 括号匹配!"</span>);
+	<span class="hljs-keyword">else</span>
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n 左括号多余!"</span>);
+&#125;</code></pre></div>
+<table><tr><td bgcolor=#E6E6FA><font  size=6> 表达式求值</td></tr></table>
+
+<p>【题目描述】<br>表达式求值是高级语言编译的一个基本问题，是栈的典型应用实例。</p>
+<blockquote>
+<p>任何一个表达式都是由运算数(operand)、运算符(operator)和界限符(delimiter)组成的。运算数既可以是常数，也可以是被说明为变量或常量的标识符；运算符可以分为算术运算符、关系运算符和逻辑运算符三类；基本界限符有左右括号和表达式结束符等。仅讨论无括号算术表达式求值的求值问题。</p>
+</blockquote>
+<p>由于某些运算符可能具有比别的运算符更高的优先级，因此表达式求值不可能严格地从左到右进行，如下图所示，其中↑为幂运算，# 是表达式结束符，这是为运算方便引入的一个特殊符号。<br><img src="https://img-blog.csdnimg.cn/20200317081952653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>为了正确的处理表达式，使用栈来实现正确的指令序列是一个重要的技术。下面以无括号表达式为例进行说明。<br>【算法思想】<br>（1）规定运算符的优先级表<br>（2）设置两个栈：OVS(运算数栈)、OPTR(运算符栈)<br>（3）自左向右扫描，进行如下处理：<br>①遇到运算数则进 OVS 栈；<br>②遇到运算符则与 OPTR 栈的栈顶运算符进行优先级比较：</p>
+<ul>
+<li>如果当前运算符&gt;OPTR 栈顶运算符，则当前运算符进 OPTR 栈；</li>
+<li>如果当前运算符≤OPTR 栈顶运算符，则 OPTR 退栈一次，得到栈顶运算符θ，OVS连续退栈两次，得到运算数 a、运算数 b，对 a，b 执行θ运算，得到结果 T(i)，将 T(i) 进OVS 栈。<br><img src="https://img-blog.csdnimg.cn/20200318084148911.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+</ul>
+<p>例 3-1 在实现 A/B↑C+D<em>E 的运算过程中，栈区变化情况如图 3.9 所示。为运算方便，<br>在表达式后面加上一个结束符#，并将其视为一个优先级最低的特殊运算符，所以实际输入<br>的表达式为：A/B↑C+D</em>E#。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200318084512294.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述">【算法描述】无括号算术表达式处理算法</p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-comment">/*构造一个空栈 S*/</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">InitStack</span><span class="hljs-params">(SeqStack *S)</span> </span>&#123;
+	S-&gt;top= <span class="hljs-number">-1</span>;
+&#125;
+<span class="hljs-comment">/*进栈S*/</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Push</span><span class="hljs-params">(SeqStack * S, StackElementType x)</span> </span>&#123;
+	<span class="hljs-keyword">if</span>(S-&gt;top== Stack_Size<span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span>(FALSE); <span class="hljs-comment">/*栈已满*/</span>
+	S-&gt;top++;
+	S-&gt;elem[S-&gt;top]=x;
+	<span class="hljs-keyword">return</span>(TRUE);
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">GetTop</span><span class="hljs-params">(SeqStack *S, StackElementType *x)</span> </span>&#123; <span class="hljs-comment">/* 将栈 S 的栈顶元素弹出，放到 x 所指的存储空间中，但栈顶指针保持不变 */</span>
+	<span class="hljs-keyword">if</span>(S-&gt;top==<span class="hljs-number">-1</span>) <span class="hljs-comment">/*栈为空*/</span>
+		<span class="hljs-keyword">return</span>(FALSE);
+	<span class="hljs-keyword">else</span> &#123;
+		*x = S-&gt;elem[S-&gt;top];
+		<span class="hljs-keyword">return</span>(TRUE);
+	&#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Pop</span><span class="hljs-params">(SeqStack * S, StackElementType *x)</span> </span>&#123;
+	<span class="hljs-comment">/* 将栈 S 的栈顶元素弹出，放到 x 所指的存储空间中 */</span>
+	<span class="hljs-keyword">if</span>(S-&gt;top= =<span class="hljs-number">-1</span>) <span class="hljs-comment">/*栈为空*/</span>
+		<span class="hljs-keyword">return</span>(FALSE);
+	<span class="hljs-keyword">else</span> &#123;
+		*x= S-&gt;elem[S-&gt;top];
+		S-&gt;top--; <span class="hljs-comment">/* 修改栈顶指针 */</span>
+		<span class="hljs-keyword">return</span>(TRUE);
+	&#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ExpEvaluation</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"><span class="hljs-comment">/*读入一个简单算术表达式并计算其值。</span></span>
+<span class="hljs-function"><span class="hljs-comment">operator 和 operand 分别为运算符栈和运算数栈，</span></span>
+<span class="hljs-function"><span class="hljs-comment">OPS 为运算符集合*/</span></span>
+<span class="hljs-function"></span>&#123;
+	InitStack(&amp;operand);
+	InitStack(&amp;<span class="hljs-keyword">operator</span>);
+	Push(&amp;<span class="hljs-keyword">operator</span>,<span class="hljs-string">'#'</span>);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n\nPlease input an expression (Ending with #) :"</span>);
+	ch=getchar();
+	<span class="hljs-keyword">while</span>(ch!=<span class="hljs-string">'#'</span>||GetTop(<span class="hljs-keyword">operator</span>)!=<span class="hljs-string">'#'</span>) &#123; <span class="hljs-comment">/* GetTop()通过函数值返回栈顶元素*/</span>
+		<span class="hljs-keyword">if</span>(!In(ch,OPS)) &#123; <span class="hljs-comment">/*不是操作符，是操作数*/</span>
+			n=GetNumber(ch);
+			push(&amp;operand,n);
+		&#125; <span class="hljs-keyword">else</span>
+			<span class="hljs-keyword">switch</span>(Compare(ch, GetTop(<span class="hljs-keyword">operator</span>))) &#123;
+				<span class="hljs-keyword">case</span> <span class="hljs-string">'&gt;'</span>:
+					Push(&amp;<span class="hljs-keyword">operator</span>,ch);
+					ch=getchar();
+					<span class="hljs-keyword">break</span>;
+				<span class="hljs-keyword">case</span> <span class="hljs-string">'='</span>:
+				<span class="hljs-keyword">case</span> <span class="hljs-string">'&lt;'</span>:
+					Pop(&amp;<span class="hljs-keyword">operator</span>,&amp;op);
+					Pop(&amp;operand,&amp;b);
+					Pop(&amp;operand,&amp;a);
+					v=Execute(a,op,b); <span class="hljs-comment">/* 对 a 和 b 进行 op 运算 */</span>
+					Push(&amp;operand,v);
+					<span class="hljs-keyword">break</span>;
+			&#125;
+	&#125;
+	v=GetTop(operand);
+	<span class="hljs-keyword">return</span> (v);
+&#125;</code></pre></div>
+
+<table><tr><td bgcolor=#E6E6FA><font  size=6> 栈与递归</td></tr></table>
+
+<p> <strong>递归</strong>是指在定义自身的同时又出现了对自身的引用。</p>
+<ul>
+<li><p>如果一个函数在其定义体内直接调用自己，则称为直接递归函数</p>
+</li>
+<li><p>如果一个函数经过一系列的中间调用语句，通过其他函数间接调用自己，则称为间接递归函数</p>
+<p>（1）递归定义的数学函数<br><img src="https://img-blog.csdnimg.cn/20200318090542540.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>上述 Ackerman 函数可用一个简单的 C 语言函数描述如下：</p>
+</li>
+</ul>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m,<span class="hljs-keyword">int</span> n)</span> </span>&#123;
+	<span class="hljs-keyword">if</span>(m==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> n+<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (n==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> ack(m<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>);
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> ack(m<span class="hljs-number">-1</span>, ack(m,n<span class="hljs-number">-1</span>));
+&#125;</code></pre></div>
+<p>（2）递归数据结构的处理<br>在后续章节将要学习的一些数据结构，如广义表、二叉树、树等结构其本身均具有固有的递归特性，因此可以自然地采用递归法进行处理。<br>（3）递归求解方法<br>许多问题的求解过程可以用递归分解的方法描述，一个典型的例子是著名的汉诺塔问题（Hanoi）问题。<br>n 阶 Hanoi 塔问题：假设有三个分别命名为 X,Y 和 Z 的塔座，在塔座 X 上插有 n 个直径大小各不相同、从小到大编号为 1，2,… ，n 的圆盘。现要求将塔座 X 上的 n 个圆盘移至塔座 Z 上，并仍按同样顺序叠排。圆盘移动时必须遵循下列规则：<br>① 每次只能移动一个圆盘；<br>② 圆盘可以插在 X,Y 和 Z 中的任何一个塔座上；<br>③ 任何时刻都不能将一个较大的圆盘压在较小的圆盘之上。</p>
+<blockquote>
+<p>【算法思想】当 n=1 时，问题比较简单，只要将编号为 1 的圆盘从座 X 直接移动到塔座 Z 上即可；当 n&gt;1 时，需利用塔座 Y 作辅助塔座，若能设法将压在编号为 n 的圆盘上的 n-1 个圆盘从塔座 X(依照上述原则)移至塔座 Y 上，则可先将编号为 n 的圆盘从塔座 X 移至塔座 Z 上，然后再将塔座 Y 上的 n-1 个圆盘(依照上述原则)移至塔座 Z 上。而如何将 n-1 个圆盘从一个塔座移至另一个塔座问题是一个和原问题具有相同特征属性的问题，只是问题的规模小于 1，因此可以用同样方法求解。由此可得如下求解 n 阶 Hanoi 塔问题的递归算法。</p>
+</blockquote>
+<p>【算法描述】 算法 3.14 汉诺塔递归算法</p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">hanoi</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">char</span> x, <span class="hljs-keyword">char</span> y, <span class="hljs-keyword">char</span> z)</span></span>
+<span class="hljs-function"><span class="hljs-comment">/* 将塔座 X 上从上到下编号为 1 至 n，且按直径由小到大叠放的 n 个圆盘，按</span></span>
+<span class="hljs-function"><span class="hljs-comment">规则搬到塔座 Z 上，Y 用作辅助塔座。*/</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>)
+		<span class="hljs-built_in">move</span>(x, <span class="hljs-number">1</span>, z); <span class="hljs-comment">/*将编号为 1 的圆盘从 x 移动 z*/</span>
+	<span class="hljs-keyword">else</span>
+	&#123;
+		hanoi(n - <span class="hljs-number">1</span>, x, z, y); <span class="hljs-comment">/* 将 X 上编号为 1 至 n-1 的圆盘移到 y,z 作辅助</span>
+<span class="hljs-comment">塔 */</span>
+		<span class="hljs-built_in">move</span>(x, n, z);				 <span class="hljs-comment">/* 将编号为 n 的圆盘从 x 移到 z */</span>
+		hanoi(n - <span class="hljs-number">1</span>, y, x, z); <span class="hljs-comment">/* 将 y 上编号为 1 至 n-1 的圆盘移到 z，x 作辅</span>
+<span class="hljs-comment">助塔 */</span>
+	&#125;
+&#125;</code></pre></div>
+
+
+<ul>
+<li><p>设计递归算法的方法<br>递归算法就是在算法中直接或间接调用算法本身的算法。使用递归算法的前提有两个：<br>⑴原问题可以层层分解为类似的的子问题，且子问题比原问题的规模更小。<br>⑵规模最小的子问题具有直接解。</p>
+</li>
+<li><p>设计递归算法的原则是用自身的简单情况来定义自身，设计递归算法的方法是：<br>⑴寻找分解方法：将原问题转化为子问题求解。（ 例：n!=n*(n-1)! ）<br>⑵设计递归出口：即根据规模最小的子问题，确定递归终止条件。（例：求解 n!时，当 n=1 时，n!=1）。</p>
+</li>
+<li><p>递归过程的实现<br>递归进层（i→i +1 层）系统需要做三件事：<br>⑴ 保留本层参数与返回地址；<br>⑵ 为被调用函数的局部变量分配存储区，给下层参数赋值；<br>⑶ 将程序转移到被调函数的入口。<br>而从被调用函数返回调用函数之前，递归退层（i←i +1 层）系统也应完成<br>三件工作：<br>⑴ 保存被调函数的计算结果；<br>⑵ 释放被调函数的数据区，恢复上层参数；<br>⑶ 依照被调函数保存的返回地址，将控制转移回调用函数。<br><img src="https://img-blog.csdnimg.cn/2020032307390516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200323073908942.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<table><tr><td bgcolor=#E6E6FA><font  size=6> 递归与非递归转换</td></tr></table>
+</li>
+<li><p>简单递归的消除<br>①单向递归<br>单向递归是指递归函数中虽然有一处以上的递归调用语句，但各次递归调用语句的参数只和主调用函数有关，相互之间参数无关，并且这些递归调用语句处于算法的最后。<br>计算斐波那契数列的递归算法 Fib(n) 是单向递归的一个典型例子。</p>
+</li>
+</ul>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fib</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>||n==<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> n;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> fib(n<span class="hljs-number">-1</span>)+fib(n<span class="hljs-number">-2</span>);
+&#125;</code></pre></div>
+
+<blockquote>
+<p>用循环方式计算 Fib(n)时，Fib(i) (i=2…n)是在已计算过 Fib (i-1)与 Fib (i-2)的基础上进行的，无重复计算，时间复杂度为 O(n)。虽然非递归算法没有递归算法直观，但时空耗费远少于递归算法。<br>而用递归方式计算 Fib (n)时，必须计算 Fib (n-1)与 Fib (n-2)，而某次递归计算得出的结果，如 Fib (3)无法保存，下一次要用到时还需要重新递归计算，因此其时间复杂度为 O(2n)。</p>
+</blockquote>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Fib</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>&#123;<span class="hljs-comment">/*计算 Fib (0)或 Fib(1) */</span>
+    <span class="hljs-keyword">int</span> x,y,z;
+    <span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>|n==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> n;
+    <span class="hljs-keyword">else</span>&#123;
+        x=<span class="hljs-number">0</span>,y=<span class="hljs-number">1</span>;<span class="hljs-comment">/* x= Fib (0) y= Fib (1) */</span>
+        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;
+            z=y;<span class="hljs-comment">/* z= Fib (i-1) */</span>
+            y=x+y;<span class="hljs-comment">/* y= Fib (i-1)+ Fib (i-2) 求 Fib (i) */</span>
+            x=z;<span class="hljs-comment">/* x= Fib (i-1) */</span>
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> y;
+&#125;</code></pre></div>
+
+<ul>
+<li>②尾递归<br>尾递归是指递归调用语句只有一个，而且是处于算法的最后，尾递归是单向递归的特例。<br>以阶乘问题的递归算法 Fact(n)为例讨论尾递归算法的运行过程，算法如下：</li>
+</ul>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-title">Fact</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>
+<span class="hljs-function"></span>&#123;
+ <span class="hljs-keyword">if</span>(n= =<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+ <span class="hljs-keyword">return</span> n*Fact(n<span class="hljs-number">-1</span>);
+&#125;</code></pre></div>
+<p>对于尾递归形式的递归算法，不必利用系统的运行时栈保存各种信息。尾递归形式的算法实际上可变成循环结构的算法。循环结构的阶乘问题算法 Fact(n)如下：</p>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-title">Fact</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">int</span> fac = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<span class="hljs-comment">/*依次计算 f(1)… f(n)*/</span>
+    &#123;
+        fac = fac * i;<span class="hljs-comment">/* f(i)= f(i-1)*i */</span>
+    &#125;
+    <span class="hljs-keyword">return</span> fac;
+&#125;</code></pre></div>
+
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/%E6%A0%88/">栈</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/03/24/%E3%80%90%E6%A0%91%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【树】二叉树的基本概念与性质</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%93%BE%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+                        <span class="hidden-mobile">【栈】链栈及其基本操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "【栈】栈的应用与递归&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

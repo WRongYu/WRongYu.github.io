@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="WRY">
+  <meta name="keywords" content="">
+  <title>【串】串的顺序存储结构 - WRY&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atom-one-dark.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>WRY's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/2.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-06-17 16:17">
+      2020年6月17日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <table><tr><td bgcolor=#E6E6FA><font  size=6>定长顺序串</td></tr></table>
+1.定义：定长顺序串是将串设计成一种静态结构类型,串的存储分配是在编译时完成的。与前面所讲的线性表的顺序存储结构类似,可用一组地址连续的存储单元存储串的字符序列。
+<table><tr><td bgcolor=#FFC0CB><font  size=5>定长顺序串存储结构</td></tr></table>
+
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXLEN 40 <span class="hljs-comment">/*MAXLEN 表示串的最大长度*/</span></span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span>
+<span class="hljs-class">&#123;</span>
+    <span class="hljs-keyword">char</span> ch[MAXLEN]; <span class="hljs-comment">/*ch 是存储字符串的一维数组,每个分量存储一</span>
+<span class="hljs-comment">个字符*/</span>
+    <span class="hljs-keyword">int</span> len;         <span class="hljs-comment">/*len 是字符串的长度*/</span>
+&#125; SString;</code></pre></div>
+<table><tr><td bgcolor=#FFC0CB><font  size=5>定长顺序串基本操作的实现</td></tr></table>
+<table><tr><td bgcolor=#99CCFF><font  size=4> 1. 串插入函数</td></tr></table>
+
+<p> 【问题分析】在进行顺序串的插入时,插入位置 pos 将串分为两部分(假设为 A、 B,长度为LA、 LB)及待插入部分(假设为 C,长度为 LC),则串由插入前的 AB 变为 ACB,由于是顺序串,插入会引起元素的移动。可能出现以下三种情况:<br>①插入后串长( LA+LC +LB)≤ MAXLEN,则将 B 后移 LC 个元素位置,再将 C 插入。<br>②插入后串长&gt;MAXLEN 且 pos+LC≤ MAXLEN,则 B 后移时会有部分字符被舍弃。<br>③插入后串长&gt; MAXLEN 且 pos +LC &gt;MAXLEN,则 B 的全部字符被舍弃(不需后移),并 且 C 在插入时也有部分字符被舍弃。<br>【算法描述】</p>
+<div class="hljs"><pre><code class="hljs c">StrInsert(SString *s, <span class="hljs-keyword">int</span> pos, SString t)
+<span class="hljs-comment">/*在串 s 中下标为 pos 的字符之前插入串 t */</span>
+&#123;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span> || pos &gt; s-&gt;len)
+        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>); <span class="hljs-comment">/*插入位置不合法*/</span>
+    <span class="hljs-keyword">if</span> (s-&gt;len + t.len &lt;= MAXLEN)
+    &#123; <span class="hljs-comment">/*插入后串长≤MAXLEN*/</span>
+        <span class="hljs-keyword">for</span> (i = s-&gt;len + t.len - <span class="hljs-number">1</span>; i &gt;= t.len + pos; i--)
+            s-&gt;ch[i] = s-&gt;ch[i - t.len];
+        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; t.len; i++)
+            s-&gt;ch[i + pos] = t.ch[i];
+        s-&gt;len = s-&gt;len + t.len;
+    &#125;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pos + t.len &lt;= MAXLEN)
+    &#123; <span class="hljs-comment">/*插入后串长&gt;MAXLEN,但串 t 的字符序列可以全部插入*/</span>
+        <span class="hljs-keyword">for</span> (i = MAXLEN - <span class="hljs-number">1</span>; i &gt; t.len + pos - <span class="hljs-number">1</span>; i--)
+            s-&gt;ch[i] = s-&gt;ch[i - t.len];
+        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; t.len; i++)
+            s-&gt;ch[i + pos] = t.ch[i];
+        s-&gt;len = MAXLEN;
+    &#125;
+    <span class="hljs-keyword">else</span>
+    &#123;
+        <span class="hljs-comment">/*插入后串长&gt;MAXLEN,并且串 t 的部分字符也要舍弃*/</span>
+        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; MAXLEN - pos; i++)
+            s-&gt;ch[i + pos] = t.ch[i];
+        s-&gt;len = MAXLEN;
+    &#125;
+    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>);
+&#125;</code></pre></div>
+
+<ul>
+<li>显然,实现顺序串插入的算法其实现复杂度为: O( s-&gt;len+t.len)。<table><tr><td bgcolor=#99CCFF><font  size=4> 2. 串删除函数</td></tr></table>
+
+</li>
+</ul>
+<div class="hljs"><pre><code class="hljs c">StrDelete(SString *s, <span class="hljs-keyword">int</span> pos, <span class="hljs-keyword">int</span> l)
+<span class="hljs-comment">/*在串 s 中删除从下标 pos 起 l 个字符*/</span>
+&#123;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span> || pos &gt; (s-&gt;len - l))
+        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>); <span class="hljs-comment">/*删除参数不合法*/</span>
+    <span class="hljs-keyword">for</span> (i = pos + l; i &lt; s-&gt;len; i++)
+        s-&gt;ch[i - l] = s-&gt;ch[i];
+    <span class="hljs-comment">/*从 pos+l 开始至串尾依次向前移动，实现删除 l 个字符*/</span>
+    s-&gt;len = s-&gt;len - l; <span class="hljs-comment">/*s 串长减 l*/</span>
+    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>);
+&#125;</code></pre></div>
+
+<table><tr><td bgcolor=#99CCFF><font  size=4> 3. 串的简单模式匹配 Brute-Force(布鲁特-福斯)算法</td></tr></table>
+
+<p>【算法思想】</p>
+<blockquote>
+<p>简单的模式匹配算法是一种带回溯的匹配算法,算法的基本思想是:从主串S 的第 pos 个字符开始,和模式串 T 的第一个字符开始比较,如果相等,就继续比较后续字符,如果不等,则从(回溯到)主串 S 的第 pos+1 个字符开始重新和模式串 T 比较,直到模式串 T 中的每一个字符和主串 S 中的一个连续字符子序列全部相等,则称匹配成功,返回和 T 中第一个字符相等的字符在主串 S 中的位置;或者主串中没有和模式串相等的字符序列,则称匹配不成功。</p>
+</blockquote>
+<p>【算法描述】</p>
+<blockquote>
+<p>实现时设 i、 j、 start 三个指示器:<br>i——指向主串 S 中当前比较的字符,起始指向 S 的首字符,此后,每比较一步,后移一步,一趟匹配失败时,回溯到该趟比较起点的下一位置。<br>j———指向子串 T 中当前比较的字符,起始指向 T 的首字符,此后,每比较一步,后移一步,一趟匹配失败时,回溯到 T 的首字符处。<br>start———记录每趟比较时在主串 S 中的起点,每趟比较后,后移一步,以便确定下一趟的起始位置。</p>
+</blockquote>
+<p>【算法思想】</p>
+<blockquote>
+<p>从主串s的pos位置起，与模式串t逐位匹配<br>①初始化：主串从pos开始，模式串从头开始<br>②两串逐位比较：当主串模式串均未遍历完时，对应字符作比较<br>若相等：主串模式串的当前比较位置均后移<br>若不等：主串从开始比较位置的下一个开始，模式串从头开始<br>③判别：若匹配成功返回起始位置，若不成功，返回-1</p>
+</blockquote>
+<div class="hljs"><pre><code class="hljs c">StrIndex(SString s, <span class="hljs-keyword">int</span> pos, SString t)
+<span class="hljs-comment">/*求从主串 s 的下标 pos 起，串 t 第一次出现的位置，成功返回位置序号，不成功返回-1*/</span>
+&#123;
+    <span class="hljs-keyword">int</span> i, j, start;
+    <span class="hljs-keyword">if</span> (t.len == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>); <span class="hljs-comment">/* 模式串为空串时，是任意串的匹配串 */</span>
+    start = pos;
+    i = start;
+    j = <span class="hljs-number">0</span>; <span class="hljs-comment">/* 主串从 pos 开始，模式串从头（0）开始 */</span>
+    <span class="hljs-keyword">while</span> (i &lt; s.len &amp;&amp; j &lt; t.len)
+        <span class="hljs-keyword">if</span> (s.ch[i] == t.ch[j])
+        &#123;
+            i++;
+            j++;
+        &#125; <span class="hljs-comment">/* 当前对应字符相等时推进 */</span>
+        <span class="hljs-keyword">else</span>
+        &#123;
+            start++; <span class="hljs-comment">/* 当前对应字符不等时回溯 */</span>
+            i = start;
+            j = <span class="hljs-number">0</span>; <span class="hljs-comment">/* 主串从 start+1 开始，模式串从头（0）开始*/</span>
+        &#125;
+    <span class="hljs-keyword">if</span> (j &gt;= t.len)
+        <span class="hljs-keyword">return</span> (start); <span class="hljs-comment">/* 匹配成功时，返回匹配起始位置 */</span>
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> (<span class="hljs-number">-1</span>); <span class="hljs-comment">/* 匹配不成功时，返回-1 */</span>
+&#125;</code></pre></div>
+<p>【算法分析】</p>
+<blockquote>
+<p>该算法思路比较简单,但最坏时间复杂度较高,为 O( s.len* t.len),如主串为<br>51 个 0 ,模式串为 7 个 0 后有个 1 ,每趟都在最后一个不匹配后而倒到 start+1 ,整个匹配过程<br>共需 s.len- t.len=45 趟,每趟比较 t.len=8 个字符,故此例整个比较了 360 次。这个算法的主要<br>时间耗费在失配后的比较位置有回溯,造成了比较次数太多的情况。降低时间复杂度可采用<br>无回溯的算法——KMP算法<br><img src="https://img-blog.csdnimg.cn/202003231121568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200323112322433.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/2020032311232720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+</blockquote>
+<table><tr><td bgcolor=#E6E6FA><font  size=6>堆串</td></tr></table>
+
+<p>1.字符串包括串名与串值两部分,而串值采用堆串存储方法存储,串名用符号表存储。</p>
+<ul>
+<li>堆串存储方法:仍以一组地址连续的存储单元顺序存放串中的字符,但它们的存储空间是在程序执行过程中是动态分配的。系统将一个地址连续、容量很大的存储空间作为字符串的可用空间,每当建立一个新串时,系统就从这个空间中分配一个大小和字符串长度相同的空间存储新串的串值。</li>
+<li>串名符号表:所有串名的存储映像构成一个符号表。借助此结构可以在串名和串值之间建立一个对应关系,称为串名的存储映像。<br><img src="https://img-blog.csdnimg.cn/20200323113029907.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><table><tr><td bgcolor=#FFC0CB><font  size=5> 堆串存储结构</td></tr></table>
+
+</li>
+</ul>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span>
+<span class="hljs-class">&#123;</span>
+    <span class="hljs-keyword">char</span> *ch; <span class="hljs-comment">/*ch 域指示串的起始地址*/</span>
+    <span class="hljs-keyword">int</span> len;  <span class="hljs-comment">/*len 域指示串的长度*/</span>
+&#125; HString;</code></pre></div>
+<table><tr><td bgcolor=#FFC0CB><font  size=5>堆串基本操作的实现</td></tr></table>
+<table><tr><td bgcolor=#99CCFF><font  size=4> 1. 串插入函数</td></tr></table>
+
+<div class="hljs"><pre><code class="hljs c">StrInsert(HString *s，<span class="hljs-keyword">int</span> pos，HString *t)
+&#123; <span class="hljs-comment">/*在串 s 中下标为 pos 的字符之前插入串 t */</span>
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">char</span> *temp;
+    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span> || pos &gt; s-&gt;len || s-&gt;len == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);                         <span class="hljs-comment">/*插入位置不合法*/</span>
+    temp = (<span class="hljs-keyword">char</span> *)<span class="hljs-built_in">malloc</span>(s-&gt;len + t-&gt;len); <span class="hljs-comment">/*动态产生足够的空间存放插入后的串*/</span>
+    <span class="hljs-keyword">if</span> (temp == <span class="hljs-literal">NULL</span>)
+        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; pos; i++)
+        temp[i] = s-&gt;ch[i];
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; t-&gt;len; i++)
+        temp[i + pos] = t-&gt;ch[i];
+    <span class="hljs-keyword">for</span> (i = pos; i &lt; s-&gt;len; i++)
+        temp[i + t-&gt;len] = s-&gt;ch[i];
+    s-&gt;len += t-&gt;len;
+    <span class="hljs-built_in">free</span>(s-&gt;ch);
+    s-&gt;ch = temp;
+    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>);
+&#125;</code></pre></div>
+
+<table><tr><td bgcolor=#99CCFF><font  size=4> 2. 串删除函数</td></tr></table>
+
+<div class="hljs"><pre><code class="hljs c">StrDelete(HString *s，<span class="hljs-keyword">int</span> pos，<span class="hljs-keyword">int</span> len)
+<span class="hljs-comment">/*在串 s 中删除从下标 pos 起 len 个字符 */</span>
+&#123;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">char</span> *temp;
+    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span> || pos &gt; (s-&gt;len - len))
+        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>); <span class="hljs-comment">/*删除参数不合法*/</span>
+    temp = (<span class="hljs-keyword">char</span> *)<span class="hljs-built_in">malloc</span>(s-&gt;len - len);
+    <span class="hljs-keyword">if</span> (temp == <span class="hljs-literal">NULL</span>)
+        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; pos; i++)
+        temp[i] = s-&gt;ch[i];
+    <span class="hljs-keyword">for</span> (i = pos; i &lt; s-&gt;len - len; i++)
+        temp[i] = s-&gt;ch[i + len];
+    s-&gt;len = s-&gt;len - len;
+    <span class="hljs-built_in">free</span>(s-&gt;ch);
+    s-&gt;ch = temp;
+    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>);
+&#125;</code></pre></div>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/%E4%B8%B2/">串</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/17/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8%E4%BE%8B%E9%A2%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【串】串的基本概念</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/17/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+                        <span class="hidden-mobile">【串】串的基本概念</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "【串】串的顺序存储结构&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
