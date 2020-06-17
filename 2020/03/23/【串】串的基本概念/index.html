@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-17 16:18">
-      2020年6月17日 下午
+    <time datetime="2020-03-23 06:23">
+      2020年3月23日 早上
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      979 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      11
        分钟
     </span>
   
@@ -204,66 +204,27 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <table><tr><td bgcolor=#E6E6FA><font  size=6>块链串</td></tr></table>
+              <table><tr><td bgcolor=#E6E6FA><font  size=6> 1.串的基本概念</td></tr></table>
 
-<p><img src="https://img-blog.csdnimg.cn/20200323145710245.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>如果一个结点大小为 4 ,链域大小为 2 ,根据<strong>存储密度=串值占用的存储位/实际为串分配存储位,故该字符串的存储密度为 2 /3 。</strong>显然,串的存储密度越小,运算处理就越方便,但存储占用的量较大。应根据具体情况来确定使用串的何种存储结构。</p>
+<p>字符串（String）：是由零个或多个字符组成的有限序列，记为:S = ′a1 a2 … an′( n ≥ 0 )<br>ai∈V字符集合，每个 ai( 1 ≤ i≤ n)可以是字母、数字或其他字符。<br><strong>串也是一种特定的线性表</strong>，串的逻辑结构和线性表极为相似，其特定性仅在于串的数据对象限定为字符集。</p>
 <ol>
-<li>结点大小等于 1 :当 BLOCK_SIZE 等于 1 时,每个结点存放 1 个字符,结构同线性链表,存<br>储结构可定义如下,插入、删除的处理方法和线性链表一样,参见本章典型题解部分串的链式<br>模式匹配,算法处理简单,但存储密度较低。</li>
-<li>结点大于 1 :当 BLOCK_SIZE 大于 1 时,每个结点存放多个字符,当最后一个结点未存满<br>时,不足处可用特定字符(如#)补齐。虽然存储密度相对结点大小等于 1 的存储方法来说,存储<br>密度较高,但此时插入、删除的处理方法比较复杂,需要考虑结点的分拆和合并。<table><tr><td bgcolor=#FFC0CB><font  size=5>块链串的结构</td></tr></table>
+<li><strong>串的名字</strong>：S</li>
+<li><strong>串的值</strong>：用单引号括起来的字符序列</li>
+<li><strong>串的长度</strong>：n 是串中字符的个数</li>
+<li><strong>空串</strong>( Null String)：n=0 时的串</li>
+<li><strong>空格串</strong>：一个或多个空格组成的串，其长度为空格个数。</li>
+<li><strong>串相等</strong>：当且仅当两个串的值相等时,称这两个串是相等的。即只有当两个串的长度相等,并且每个对应位置的字符都相等时才相等。<blockquote>
+<p>需要特别指出的是,串值必须用一对单引号括起来( C 语言中是双引号),但单引号是界限符,它不属于串,其作用是避免与变量名或常量混淆。</p>
+</blockquote>
+</li>
+<li><strong>子串</strong>：串中任意个连续的字符组成的子序列称为该串的子串。</li>
+<li><strong>主串</strong>：包含子串的串相应地称为主串。可见,子串是主串的一部分。</li>
+<li><strong>求子串</strong>：sub（主串，起始位置，长度）<br>例：sub（‘china’，2，2）=‘in’</li>
+<li><strong>模式串在主串种的位置（串的模式匹配）</strong>：<br>从主串起始位置起，模式串在主串种首次出现的位置序号<br>例：主串‘chinachina’模式串‘in’<br>如起始位置为0，则模式串第一个字符在主串种的位置为2<br>如起始位置为3，则模式串第一个字符在主串种的位置为7<table><tr><td bgcolor=#E6E6FA><font  size=6> 2.串的抽象数据类型定义</td></tr></table>
 
 </li>
 </ol>
-<div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> BLOCK_SIZE 4 <span class="hljs-comment">/*每结点存放字符个数 4*/</span></span>
-<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Block</span></span>
-<span class="hljs-class">&#123;</span>
-    <span class="hljs-keyword">char</span> ch[BLOCK_SIZE];
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Block</span> *<span class="hljs-title">next</span>;</span>
-&#125; Block;
-<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span>
-<span class="hljs-class">&#123;</span>
-    Block *head;
-    Block *tail;
-    <span class="hljs-keyword">int</span> len;
-&#125; BLString;</code></pre></div>
-<table><tr><td bgcolor=#E6E6FA><font  size=6>串的应用举例:简单的行编辑器</td></tr></table>
-
-<p>可将文本看成为一个大的字符串,文本编辑就相当对字符串的处理。文本编辑程序用于源程序的输入和修改,公文书信、报刊和书籍的编辑排版等。常用的文本编辑程序有Edit,WPS,Word 等。文本编辑的实质是修改字符数据的形式和格式,虽然各个文本编辑程序的功能不同,但基本操作是一样的,都包括串的查找、插入和删除等。<br>为了编辑方便,可以用分页符和换行符将文本分为若干页,每页有若干行。可以把文本当作一个字符串,称为文本串,页是文本串的子串,行是页的子串。这里采用堆存储结构来存储文本,同时设立页指针、行指针和字符指针,分别指向当前操作的页、行和字符,同时建立页表和行表存储每一页、每一行的起始位置和长度。</p>
-<ul>
-<li>假设有如下 Pascal 源程序：<br>FUNC max(x，y：integer)：integer;<br>VAR z：integer;<br>BEGIN<br>IF x&gt;y THEN z:=x;<br>ELSE z:=y;<br>RETURN(z);<br>END;</li>
-</ul>
-<p>该程序输入内存后放到一个堆中，如图 4.3 所示。其中↙为换行符。表 4－1 和表 4－2 分别<br>为下图所示文本串的页表和行表。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200323152121152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>由表 4 -1 、表 4 -2 可以看出,当在某行内插入字符时,就要修改行表中该行的长度,若该行的长度超出了分配给它的存储空间,则要重新给它分配存储空间,同时修改它的起始位置和长度。如果要插入或删除一行,就要进行行表的插入和删除,当行的插入和删除涉及页的变化是时要对页表进行修改。</p>
-<table><tr><td bgcolor=#E6E6FA><font  size=6>典型题例</td></tr></table>
-
-<p>要求编写一个用带头结点的单链表实现串的模式匹配算法,每个结点存放一个字符(结<br>点大小为 1 )。借助于前面的结点大小为 1 定义链串类型 LKString。<br>【问题分析】该算法类同顺序串的简单模式匹配,实现匹配过程需考虑链表的特征(从头<br>比较的技术,指针保留的技术)。<br>【算法思想】<br>①初始化：主串从start开始，模式串从头开始<br>②两串逐位比较：当主串模式串均未遍历完时，对应字符作比较<br>若相等：主串模式串的当前比较位置均后移<br>若不等：主串从开始比较位置的下一个开始，模式串从头开始<br>③判别：若匹配成功返回起始位置指针，若不成功，返回NULL<br>【算法描述】</p>
-<div class="hljs"><pre><code class="hljs c"><span class="hljs-function">Link *<span class="hljs-title">StrIndex</span><span class="hljs-params">(LKString *s, LKString *t)</span></span>
-<span class="hljs-function"><span class="hljs-comment">/* 求模式串 t 在主串 s 中第一次出现的位置指针 */</span></span>
-<span class="hljs-function"></span>&#123;
-    Link *sp, *tp, *start;
-    <span class="hljs-keyword">if</span> (t-&gt;len == <span class="hljs-number">0</span>)
-        <span class="hljs-keyword">return</span> s-&gt;head-&gt;next; <span class="hljs-comment">/* 空串是任意串的子串 */</span>
-    start = s-&gt;head-&gt;next;    <span class="hljs-comment">/* 记录主串的起始比较位置 */</span>
-    sp = start;               <span class="hljs-comment">/* 主串从 start 开始 */</span>
-    tp = t-&gt;head-&gt;next;       <span class="hljs-comment">/* 模式串从第一个结点开始 */</span>
-    <span class="hljs-keyword">while</span> (sp != <span class="hljs-literal">NULL</span> &amp;&amp; tp != <span class="hljs-literal">NULL</span>)
-    &#123;
-        <span class="hljs-keyword">if</span> (sp-&gt;ch == tp-&gt;ch) <span class="hljs-comment">/* 若当前对应字符相同，则继续比较 */</span>
-        &#123;
-            sp = sp-&gt;next;
-            tp = tp-&gt;next;
-        &#125;
-        <span class="hljs-keyword">else</span> <span class="hljs-comment">/* 发现失配字符，则返回到主串当前起始位置的下一个结点继续比较*/</span>
-        &#123;
-            start = start-&gt;next; <span class="hljs-comment">/* 更新主串的起始位置 */</span>
-            sp = start;
-            tp = t-&gt;head-&gt;next; <span class="hljs-comment">/* 模式串从第一个结点重新开始 */</span>
-        &#125;
-    &#125;
-    <span class="hljs-keyword">if</span> (tp == <span class="hljs-literal">NULL</span>)
-        <span class="hljs-keyword">return</span> start; <span class="hljs-comment">/* 匹配成功，返回主串当前起始位置指针 */</span>
-    <span class="hljs-keyword">else</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>; <span class="hljs-comment">/* 匹配不成功，返回空指针 */</span>
-&#125;</code></pre></div>
+<p>ADT String {<br>数据对象: D={ ai | ai∈ CharacterSet,记为 V,i=1 ,2 ,…, n,n≥ 0 }<br>结构关系: R={&lt; ai,ai + 1 &gt;| ai,ai + 1 ∈ V,i=1 ,…, n-1 ; n-1 ≥ 0 }<br>基本操作:<br>( 1 ) StrAsign( S,chars)<br>操作前提: chars 是字符串常量。<br>操作结果:生成一个值等于 chars 的串 S。<br>( 2 ) StrInsert( S,pos,T)<br>操作前提:串 S 存在,1 ≤ pos≤ StrLength( S)+ 1 。<br>操作结果:在串 S 的第 pos 个字符之前插入串 T。<br>( 3 ) StrDelete( S,pos,len)<br>操作前提:串 S 存在,1 ≤ pos≤ StrLength( S)+ 1 。<br>操作结果:从串 S 中删除第 pos 个字符起长度为 len 的子串。<br>( 4 ) StrCopy( S,T)<br>操作前提:串 S 存在。<br>操作结果:由串 T 复制得串 S。<br>( 5 ) StrEmpty( S)<br>操作前提:串 S 存在。<br>操作结果:若串 S 为空串,则返回 TRUE,否则返回 FALSE。<br>( 6 ) StrCompare( S,T)<br>操作前提:串 S 和 T 存在。<br>操作结果:若 S&gt;T,则返回值&gt;0 ;如 S=T,则返回值=0 ;若 S&lt;T,则返回值&lt;0 。<br>( 7 ) StrLength( S)<br>操作前提:串 S 存在。<br>操作结果:返回串 S 的长度,即串 S 中的字符个数。<br>( 8 ) StrClear( S)<br>操作前提:串 S 存在。<br>操作结果:将 S 清为空串。<br>( 9 ) StrCat( S,T)<br>操作前提:串 S 和 T 存在。<br>操作结果:将串 T 的值连接在串 S 的后面。<br>( 10 ) SubString( Sub,S,pos,len)<br>操作前提:串 S 存在,1 ≤ pos≤ StrLength( S)且 1 ≤ len≤ StrLength( S)-<br>pos+1 。<br>操作结果:用 Sub 返回串 S 的第 pos 个字符起长度为 len 的子串。<br>( 11 ) StrIndex( S,pos,T)<br>操作前提:串 S 和 T 存在,T 是非空串,1 ≤ pos≤ StrLength( S)。<br>操作结果:若串 S 中存在和串 T 相同的子串,则返回它在串 S 中第 pos 个字符<br>之<br>后第一次出现的位置;否则返回 0 。<br>( 12 ) StrReplace( S,T,V)<br>操作前提:串 S、 T 和 V 存在且 T 是非空串。<br>操作结果:用 V 替换串 S 中出现的所有与 T 相等的不重叠的子串。<br>( 13 ) StrDestroy( S)<br>操作前提:串 S 存在。<br>操作结果:销毁串 S。<br>}ADT string</p>
 
             </article>
             <hr>
@@ -298,9 +259,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/17/%E3%80%90%E6%A0%91%E3%80%91%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+                      <a href="/2020/03/23/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【树】树的基本概念</span>
+                        <span class="hidden-mobile">【串】串的顺序存储结构</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -308,8 +269,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/17/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84/">
-                        <span class="hidden-mobile">【串】串的顺序存储结构</span>
+                      <a href="/2020/03/18/%E3%80%90%E6%A0%88%E3%80%91%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E9%80%92%E5%BD%92/">
+                        <span class="hidden-mobile">【栈】栈的应用与递归</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

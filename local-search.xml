@@ -22,9 +22,9 @@
     
     <tags>
       
-      <tag>基础</tag>
-      
       <tag>蓝桥杯</tag>
+      
+      <tag>基础</tag>
       
     </tags>
     
@@ -294,135 +294,6 @@
   
   
   <entry>
-    <title>【树】树的基本概念</title>
-    <link href="/2020/06/17/%E3%80%90%E6%A0%91%E3%80%91%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
-    <url>/2020/06/17/%E3%80%90%E6%A0%91%E3%80%91%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
-    
-    <content type="html"><![CDATA[<table><tr><td bgcolor=#E6E6FA><font  size=6>树的定义与基本术语</td></tr></table><table><tr><td bgcolor=#FFC0CB><font  size=5>树的基本概念</td></tr></table><ul><li>树是 n（n≥0）个结点的有限集合 T。</li><li>当 n=0 时，称为空树；</li><li>当 n&gt;0 时，该集合满足如下条件：①其中必有一个称为<strong>根</strong>（root）的特定结点，它没有直接前驱，但有零个或多个直接后继。②其余 n-1 个结点可以划分成 m（m≥0）个互不相交的有限集 T1，T2，T3，…，Tm，其中Ti又是一棵树，称为<strong>根的子树</strong>。<strong>每棵子树的根结点有且仅有一个直接前驱</strong>，但有零个或多个直接后继。<br>下图给出了一棵树的逻辑结构图示，它如同一棵倒长的树。<br><img src="https://img-blog.csdnimg.cn/20200323212318362.png" srcset="/img/loading.gif" alt="在这里插入图片描述"><table><tr><td bgcolor=#FFC0CB><font  size=5>树的图解表示</td></tr></table></li></ul><p><img src="https://img-blog.csdnimg.cn/20200323212855495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200323212907526.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p><table><tr><td bgcolor=#FFC0CB><font  size=5>树的相关术语</td></tr></table><ul><li><strong>结点</strong>：包括一个数据元素及若干指向其他结点的分支信息。 </li><li><strong>结点的度</strong>：一个结点的==子树个数==称为此结点的度。 </li><li><strong>叶结点</strong>：==度为 0 的结点==，即无后继的结点，也称为终端结点。</li><li><strong>分支结点</strong>：度不为 0 的结点，也称为非终端结点。</li><li><strong>结点的层次</strong>：从根结点开始定义，根结点的层次为 1，根的直接后继的层次为 2，依此类推。</li><li><strong>结点的层序编号</strong>：将树中的结点按从上层到下层、同层从左到右的次序排成一个线性序列，依次给它们编以连续的自然数。</li><li><strong>树的度</strong>：==树中所有结点的<strong>度</strong>的最大值。== </li><li><strong>树的高度（深度）</strong>：==树中所有结点的<strong>层次</strong>的最大值。== </li><li><strong>有序树</strong>：在树 T 中，如果各子树 Ti之间是有先后次序的，则称为有序树。 </li><li><strong>森林</strong>：m（m≥0）棵互不相交的树的集合。将一棵非空树的根结点删去，树就变成一个森林；反之，给森林增加一个统一的根结点，森林就变成一棵树。</li><li><strong>同构</strong>：对两棵树，通过对结点适当地重命名，就可以使两棵树完全相等（结点对应相等，对应结点的相关关系也相等），则称这两棵树同构。 </li></ul><p>我们常常借助人类家族树的术语，以便于直观理解结点间的层次关系。</p><ul><li>孩子结点：一个结点的直接后继称为该结点的孩子结点。</li><li>双亲结点：一个结点的直接前驱称为该结点的双亲结点。</li><li>兄弟结点：同一双亲结点的孩子结点之间互称兄弟结点。</li><li>堂兄弟：父亲是兄弟关系或堂兄关系的结点称为堂兄弟结点。</li><li>祖先结点：一个结点的祖先结点是指从根结点到该结点的路径上的所有结点。</li><li>子孙结点：一个结点的直接后继和间接后继称为该结点的子孙结点。</li><li>前辈：层号比该结点小的结点，都称为该结点的前辈。</li><li>后辈：层号比该结点大的结点，都称为该结点的后辈。<table><tr><td bgcolor=#FFC0CB><font  size=5>树的抽象数据类型</td></tr></table></li></ul><p><img src="https://img-blog.csdnimg.cn/20200323215117652.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>数据结构笔记</category>
-      
-      <category>树</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>笔记</tag>
-      
-      <tag>数据结构</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>【串】串的基本概念</title>
-    <link href="/2020/06/17/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8%E4%BE%8B%E9%A2%98/"/>
-    <url>/2020/06/17/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8%E4%BE%8B%E9%A2%98/</url>
-    
-    <content type="html"><![CDATA[<table><tr><td bgcolor=#E6E6FA><font  size=6>块链串</td></tr></table><p><img src="https://img-blog.csdnimg.cn/20200323145710245.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>如果一个结点大小为 4 ,链域大小为 2 ,根据<strong>存储密度=串值占用的存储位/实际为串分配存储位,故该字符串的存储密度为 2 /3 。</strong>显然,串的存储密度越小,运算处理就越方便,但存储占用的量较大。应根据具体情况来确定使用串的何种存储结构。</p><ol><li>结点大小等于 1 :当 BLOCK_SIZE 等于 1 时,每个结点存放 1 个字符,结构同线性链表,存<br>储结构可定义如下,插入、删除的处理方法和线性链表一样,参见本章典型题解部分串的链式<br>模式匹配,算法处理简单,但存储密度较低。</li><li>结点大于 1 :当 BLOCK_SIZE 大于 1 时,每个结点存放多个字符,当最后一个结点未存满<br>时,不足处可用特定字符(如#)补齐。虽然存储密度相对结点大小等于 1 的存储方法来说,存储<br>密度较高,但此时插入、删除的处理方法比较复杂,需要考虑结点的分拆和合并。<table><tr><td bgcolor=#FFC0CB><font  size=5>块链串的结构</td></tr></table></li></ol><div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> BLOCK_SIZE 4 <span class="hljs-comment">/*每结点存放字符个数 4*/</span></span><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Block</span></span><span class="hljs-class">&#123;</span>    <span class="hljs-keyword">char</span> ch[BLOCK_SIZE];    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Block</span> *<span class="hljs-title">next</span>;</span>&#125; Block;<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><span class="hljs-class">&#123;</span>    Block *head;    Block *tail;    <span class="hljs-keyword">int</span> len;&#125; BLString;</code></pre></div><table><tr><td bgcolor=#E6E6FA><font  size=6>串的应用举例:简单的行编辑器</td></tr></table><p>可将文本看成为一个大的字符串,文本编辑就相当对字符串的处理。文本编辑程序用于源程序的输入和修改,公文书信、报刊和书籍的编辑排版等。常用的文本编辑程序有Edit,WPS,Word 等。文本编辑的实质是修改字符数据的形式和格式,虽然各个文本编辑程序的功能不同,但基本操作是一样的,都包括串的查找、插入和删除等。<br>为了编辑方便,可以用分页符和换行符将文本分为若干页,每页有若干行。可以把文本当作一个字符串,称为文本串,页是文本串的子串,行是页的子串。这里采用堆存储结构来存储文本,同时设立页指针、行指针和字符指针,分别指向当前操作的页、行和字符,同时建立页表和行表存储每一页、每一行的起始位置和长度。</p><ul><li>假设有如下 Pascal 源程序：<br>FUNC max(x，y：integer)：integer;<br>VAR z：integer;<br>BEGIN<br>IF x&gt;y THEN z:=x;<br>ELSE z:=y;<br>RETURN(z);<br>END;</li></ul><p>该程序输入内存后放到一个堆中，如图 4.3 所示。其中↙为换行符。表 4－1 和表 4－2 分别<br>为下图所示文本串的页表和行表。</p><p><img src="https://img-blog.csdnimg.cn/20200323152121152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>由表 4 -1 、表 4 -2 可以看出,当在某行内插入字符时,就要修改行表中该行的长度,若该行的长度超出了分配给它的存储空间,则要重新给它分配存储空间,同时修改它的起始位置和长度。如果要插入或删除一行,就要进行行表的插入和删除,当行的插入和删除涉及页的变化是时要对页表进行修改。</p><table><tr><td bgcolor=#E6E6FA><font  size=6>典型题例</td></tr></table><p>要求编写一个用带头结点的单链表实现串的模式匹配算法,每个结点存放一个字符(结<br>点大小为 1 )。借助于前面的结点大小为 1 定义链串类型 LKString。<br>【问题分析】该算法类同顺序串的简单模式匹配,实现匹配过程需考虑链表的特征(从头<br>比较的技术,指针保留的技术)。<br>【算法思想】<br>①初始化：主串从start开始，模式串从头开始<br>②两串逐位比较：当主串模式串均未遍历完时，对应字符作比较<br>若相等：主串模式串的当前比较位置均后移<br>若不等：主串从开始比较位置的下一个开始，模式串从头开始<br>③判别：若匹配成功返回起始位置指针，若不成功，返回NULL<br>【算法描述】</p><div class="hljs"><pre><code class="hljs c"><span class="hljs-function">Link *<span class="hljs-title">StrIndex</span><span class="hljs-params">(LKString *s, LKString *t)</span></span><span class="hljs-function"><span class="hljs-comment">/* 求模式串 t 在主串 s 中第一次出现的位置指针 */</span></span><span class="hljs-function"></span>&#123;    Link *sp, *tp, *start;    <span class="hljs-keyword">if</span> (t-&gt;len == <span class="hljs-number">0</span>)        <span class="hljs-keyword">return</span> s-&gt;head-&gt;next; <span class="hljs-comment">/* 空串是任意串的子串 */</span>    start = s-&gt;head-&gt;next;    <span class="hljs-comment">/* 记录主串的起始比较位置 */</span>    sp = start;               <span class="hljs-comment">/* 主串从 start 开始 */</span>    tp = t-&gt;head-&gt;next;       <span class="hljs-comment">/* 模式串从第一个结点开始 */</span>    <span class="hljs-keyword">while</span> (sp != <span class="hljs-literal">NULL</span> &amp;&amp; tp != <span class="hljs-literal">NULL</span>)    &#123;        <span class="hljs-keyword">if</span> (sp-&gt;ch == tp-&gt;ch) <span class="hljs-comment">/* 若当前对应字符相同，则继续比较 */</span>        &#123;            sp = sp-&gt;next;            tp = tp-&gt;next;        &#125;        <span class="hljs-keyword">else</span> <span class="hljs-comment">/* 发现失配字符，则返回到主串当前起始位置的下一个结点继续比较*/</span>        &#123;            start = start-&gt;next; <span class="hljs-comment">/* 更新主串的起始位置 */</span>            sp = start;            tp = t-&gt;head-&gt;next; <span class="hljs-comment">/* 模式串从第一个结点重新开始 */</span>        &#125;    &#125;    <span class="hljs-keyword">if</span> (tp == <span class="hljs-literal">NULL</span>)        <span class="hljs-keyword">return</span> start; <span class="hljs-comment">/* 匹配成功，返回主串当前起始位置指针 */</span>    <span class="hljs-keyword">else</span>        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>; <span class="hljs-comment">/* 匹配不成功，返回空指针 */</span>&#125;</code></pre></div>]]></content>
-    
-    
-    <categories>
-      
-      <category>数据结构笔记</category>
-      
-      <category>串</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>笔记</tag>
-      
-      <tag>数据结构</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>【串】串的顺序存储结构</title>
-    <link href="/2020/06/17/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84/"/>
-    <url>/2020/06/17/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84/</url>
-    
-    <content type="html"><![CDATA[<table><tr><td bgcolor=#E6E6FA><font  size=6>定长顺序串</td></tr></table>1.定义：定长顺序串是将串设计成一种静态结构类型,串的存储分配是在编译时完成的。与前面所讲的线性表的顺序存储结构类似,可用一组地址连续的存储单元存储串的字符序列。<table><tr><td bgcolor=#FFC0CB><font  size=5>定长顺序串存储结构</td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXLEN 40 <span class="hljs-comment">/*MAXLEN 表示串的最大长度*/</span></span><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><span class="hljs-class">&#123;</span>    <span class="hljs-keyword">char</span> ch[MAXLEN]; <span class="hljs-comment">/*ch 是存储字符串的一维数组,每个分量存储一</span><span class="hljs-comment">个字符*/</span>    <span class="hljs-keyword">int</span> len;         <span class="hljs-comment">/*len 是字符串的长度*/</span>&#125; SString;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=5>定长顺序串基本操作的实现</td></tr></table><table><tr><td bgcolor=#99CCFF><font  size=4> 1. 串插入函数</td></tr></table><p> 【问题分析】在进行顺序串的插入时,插入位置 pos 将串分为两部分(假设为 A、 B,长度为LA、 LB)及待插入部分(假设为 C,长度为 LC),则串由插入前的 AB 变为 ACB,由于是顺序串,插入会引起元素的移动。可能出现以下三种情况:<br>①插入后串长( LA+LC +LB)≤ MAXLEN,则将 B 后移 LC 个元素位置,再将 C 插入。<br>②插入后串长&gt;MAXLEN 且 pos+LC≤ MAXLEN,则 B 后移时会有部分字符被舍弃。<br>③插入后串长&gt; MAXLEN 且 pos +LC &gt;MAXLEN,则 B 的全部字符被舍弃(不需后移),并 且 C 在插入时也有部分字符被舍弃。<br>【算法描述】</p><div class="hljs"><pre><code class="hljs c">StrInsert(SString *s, <span class="hljs-keyword">int</span> pos, SString t)<span class="hljs-comment">/*在串 s 中下标为 pos 的字符之前插入串 t */</span>&#123;    <span class="hljs-keyword">int</span> i;    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span> || pos &gt; s-&gt;len)        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>); <span class="hljs-comment">/*插入位置不合法*/</span>    <span class="hljs-keyword">if</span> (s-&gt;len + t.len &lt;= MAXLEN)    &#123; <span class="hljs-comment">/*插入后串长≤MAXLEN*/</span>        <span class="hljs-keyword">for</span> (i = s-&gt;len + t.len - <span class="hljs-number">1</span>; i &gt;= t.len + pos; i--)            s-&gt;ch[i] = s-&gt;ch[i - t.len];        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; t.len; i++)            s-&gt;ch[i + pos] = t.ch[i];        s-&gt;len = s-&gt;len + t.len;    &#125;    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pos + t.len &lt;= MAXLEN)    &#123; <span class="hljs-comment">/*插入后串长&gt;MAXLEN,但串 t 的字符序列可以全部插入*/</span>        <span class="hljs-keyword">for</span> (i = MAXLEN - <span class="hljs-number">1</span>; i &gt; t.len + pos - <span class="hljs-number">1</span>; i--)            s-&gt;ch[i] = s-&gt;ch[i - t.len];        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; t.len; i++)            s-&gt;ch[i + pos] = t.ch[i];        s-&gt;len = MAXLEN;    &#125;    <span class="hljs-keyword">else</span>    &#123;        <span class="hljs-comment">/*插入后串长&gt;MAXLEN,并且串 t 的部分字符也要舍弃*/</span>        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; MAXLEN - pos; i++)            s-&gt;ch[i + pos] = t.ch[i];        s-&gt;len = MAXLEN;    &#125;    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>);&#125;</code></pre></div><ul><li>显然,实现顺序串插入的算法其实现复杂度为: O( s-&gt;len+t.len)。<table><tr><td bgcolor=#99CCFF><font  size=4> 2. 串删除函数</td></tr></table></li></ul><div class="hljs"><pre><code class="hljs c">StrDelete(SString *s, <span class="hljs-keyword">int</span> pos, <span class="hljs-keyword">int</span> l)<span class="hljs-comment">/*在串 s 中删除从下标 pos 起 l 个字符*/</span>&#123;    <span class="hljs-keyword">int</span> i;    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span> || pos &gt; (s-&gt;len - l))        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>); <span class="hljs-comment">/*删除参数不合法*/</span>    <span class="hljs-keyword">for</span> (i = pos + l; i &lt; s-&gt;len; i++)        s-&gt;ch[i - l] = s-&gt;ch[i];    <span class="hljs-comment">/*从 pos+l 开始至串尾依次向前移动，实现删除 l 个字符*/</span>    s-&gt;len = s-&gt;len - l; <span class="hljs-comment">/*s 串长减 l*/</span>    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>);&#125;</code></pre></div><table><tr><td bgcolor=#99CCFF><font  size=4> 3. 串的简单模式匹配 Brute-Force(布鲁特-福斯)算法</td></tr></table><p>【算法思想】</p><blockquote><p>简单的模式匹配算法是一种带回溯的匹配算法,算法的基本思想是:从主串S 的第 pos 个字符开始,和模式串 T 的第一个字符开始比较,如果相等,就继续比较后续字符,如果不等,则从(回溯到)主串 S 的第 pos+1 个字符开始重新和模式串 T 比较,直到模式串 T 中的每一个字符和主串 S 中的一个连续字符子序列全部相等,则称匹配成功,返回和 T 中第一个字符相等的字符在主串 S 中的位置;或者主串中没有和模式串相等的字符序列,则称匹配不成功。</p></blockquote><p>【算法描述】</p><blockquote><p>实现时设 i、 j、 start 三个指示器:<br>i——指向主串 S 中当前比较的字符,起始指向 S 的首字符,此后,每比较一步,后移一步,一趟匹配失败时,回溯到该趟比较起点的下一位置。<br>j———指向子串 T 中当前比较的字符,起始指向 T 的首字符,此后,每比较一步,后移一步,一趟匹配失败时,回溯到 T 的首字符处。<br>start———记录每趟比较时在主串 S 中的起点,每趟比较后,后移一步,以便确定下一趟的起始位置。</p></blockquote><p>【算法思想】</p><blockquote><p>从主串s的pos位置起，与模式串t逐位匹配<br>①初始化：主串从pos开始，模式串从头开始<br>②两串逐位比较：当主串模式串均未遍历完时，对应字符作比较<br>若相等：主串模式串的当前比较位置均后移<br>若不等：主串从开始比较位置的下一个开始，模式串从头开始<br>③判别：若匹配成功返回起始位置，若不成功，返回-1</p></blockquote><div class="hljs"><pre><code class="hljs c">StrIndex(SString s, <span class="hljs-keyword">int</span> pos, SString t)<span class="hljs-comment">/*求从主串 s 的下标 pos 起，串 t 第一次出现的位置，成功返回位置序号，不成功返回-1*/</span>&#123;    <span class="hljs-keyword">int</span> i, j, start;    <span class="hljs-keyword">if</span> (t.len == <span class="hljs-number">0</span>)        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>); <span class="hljs-comment">/* 模式串为空串时，是任意串的匹配串 */</span>    start = pos;    i = start;    j = <span class="hljs-number">0</span>; <span class="hljs-comment">/* 主串从 pos 开始，模式串从头（0）开始 */</span>    <span class="hljs-keyword">while</span> (i &lt; s.len &amp;&amp; j &lt; t.len)        <span class="hljs-keyword">if</span> (s.ch[i] == t.ch[j])        &#123;            i++;            j++;        &#125; <span class="hljs-comment">/* 当前对应字符相等时推进 */</span>        <span class="hljs-keyword">else</span>        &#123;            start++; <span class="hljs-comment">/* 当前对应字符不等时回溯 */</span>            i = start;            j = <span class="hljs-number">0</span>; <span class="hljs-comment">/* 主串从 start+1 开始，模式串从头（0）开始*/</span>        &#125;    <span class="hljs-keyword">if</span> (j &gt;= t.len)        <span class="hljs-keyword">return</span> (start); <span class="hljs-comment">/* 匹配成功时，返回匹配起始位置 */</span>    <span class="hljs-keyword">else</span>        <span class="hljs-keyword">return</span> (<span class="hljs-number">-1</span>); <span class="hljs-comment">/* 匹配不成功时，返回-1 */</span>&#125;</code></pre></div><p>【算法分析】</p><blockquote><p>该算法思路比较简单,但最坏时间复杂度较高,为 O( s.len* t.len),如主串为<br>51 个 0 ,模式串为 7 个 0 后有个 1 ,每趟都在最后一个不匹配后而倒到 start+1 ,整个匹配过程<br>共需 s.len- t.len=45 趟,每趟比较 t.len=8 个字符,故此例整个比较了 360 次。这个算法的主要<br>时间耗费在失配后的比较位置有回溯,造成了比较次数太多的情况。降低时间复杂度可采用<br>无回溯的算法——KMP算法<br><img src="https://img-blog.csdnimg.cn/202003231121568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200323112322433.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/2020032311232720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p></blockquote><table><tr><td bgcolor=#E6E6FA><font  size=6>堆串</td></tr></table><p>1.字符串包括串名与串值两部分,而串值采用堆串存储方法存储,串名用符号表存储。</p><ul><li>堆串存储方法:仍以一组地址连续的存储单元顺序存放串中的字符,但它们的存储空间是在程序执行过程中是动态分配的。系统将一个地址连续、容量很大的存储空间作为字符串的可用空间,每当建立一个新串时,系统就从这个空间中分配一个大小和字符串长度相同的空间存储新串的串值。</li><li>串名符号表:所有串名的存储映像构成一个符号表。借助此结构可以在串名和串值之间建立一个对应关系,称为串名的存储映像。<br><img src="https://img-blog.csdnimg.cn/20200323113029907.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><table><tr><td bgcolor=#FFC0CB><font  size=5> 堆串存储结构</td></tr></table></li></ul><div class="hljs"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><span class="hljs-class">&#123;</span>    <span class="hljs-keyword">char</span> *ch; <span class="hljs-comment">/*ch 域指示串的起始地址*/</span>    <span class="hljs-keyword">int</span> len;  <span class="hljs-comment">/*len 域指示串的长度*/</span>&#125; HString;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=5>堆串基本操作的实现</td></tr></table><table><tr><td bgcolor=#99CCFF><font  size=4> 1. 串插入函数</td></tr></table><div class="hljs"><pre><code class="hljs c">StrInsert(HString *s，<span class="hljs-keyword">int</span> pos，HString *t)&#123; <span class="hljs-comment">/*在串 s 中下标为 pos 的字符之前插入串 t */</span>    <span class="hljs-keyword">int</span> i;    <span class="hljs-keyword">char</span> *temp;    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span> || pos &gt; s-&gt;len || s-&gt;len == <span class="hljs-number">0</span>)        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);                         <span class="hljs-comment">/*插入位置不合法*/</span>    temp = (<span class="hljs-keyword">char</span> *)<span class="hljs-built_in">malloc</span>(s-&gt;len + t-&gt;len); <span class="hljs-comment">/*动态产生足够的空间存放插入后的串*/</span>    <span class="hljs-keyword">if</span> (temp == <span class="hljs-literal">NULL</span>)        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; pos; i++)        temp[i] = s-&gt;ch[i];    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; t-&gt;len; i++)        temp[i + pos] = t-&gt;ch[i];    <span class="hljs-keyword">for</span> (i = pos; i &lt; s-&gt;len; i++)        temp[i + t-&gt;len] = s-&gt;ch[i];    s-&gt;len += t-&gt;len;    <span class="hljs-built_in">free</span>(s-&gt;ch);    s-&gt;ch = temp;    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>);&#125;</code></pre></div><table><tr><td bgcolor=#99CCFF><font  size=4> 2. 串删除函数</td></tr></table><div class="hljs"><pre><code class="hljs c">StrDelete(HString *s，<span class="hljs-keyword">int</span> pos，<span class="hljs-keyword">int</span> len)<span class="hljs-comment">/*在串 s 中删除从下标 pos 起 len 个字符 */</span>&#123;    <span class="hljs-keyword">int</span> i;    <span class="hljs-keyword">char</span> *temp;    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span> || pos &gt; (s-&gt;len - len))        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>); <span class="hljs-comment">/*删除参数不合法*/</span>    temp = (<span class="hljs-keyword">char</span> *)<span class="hljs-built_in">malloc</span>(s-&gt;len - len);    <span class="hljs-keyword">if</span> (temp == <span class="hljs-literal">NULL</span>)        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; pos; i++)        temp[i] = s-&gt;ch[i];    <span class="hljs-keyword">for</span> (i = pos; i &lt; s-&gt;len - len; i++)        temp[i] = s-&gt;ch[i + len];    s-&gt;len = s-&gt;len - len;    <span class="hljs-built_in">free</span>(s-&gt;ch);    s-&gt;ch = temp;    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>);&#125;</code></pre></div>]]></content>
-    
-    
-    <categories>
-      
-      <category>数据结构笔记</category>
-      
-      <category>串</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>笔记</tag>
-      
-      <tag>数据结构</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>【串】串的基本概念</title>
-    <link href="/2020/06/17/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
-    <url>/2020/06/17/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
-    
-    <content type="html"><![CDATA[<table><tr><td bgcolor=#E6E6FA><font  size=6> 1.串的基本概念</td></tr></table><p>字符串（String）：是由零个或多个字符组成的有限序列，记为:S = ′a1 a2 … an′( n ≥ 0 )<br>ai∈V字符集合，每个 ai( 1 ≤ i≤ n)可以是字母、数字或其他字符。<br><strong>串也是一种特定的线性表</strong>，串的逻辑结构和线性表极为相似，其特定性仅在于串的数据对象限定为字符集。</p><ol><li><strong>串的名字</strong>：S</li><li><strong>串的值</strong>：用单引号括起来的字符序列</li><li><strong>串的长度</strong>：n 是串中字符的个数</li><li><strong>空串</strong>( Null String)：n=0 时的串</li><li><strong>空格串</strong>：一个或多个空格组成的串，其长度为空格个数。</li><li><strong>串相等</strong>：当且仅当两个串的值相等时,称这两个串是相等的。即只有当两个串的长度相等,并且每个对应位置的字符都相等时才相等。<blockquote><p>需要特别指出的是,串值必须用一对单引号括起来( C 语言中是双引号),但单引号是界限符,它不属于串,其作用是避免与变量名或常量混淆。</p></blockquote></li><li><strong>子串</strong>：串中任意个连续的字符组成的子序列称为该串的子串。</li><li><strong>主串</strong>：包含子串的串相应地称为主串。可见,子串是主串的一部分。</li><li><strong>求子串</strong>：sub（主串，起始位置，长度）<br>例：sub（‘china’，2，2）=‘in’</li><li><strong>模式串在主串种的位置（串的模式匹配）</strong>：<br>从主串起始位置起，模式串在主串种首次出现的位置序号<br>例：主串‘chinachina’模式串‘in’<br>如起始位置为0，则模式串第一个字符在主串种的位置为2<br>如起始位置为3，则模式串第一个字符在主串种的位置为7<table><tr><td bgcolor=#E6E6FA><font  size=6> 2.串的抽象数据类型定义</td></tr></table></li></ol><p>ADT String {<br>数据对象: D={ ai | ai∈ CharacterSet,记为 V,i=1 ,2 ,…, n,n≥ 0 }<br>结构关系: R={&lt; ai,ai + 1 &gt;| ai,ai + 1 ∈ V,i=1 ,…, n-1 ; n-1 ≥ 0 }<br>基本操作:<br>( 1 ) StrAsign( S,chars)<br>操作前提: chars 是字符串常量。<br>操作结果:生成一个值等于 chars 的串 S。<br>( 2 ) StrInsert( S,pos,T)<br>操作前提:串 S 存在,1 ≤ pos≤ StrLength( S)+ 1 。<br>操作结果:在串 S 的第 pos 个字符之前插入串 T。<br>( 3 ) StrDelete( S,pos,len)<br>操作前提:串 S 存在,1 ≤ pos≤ StrLength( S)+ 1 。<br>操作结果:从串 S 中删除第 pos 个字符起长度为 len 的子串。<br>( 4 ) StrCopy( S,T)<br>操作前提:串 S 存在。<br>操作结果:由串 T 复制得串 S。<br>( 5 ) StrEmpty( S)<br>操作前提:串 S 存在。<br>操作结果:若串 S 为空串,则返回 TRUE,否则返回 FALSE。<br>( 6 ) StrCompare( S,T)<br>操作前提:串 S 和 T 存在。<br>操作结果:若 S&gt;T,则返回值&gt;0 ;如 S=T,则返回值=0 ;若 S&lt;T,则返回值&lt;0 。<br>( 7 ) StrLength( S)<br>操作前提:串 S 存在。<br>操作结果:返回串 S 的长度,即串 S 中的字符个数。<br>( 8 ) StrClear( S)<br>操作前提:串 S 存在。<br>操作结果:将 S 清为空串。<br>( 9 ) StrCat( S,T)<br>操作前提:串 S 和 T 存在。<br>操作结果:将串 T 的值连接在串 S 的后面。<br>( 10 ) SubString( Sub,S,pos,len)<br>操作前提:串 S 存在,1 ≤ pos≤ StrLength( S)且 1 ≤ len≤ StrLength( S)-<br>pos+1 。<br>操作结果:用 Sub 返回串 S 的第 pos 个字符起长度为 len 的子串。<br>( 11 ) StrIndex( S,pos,T)<br>操作前提:串 S 和 T 存在,T 是非空串,1 ≤ pos≤ StrLength( S)。<br>操作结果:若串 S 中存在和串 T 相同的子串,则返回它在串 S 中第 pos 个字符<br>之<br>后第一次出现的位置;否则返回 0 。<br>( 12 ) StrReplace( S,T,V)<br>操作前提:串 S、 T 和 V 存在且 T 是非空串。<br>操作结果:用 V 替换串 S 中出现的所有与 T 相等的不重叠的子串。<br>( 13 ) StrDestroy( S)<br>操作前提:串 S 存在。<br>操作结果:销毁串 S。<br>}ADT string</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>数据结构笔记</category>
-      
-      <category>串</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>笔记</tag>
-      
-      <tag>数据结构</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="/2020/06/15/hello-world/"/>
-    <url>/2020/06/15/hello-world/</url>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="hljs"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span></code></pre></div><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="hljs"><pre><code class="hljs bash">$ hexo server</code></pre></div><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="hljs"><pre><code class="hljs bash">$ hexo generate</code></pre></div><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="hljs"><pre><code class="hljs bash">$ hexo deploy</code></pre></div><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>【图】图的存储结构</title>
     <link href="/2020/05/10/%E3%80%90%E5%9B%BE%E3%80%91%E5%9B%BE%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84/"/>
     <url>/2020/05/10/%E3%80%90%E5%9B%BE%E3%80%91%E5%9B%BE%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84/</url>
@@ -568,6 +439,122 @@
   
   
   <entry>
+    <title>【树】树的基本概念</title>
+    <link href="/2020/03/23/%E3%80%90%E6%A0%91%E3%80%91%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+    <url>/2020/03/23/%E3%80%90%E6%A0%91%E3%80%91%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
+    
+    <content type="html"><![CDATA[<table><tr><td bgcolor=#E6E6FA><font  size=6>树的定义与基本术语</td></tr></table><table><tr><td bgcolor=#FFC0CB><font  size=5>树的基本概念</td></tr></table><ul><li>树是 n（n≥0）个结点的有限集合 T。</li><li>当 n=0 时，称为空树；</li><li>当 n&gt;0 时，该集合满足如下条件：①其中必有一个称为<strong>根</strong>（root）的特定结点，它没有直接前驱，但有零个或多个直接后继。②其余 n-1 个结点可以划分成 m（m≥0）个互不相交的有限集 T1，T2，T3，…，Tm，其中Ti又是一棵树，称为<strong>根的子树</strong>。<strong>每棵子树的根结点有且仅有一个直接前驱</strong>，但有零个或多个直接后继。<br>下图给出了一棵树的逻辑结构图示，它如同一棵倒长的树。<br><img src="https://img-blog.csdnimg.cn/20200323212318362.png" srcset="/img/loading.gif" alt="在这里插入图片描述"><table><tr><td bgcolor=#FFC0CB><font  size=5>树的图解表示</td></tr></table></li></ul><p><img src="https://img-blog.csdnimg.cn/20200323212855495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200323212907526.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p><table><tr><td bgcolor=#FFC0CB><font  size=5>树的相关术语</td></tr></table><ul><li><strong>结点</strong>：包括一个数据元素及若干指向其他结点的分支信息。 </li><li><strong>结点的度</strong>：一个结点的==子树个数==称为此结点的度。 </li><li><strong>叶结点</strong>：==度为 0 的结点==，即无后继的结点，也称为终端结点。</li><li><strong>分支结点</strong>：度不为 0 的结点，也称为非终端结点。</li><li><strong>结点的层次</strong>：从根结点开始定义，根结点的层次为 1，根的直接后继的层次为 2，依此类推。</li><li><strong>结点的层序编号</strong>：将树中的结点按从上层到下层、同层从左到右的次序排成一个线性序列，依次给它们编以连续的自然数。</li><li><strong>树的度</strong>：==树中所有结点的<strong>度</strong>的最大值。== </li><li><strong>树的高度（深度）</strong>：==树中所有结点的<strong>层次</strong>的最大值。== </li><li><strong>有序树</strong>：在树 T 中，如果各子树 Ti之间是有先后次序的，则称为有序树。 </li><li><strong>森林</strong>：m（m≥0）棵互不相交的树的集合。将一棵非空树的根结点删去，树就变成一个森林；反之，给森林增加一个统一的根结点，森林就变成一棵树。</li><li><strong>同构</strong>：对两棵树，通过对结点适当地重命名，就可以使两棵树完全相等（结点对应相等，对应结点的相关关系也相等），则称这两棵树同构。 </li></ul><p>我们常常借助人类家族树的术语，以便于直观理解结点间的层次关系。</p><ul><li>孩子结点：一个结点的直接后继称为该结点的孩子结点。</li><li>双亲结点：一个结点的直接前驱称为该结点的双亲结点。</li><li>兄弟结点：同一双亲结点的孩子结点之间互称兄弟结点。</li><li>堂兄弟：父亲是兄弟关系或堂兄关系的结点称为堂兄弟结点。</li><li>祖先结点：一个结点的祖先结点是指从根结点到该结点的路径上的所有结点。</li><li>子孙结点：一个结点的直接后继和间接后继称为该结点的子孙结点。</li><li>前辈：层号比该结点小的结点，都称为该结点的前辈。</li><li>后辈：层号比该结点大的结点，都称为该结点的后辈。<table><tr><td bgcolor=#FFC0CB><font  size=5>树的抽象数据类型</td></tr></table></li></ul><p><img src="https://img-blog.csdnimg.cn/20200323215117652.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构笔记</category>
+      
+      <category>树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>笔记</tag>
+      
+      <tag>数据结构</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【串】串的基本概念</title>
+    <link href="/2020/03/23/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8%E4%BE%8B%E9%A2%98/"/>
+    <url>/2020/03/23/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8%E4%BE%8B%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<table><tr><td bgcolor=#E6E6FA><font  size=6>块链串</td></tr></table><p><img src="https://img-blog.csdnimg.cn/20200323145710245.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>如果一个结点大小为 4 ,链域大小为 2 ,根据<strong>存储密度=串值占用的存储位/实际为串分配存储位,故该字符串的存储密度为 2 /3 。</strong>显然,串的存储密度越小,运算处理就越方便,但存储占用的量较大。应根据具体情况来确定使用串的何种存储结构。</p><ol><li>结点大小等于 1 :当 BLOCK_SIZE 等于 1 时,每个结点存放 1 个字符,结构同线性链表,存<br>储结构可定义如下,插入、删除的处理方法和线性链表一样,参见本章典型题解部分串的链式<br>模式匹配,算法处理简单,但存储密度较低。</li><li>结点大于 1 :当 BLOCK_SIZE 大于 1 时,每个结点存放多个字符,当最后一个结点未存满<br>时,不足处可用特定字符(如#)补齐。虽然存储密度相对结点大小等于 1 的存储方法来说,存储<br>密度较高,但此时插入、删除的处理方法比较复杂,需要考虑结点的分拆和合并。<table><tr><td bgcolor=#FFC0CB><font  size=5>块链串的结构</td></tr></table></li></ol><div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> BLOCK_SIZE 4 <span class="hljs-comment">/*每结点存放字符个数 4*/</span></span><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Block</span></span><span class="hljs-class">&#123;</span>    <span class="hljs-keyword">char</span> ch[BLOCK_SIZE];    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Block</span> *<span class="hljs-title">next</span>;</span>&#125; Block;<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><span class="hljs-class">&#123;</span>    Block *head;    Block *tail;    <span class="hljs-keyword">int</span> len;&#125; BLString;</code></pre></div><table><tr><td bgcolor=#E6E6FA><font  size=6>串的应用举例:简单的行编辑器</td></tr></table><p>可将文本看成为一个大的字符串,文本编辑就相当对字符串的处理。文本编辑程序用于源程序的输入和修改,公文书信、报刊和书籍的编辑排版等。常用的文本编辑程序有Edit,WPS,Word 等。文本编辑的实质是修改字符数据的形式和格式,虽然各个文本编辑程序的功能不同,但基本操作是一样的,都包括串的查找、插入和删除等。<br>为了编辑方便,可以用分页符和换行符将文本分为若干页,每页有若干行。可以把文本当作一个字符串,称为文本串,页是文本串的子串,行是页的子串。这里采用堆存储结构来存储文本,同时设立页指针、行指针和字符指针,分别指向当前操作的页、行和字符,同时建立页表和行表存储每一页、每一行的起始位置和长度。</p><ul><li>假设有如下 Pascal 源程序：<br>FUNC max(x，y：integer)：integer;<br>VAR z：integer;<br>BEGIN<br>IF x&gt;y THEN z:=x;<br>ELSE z:=y;<br>RETURN(z);<br>END;</li></ul><p>该程序输入内存后放到一个堆中，如图 4.3 所示。其中↙为换行符。表 4－1 和表 4－2 分别<br>为下图所示文本串的页表和行表。</p><p><img src="https://img-blog.csdnimg.cn/20200323152121152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>由表 4 -1 、表 4 -2 可以看出,当在某行内插入字符时,就要修改行表中该行的长度,若该行的长度超出了分配给它的存储空间,则要重新给它分配存储空间,同时修改它的起始位置和长度。如果要插入或删除一行,就要进行行表的插入和删除,当行的插入和删除涉及页的变化是时要对页表进行修改。</p><table><tr><td bgcolor=#E6E6FA><font  size=6>典型题例</td></tr></table><p>要求编写一个用带头结点的单链表实现串的模式匹配算法,每个结点存放一个字符(结<br>点大小为 1 )。借助于前面的结点大小为 1 定义链串类型 LKString。<br>【问题分析】该算法类同顺序串的简单模式匹配,实现匹配过程需考虑链表的特征(从头<br>比较的技术,指针保留的技术)。<br>【算法思想】<br>①初始化：主串从start开始，模式串从头开始<br>②两串逐位比较：当主串模式串均未遍历完时，对应字符作比较<br>若相等：主串模式串的当前比较位置均后移<br>若不等：主串从开始比较位置的下一个开始，模式串从头开始<br>③判别：若匹配成功返回起始位置指针，若不成功，返回NULL<br>【算法描述】</p><div class="hljs"><pre><code class="hljs c"><span class="hljs-function">Link *<span class="hljs-title">StrIndex</span><span class="hljs-params">(LKString *s, LKString *t)</span></span><span class="hljs-function"><span class="hljs-comment">/* 求模式串 t 在主串 s 中第一次出现的位置指针 */</span></span><span class="hljs-function"></span>&#123;    Link *sp, *tp, *start;    <span class="hljs-keyword">if</span> (t-&gt;len == <span class="hljs-number">0</span>)        <span class="hljs-keyword">return</span> s-&gt;head-&gt;next; <span class="hljs-comment">/* 空串是任意串的子串 */</span>    start = s-&gt;head-&gt;next;    <span class="hljs-comment">/* 记录主串的起始比较位置 */</span>    sp = start;               <span class="hljs-comment">/* 主串从 start 开始 */</span>    tp = t-&gt;head-&gt;next;       <span class="hljs-comment">/* 模式串从第一个结点开始 */</span>    <span class="hljs-keyword">while</span> (sp != <span class="hljs-literal">NULL</span> &amp;&amp; tp != <span class="hljs-literal">NULL</span>)    &#123;        <span class="hljs-keyword">if</span> (sp-&gt;ch == tp-&gt;ch) <span class="hljs-comment">/* 若当前对应字符相同，则继续比较 */</span>        &#123;            sp = sp-&gt;next;            tp = tp-&gt;next;        &#125;        <span class="hljs-keyword">else</span> <span class="hljs-comment">/* 发现失配字符，则返回到主串当前起始位置的下一个结点继续比较*/</span>        &#123;            start = start-&gt;next; <span class="hljs-comment">/* 更新主串的起始位置 */</span>            sp = start;            tp = t-&gt;head-&gt;next; <span class="hljs-comment">/* 模式串从第一个结点重新开始 */</span>        &#125;    &#125;    <span class="hljs-keyword">if</span> (tp == <span class="hljs-literal">NULL</span>)        <span class="hljs-keyword">return</span> start; <span class="hljs-comment">/* 匹配成功，返回主串当前起始位置指针 */</span>    <span class="hljs-keyword">else</span>        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>; <span class="hljs-comment">/* 匹配不成功，返回空指针 */</span>&#125;</code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构笔记</category>
+      
+      <category>串</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>笔记</tag>
+      
+      <tag>数据结构</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【串】串的顺序存储结构</title>
+    <link href="/2020/03/23/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84/"/>
+    <url>/2020/03/23/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84/</url>
+    
+    <content type="html"><![CDATA[<table><tr><td bgcolor=#E6E6FA><font  size=6>定长顺序串</td></tr></table>1.定义：定长顺序串是将串设计成一种静态结构类型,串的存储分配是在编译时完成的。与前面所讲的线性表的顺序存储结构类似,可用一组地址连续的存储单元存储串的字符序列。<table><tr><td bgcolor=#FFC0CB><font  size=5>定长顺序串存储结构</td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXLEN 40 <span class="hljs-comment">/*MAXLEN 表示串的最大长度*/</span></span><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><span class="hljs-class">&#123;</span>    <span class="hljs-keyword">char</span> ch[MAXLEN]; <span class="hljs-comment">/*ch 是存储字符串的一维数组,每个分量存储一</span><span class="hljs-comment">个字符*/</span>    <span class="hljs-keyword">int</span> len;         <span class="hljs-comment">/*len 是字符串的长度*/</span>&#125; SString;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=5>定长顺序串基本操作的实现</td></tr></table><table><tr><td bgcolor=#99CCFF><font  size=4> 1. 串插入函数</td></tr></table><p> 【问题分析】在进行顺序串的插入时,插入位置 pos 将串分为两部分(假设为 A、 B,长度为LA、 LB)及待插入部分(假设为 C,长度为 LC),则串由插入前的 AB 变为 ACB,由于是顺序串,插入会引起元素的移动。可能出现以下三种情况:<br>①插入后串长( LA+LC +LB)≤ MAXLEN,则将 B 后移 LC 个元素位置,再将 C 插入。<br>②插入后串长&gt;MAXLEN 且 pos+LC≤ MAXLEN,则 B 后移时会有部分字符被舍弃。<br>③插入后串长&gt; MAXLEN 且 pos +LC &gt;MAXLEN,则 B 的全部字符被舍弃(不需后移),并 且 C 在插入时也有部分字符被舍弃。<br>【算法描述】</p><div class="hljs"><pre><code class="hljs c">StrInsert(SString *s, <span class="hljs-keyword">int</span> pos, SString t)<span class="hljs-comment">/*在串 s 中下标为 pos 的字符之前插入串 t */</span>&#123;    <span class="hljs-keyword">int</span> i;    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span> || pos &gt; s-&gt;len)        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>); <span class="hljs-comment">/*插入位置不合法*/</span>    <span class="hljs-keyword">if</span> (s-&gt;len + t.len &lt;= MAXLEN)    &#123; <span class="hljs-comment">/*插入后串长≤MAXLEN*/</span>        <span class="hljs-keyword">for</span> (i = s-&gt;len + t.len - <span class="hljs-number">1</span>; i &gt;= t.len + pos; i--)            s-&gt;ch[i] = s-&gt;ch[i - t.len];        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; t.len; i++)            s-&gt;ch[i + pos] = t.ch[i];        s-&gt;len = s-&gt;len + t.len;    &#125;    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pos + t.len &lt;= MAXLEN)    &#123; <span class="hljs-comment">/*插入后串长&gt;MAXLEN,但串 t 的字符序列可以全部插入*/</span>        <span class="hljs-keyword">for</span> (i = MAXLEN - <span class="hljs-number">1</span>; i &gt; t.len + pos - <span class="hljs-number">1</span>; i--)            s-&gt;ch[i] = s-&gt;ch[i - t.len];        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; t.len; i++)            s-&gt;ch[i + pos] = t.ch[i];        s-&gt;len = MAXLEN;    &#125;    <span class="hljs-keyword">else</span>    &#123;        <span class="hljs-comment">/*插入后串长&gt;MAXLEN,并且串 t 的部分字符也要舍弃*/</span>        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; MAXLEN - pos; i++)            s-&gt;ch[i + pos] = t.ch[i];        s-&gt;len = MAXLEN;    &#125;    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>);&#125;</code></pre></div><ul><li>显然,实现顺序串插入的算法其实现复杂度为: O( s-&gt;len+t.len)。<table><tr><td bgcolor=#99CCFF><font  size=4> 2. 串删除函数</td></tr></table></li></ul><div class="hljs"><pre><code class="hljs c">StrDelete(SString *s, <span class="hljs-keyword">int</span> pos, <span class="hljs-keyword">int</span> l)<span class="hljs-comment">/*在串 s 中删除从下标 pos 起 l 个字符*/</span>&#123;    <span class="hljs-keyword">int</span> i;    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span> || pos &gt; (s-&gt;len - l))        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>); <span class="hljs-comment">/*删除参数不合法*/</span>    <span class="hljs-keyword">for</span> (i = pos + l; i &lt; s-&gt;len; i++)        s-&gt;ch[i - l] = s-&gt;ch[i];    <span class="hljs-comment">/*从 pos+l 开始至串尾依次向前移动，实现删除 l 个字符*/</span>    s-&gt;len = s-&gt;len - l; <span class="hljs-comment">/*s 串长减 l*/</span>    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>);&#125;</code></pre></div><table><tr><td bgcolor=#99CCFF><font  size=4> 3. 串的简单模式匹配 Brute-Force(布鲁特-福斯)算法</td></tr></table><p>【算法思想】</p><blockquote><p>简单的模式匹配算法是一种带回溯的匹配算法,算法的基本思想是:从主串S 的第 pos 个字符开始,和模式串 T 的第一个字符开始比较,如果相等,就继续比较后续字符,如果不等,则从(回溯到)主串 S 的第 pos+1 个字符开始重新和模式串 T 比较,直到模式串 T 中的每一个字符和主串 S 中的一个连续字符子序列全部相等,则称匹配成功,返回和 T 中第一个字符相等的字符在主串 S 中的位置;或者主串中没有和模式串相等的字符序列,则称匹配不成功。</p></blockquote><p>【算法描述】</p><blockquote><p>实现时设 i、 j、 start 三个指示器:<br>i——指向主串 S 中当前比较的字符,起始指向 S 的首字符,此后,每比较一步,后移一步,一趟匹配失败时,回溯到该趟比较起点的下一位置。<br>j———指向子串 T 中当前比较的字符,起始指向 T 的首字符,此后,每比较一步,后移一步,一趟匹配失败时,回溯到 T 的首字符处。<br>start———记录每趟比较时在主串 S 中的起点,每趟比较后,后移一步,以便确定下一趟的起始位置。</p></blockquote><p>【算法思想】</p><blockquote><p>从主串s的pos位置起，与模式串t逐位匹配<br>①初始化：主串从pos开始，模式串从头开始<br>②两串逐位比较：当主串模式串均未遍历完时，对应字符作比较<br>若相等：主串模式串的当前比较位置均后移<br>若不等：主串从开始比较位置的下一个开始，模式串从头开始<br>③判别：若匹配成功返回起始位置，若不成功，返回-1</p></blockquote><div class="hljs"><pre><code class="hljs c">StrIndex(SString s, <span class="hljs-keyword">int</span> pos, SString t)<span class="hljs-comment">/*求从主串 s 的下标 pos 起，串 t 第一次出现的位置，成功返回位置序号，不成功返回-1*/</span>&#123;    <span class="hljs-keyword">int</span> i, j, start;    <span class="hljs-keyword">if</span> (t.len == <span class="hljs-number">0</span>)        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>); <span class="hljs-comment">/* 模式串为空串时，是任意串的匹配串 */</span>    start = pos;    i = start;    j = <span class="hljs-number">0</span>; <span class="hljs-comment">/* 主串从 pos 开始，模式串从头（0）开始 */</span>    <span class="hljs-keyword">while</span> (i &lt; s.len &amp;&amp; j &lt; t.len)        <span class="hljs-keyword">if</span> (s.ch[i] == t.ch[j])        &#123;            i++;            j++;        &#125; <span class="hljs-comment">/* 当前对应字符相等时推进 */</span>        <span class="hljs-keyword">else</span>        &#123;            start++; <span class="hljs-comment">/* 当前对应字符不等时回溯 */</span>            i = start;            j = <span class="hljs-number">0</span>; <span class="hljs-comment">/* 主串从 start+1 开始，模式串从头（0）开始*/</span>        &#125;    <span class="hljs-keyword">if</span> (j &gt;= t.len)        <span class="hljs-keyword">return</span> (start); <span class="hljs-comment">/* 匹配成功时，返回匹配起始位置 */</span>    <span class="hljs-keyword">else</span>        <span class="hljs-keyword">return</span> (<span class="hljs-number">-1</span>); <span class="hljs-comment">/* 匹配不成功时，返回-1 */</span>&#125;</code></pre></div><p>【算法分析】</p><blockquote><p>该算法思路比较简单,但最坏时间复杂度较高,为 O( s.len* t.len),如主串为<br>51 个 0 ,模式串为 7 个 0 后有个 1 ,每趟都在最后一个不匹配后而倒到 start+1 ,整个匹配过程<br>共需 s.len- t.len=45 趟,每趟比较 t.len=8 个字符,故此例整个比较了 360 次。这个算法的主要<br>时间耗费在失配后的比较位置有回溯,造成了比较次数太多的情况。降低时间复杂度可采用<br>无回溯的算法——KMP算法<br><img src="https://img-blog.csdnimg.cn/202003231121568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200323112322433.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/2020032311232720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p></blockquote><table><tr><td bgcolor=#E6E6FA><font  size=6>堆串</td></tr></table><p>1.字符串包括串名与串值两部分,而串值采用堆串存储方法存储,串名用符号表存储。</p><ul><li>堆串存储方法:仍以一组地址连续的存储单元顺序存放串中的字符,但它们的存储空间是在程序执行过程中是动态分配的。系统将一个地址连续、容量很大的存储空间作为字符串的可用空间,每当建立一个新串时,系统就从这个空间中分配一个大小和字符串长度相同的空间存储新串的串值。</li><li>串名符号表:所有串名的存储映像构成一个符号表。借助此结构可以在串名和串值之间建立一个对应关系,称为串名的存储映像。<br><img src="https://img-blog.csdnimg.cn/20200323113029907.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><table><tr><td bgcolor=#FFC0CB><font  size=5> 堆串存储结构</td></tr></table></li></ul><div class="hljs"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><span class="hljs-class">&#123;</span>    <span class="hljs-keyword">char</span> *ch; <span class="hljs-comment">/*ch 域指示串的起始地址*/</span>    <span class="hljs-keyword">int</span> len;  <span class="hljs-comment">/*len 域指示串的长度*/</span>&#125; HString;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=5>堆串基本操作的实现</td></tr></table><table><tr><td bgcolor=#99CCFF><font  size=4> 1. 串插入函数</td></tr></table><div class="hljs"><pre><code class="hljs c">StrInsert(HString *s，<span class="hljs-keyword">int</span> pos，HString *t)&#123; <span class="hljs-comment">/*在串 s 中下标为 pos 的字符之前插入串 t */</span>    <span class="hljs-keyword">int</span> i;    <span class="hljs-keyword">char</span> *temp;    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span> || pos &gt; s-&gt;len || s-&gt;len == <span class="hljs-number">0</span>)        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);                         <span class="hljs-comment">/*插入位置不合法*/</span>    temp = (<span class="hljs-keyword">char</span> *)<span class="hljs-built_in">malloc</span>(s-&gt;len + t-&gt;len); <span class="hljs-comment">/*动态产生足够的空间存放插入后的串*/</span>    <span class="hljs-keyword">if</span> (temp == <span class="hljs-literal">NULL</span>)        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; pos; i++)        temp[i] = s-&gt;ch[i];    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; t-&gt;len; i++)        temp[i + pos] = t-&gt;ch[i];    <span class="hljs-keyword">for</span> (i = pos; i &lt; s-&gt;len; i++)        temp[i + t-&gt;len] = s-&gt;ch[i];    s-&gt;len += t-&gt;len;    <span class="hljs-built_in">free</span>(s-&gt;ch);    s-&gt;ch = temp;    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>);&#125;</code></pre></div><table><tr><td bgcolor=#99CCFF><font  size=4> 2. 串删除函数</td></tr></table><div class="hljs"><pre><code class="hljs c">StrDelete(HString *s，<span class="hljs-keyword">int</span> pos，<span class="hljs-keyword">int</span> len)<span class="hljs-comment">/*在串 s 中删除从下标 pos 起 len 个字符 */</span>&#123;    <span class="hljs-keyword">int</span> i;    <span class="hljs-keyword">char</span> *temp;    <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span> || pos &gt; (s-&gt;len - len))        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>); <span class="hljs-comment">/*删除参数不合法*/</span>    temp = (<span class="hljs-keyword">char</span> *)<span class="hljs-built_in">malloc</span>(s-&gt;len - len);    <span class="hljs-keyword">if</span> (temp == <span class="hljs-literal">NULL</span>)        <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; pos; i++)        temp[i] = s-&gt;ch[i];    <span class="hljs-keyword">for</span> (i = pos; i &lt; s-&gt;len - len; i++)        temp[i] = s-&gt;ch[i + len];    s-&gt;len = s-&gt;len - len;    <span class="hljs-built_in">free</span>(s-&gt;ch);    s-&gt;ch = temp;    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>);&#125;</code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构笔记</category>
+      
+      <category>串</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>笔记</tag>
+      
+      <tag>数据结构</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【串】串的基本概念</title>
+    <link href="/2020/03/23/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+    <url>/2020/03/23/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
+    
+    <content type="html"><![CDATA[<table><tr><td bgcolor=#E6E6FA><font  size=6> 1.串的基本概念</td></tr></table><p>字符串（String）：是由零个或多个字符组成的有限序列，记为:S = ′a1 a2 … an′( n ≥ 0 )<br>ai∈V字符集合，每个 ai( 1 ≤ i≤ n)可以是字母、数字或其他字符。<br><strong>串也是一种特定的线性表</strong>，串的逻辑结构和线性表极为相似，其特定性仅在于串的数据对象限定为字符集。</p><ol><li><strong>串的名字</strong>：S</li><li><strong>串的值</strong>：用单引号括起来的字符序列</li><li><strong>串的长度</strong>：n 是串中字符的个数</li><li><strong>空串</strong>( Null String)：n=0 时的串</li><li><strong>空格串</strong>：一个或多个空格组成的串，其长度为空格个数。</li><li><strong>串相等</strong>：当且仅当两个串的值相等时,称这两个串是相等的。即只有当两个串的长度相等,并且每个对应位置的字符都相等时才相等。<blockquote><p>需要特别指出的是,串值必须用一对单引号括起来( C 语言中是双引号),但单引号是界限符,它不属于串,其作用是避免与变量名或常量混淆。</p></blockquote></li><li><strong>子串</strong>：串中任意个连续的字符组成的子序列称为该串的子串。</li><li><strong>主串</strong>：包含子串的串相应地称为主串。可见,子串是主串的一部分。</li><li><strong>求子串</strong>：sub（主串，起始位置，长度）<br>例：sub（‘china’，2，2）=‘in’</li><li><strong>模式串在主串种的位置（串的模式匹配）</strong>：<br>从主串起始位置起，模式串在主串种首次出现的位置序号<br>例：主串‘chinachina’模式串‘in’<br>如起始位置为0，则模式串第一个字符在主串种的位置为2<br>如起始位置为3，则模式串第一个字符在主串种的位置为7<table><tr><td bgcolor=#E6E6FA><font  size=6> 2.串的抽象数据类型定义</td></tr></table></li></ol><p>ADT String {<br>数据对象: D={ ai | ai∈ CharacterSet,记为 V,i=1 ,2 ,…, n,n≥ 0 }<br>结构关系: R={&lt; ai,ai + 1 &gt;| ai,ai + 1 ∈ V,i=1 ,…, n-1 ; n-1 ≥ 0 }<br>基本操作:<br>( 1 ) StrAsign( S,chars)<br>操作前提: chars 是字符串常量。<br>操作结果:生成一个值等于 chars 的串 S。<br>( 2 ) StrInsert( S,pos,T)<br>操作前提:串 S 存在,1 ≤ pos≤ StrLength( S)+ 1 。<br>操作结果:在串 S 的第 pos 个字符之前插入串 T。<br>( 3 ) StrDelete( S,pos,len)<br>操作前提:串 S 存在,1 ≤ pos≤ StrLength( S)+ 1 。<br>操作结果:从串 S 中删除第 pos 个字符起长度为 len 的子串。<br>( 4 ) StrCopy( S,T)<br>操作前提:串 S 存在。<br>操作结果:由串 T 复制得串 S。<br>( 5 ) StrEmpty( S)<br>操作前提:串 S 存在。<br>操作结果:若串 S 为空串,则返回 TRUE,否则返回 FALSE。<br>( 6 ) StrCompare( S,T)<br>操作前提:串 S 和 T 存在。<br>操作结果:若 S&gt;T,则返回值&gt;0 ;如 S=T,则返回值=0 ;若 S&lt;T,则返回值&lt;0 。<br>( 7 ) StrLength( S)<br>操作前提:串 S 存在。<br>操作结果:返回串 S 的长度,即串 S 中的字符个数。<br>( 8 ) StrClear( S)<br>操作前提:串 S 存在。<br>操作结果:将 S 清为空串。<br>( 9 ) StrCat( S,T)<br>操作前提:串 S 和 T 存在。<br>操作结果:将串 T 的值连接在串 S 的后面。<br>( 10 ) SubString( Sub,S,pos,len)<br>操作前提:串 S 存在,1 ≤ pos≤ StrLength( S)且 1 ≤ len≤ StrLength( S)-<br>pos+1 。<br>操作结果:用 Sub 返回串 S 的第 pos 个字符起长度为 len 的子串。<br>( 11 ) StrIndex( S,pos,T)<br>操作前提:串 S 和 T 存在,T 是非空串,1 ≤ pos≤ StrLength( S)。<br>操作结果:若串 S 中存在和串 T 相同的子串,则返回它在串 S 中第 pos 个字符<br>之<br>后第一次出现的位置;否则返回 0 。<br>( 12 ) StrReplace( S,T,V)<br>操作前提:串 S、 T 和 V 存在且 T 是非空串。<br>操作结果:用 V 替换串 S 中出现的所有与 T 相等的不重叠的子串。<br>( 13 ) StrDestroy( S)<br>操作前提:串 S 存在。<br>操作结果:销毁串 S。<br>}ADT string</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构笔记</category>
+      
+      <category>串</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>笔记</tag>
+      
+      <tag>数据结构</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【栈】栈的应用与递归</title>
     <link href="/2020/03/18/%E3%80%90%E6%A0%88%E3%80%91%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E9%80%92%E5%BD%92/"/>
     <url>/2020/03/18/%E3%80%90%E6%A0%88%E3%80%91%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E9%80%92%E5%BD%92/</url>
@@ -684,35 +671,6 @@
   
   
   <entry>
-    <title>【线性表】应用—一元多项式的表示及相加</title>
-    <link href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BA%94%E7%94%A8%E2%80%94%E4%B8%80%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%9B%B8%E5%8A%A0/"/>
-    <url>/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BA%94%E7%94%A8%E2%80%94%E4%B8%80%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%9B%B8%E5%8A%A0/</url>
-    
-    <content type="html"><![CDATA[ <table><tr><td bgcolor=#E6E6FA><font  size=5>  1. 一元多项式的表示</td></tr></table><p><img src="https://img-blog.csdnimg.cn/20200315052630347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br> <table><tr><td bgcolor=#E6E6FA><font  size=5>   2. 一元多项式的存储</td></tr></table></p><p> 一元多项式的操作可以利用线性表来处理。因此，一元多项式也有顺序存储和链式存储两种方法。<br> <img src="https://img-blog.csdnimg.cn/20200315052909253.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/2020031505304063.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>结点结构体定义如下</p><div class="hljs"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">polynode</span>&#123;</span><span class="hljs-keyword">int</span> coef;<span class="hljs-keyword">int</span> <span class="hljs-built_in">exp</span>;polynode *next;&#125;polynode,polylist;</code></pre></div> <table><tr><td bgcolor=#E6E6FA><font  size=5>   例：建立一元多项式链式存储算法</td></tr></table><p>【算法思想】通过键盘输入一组多项式的系数和指数，用尾插法建立一元多项式的链表。以输入系数0为结束标注，并约定建立多项式链表时，总是按指数从小到大排序。<br>【算法描述】</p><div class="hljs"><pre><code class="hljs c"><span class="hljs-function">polylist <span class="hljs-title">polycreate</span><span class="hljs-params">()</span> </span>&#123;polynode *head,*rear,*s;<span class="hljs-keyword">int</span> c,e;head=(polynode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(polynode));<span class="hljs-comment">//建立多项式的头结点；</span>rear=head;<span class="hljs-comment">//rear始终指向单链表的尾，便于尾插法建表</span><span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>,&amp;c,&amp;e);<span class="hljs-comment">//键入多项式的系数和指数项</span><span class="hljs-keyword">while</span>(c!=<span class="hljs-number">0</span>)<span class="hljs-comment">//若c=0，则代表多项式的输入结束</span>&#123;s=(polynode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(polynode));<span class="hljs-comment">//申请新的结点</span>s-&gt;coef=c;s-&gt;<span class="hljs-built_in">exp</span>=e;rear-&gt;next=s;<span class="hljs-comment">//在当前表尾做插入 </span>rear=s; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>,&amp;c,&amp;e);&#125;rear-&gt;next=<span class="hljs-literal">NULL</span>;<span class="hljs-comment">//将表的最后一个结点的next置NULL，以表示结束</span><span class="hljs-keyword">return</span> (head); &#125;</code></pre></div> <table><tr><td bgcolor=#E6E6FA><font  size=5>  3. 一元多项式的相加运算</td></tr></table><p><img src="https://img-blog.csdnimg.cn/20200315054815361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>【算法思想】<br>以单链表polya和polyb分别表示两个一元多项式A和B，A+B的求和运算，就等同于单链表的插入问题（将单链表polyb中的结点插入到单链表polya中），因此“和多项式”中的结点无需另生成。<br>为实现处理，设p，q分别指向单链表polya和polyb的当前项，比较p，q的结点的指数项，由此得到下列运算规则：<br>①若p-&gt;exp &lt; q-&gt;exp，则结点p所指的结点应该是“和多项式”中的一项，另指针后移；</p><p>②若p-&gt;exp = q-&gt;exp，则将两个结点中的系数增加，当和不为零时修改结点p的系数域，释放q结点；若和为零，则和多项式中无此项，从A中删去p结点，同时释放p和q结点。</p><p>③若p-&gt;exp &gt; q-&gt;exp，则结点q所指的结点应该时“和多项式”中的一项，将结点q插入结点p之前，且令指针q在原来的链表上后移</p><p>【算法描述】</p><div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">polyadd</span><span class="hljs-params">(polylist polya,polylist polyb)</span></span><span class="hljs-function"><span class="hljs-comment">//将两个多项式相加，然后将和多项式存放在polya中，并将polyb删除</span></span><span class="hljs-function"></span>&#123;polynode *p,*q,*tail,*temp;<span class="hljs-keyword">int</span> sum;p=polya-&gt;next;q=polyb-&gt;next;<span class="hljs-comment">//令p和q分别指向polya和polyb多项式链表中的第一个结点</span>tail=polya;<span class="hljs-comment">//tail指向和多项式的尾结点</span><span class="hljs-comment">/*-----初始化(略)-----*/</span><span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>&amp;&amp;q!=<span class="hljs-literal">NULL</span>) &#123;<span class="hljs-keyword">if</span>(p-&gt;<span class="hljs-built_in">exp</span>&lt;q-&gt;<span class="hljs-built_in">exp</span>)<span class="hljs-comment">//规则（1）：如果p指向的多项式的指数小于q的指数，将p结点加入到和多项式中</span>&#123;tail-&gt;next=p;tail=p;p=p-&gt;next;&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(p-&gt;<span class="hljs-built_in">exp</span>==q-&gt;<span class="hljs-built_in">exp</span>)<span class="hljs-comment">//规则(2)：若指数相等，则相应的系数相加</span>&#123;sum=p-&gt;coef+q-&gt;coef;<span class="hljs-keyword">if</span>(sum!=<span class="hljs-number">0</span>)<span class="hljs-comment">//若系数和非0，则系数和置入结点p，释放结点q，并将指针后移</span>&#123;p-&gt;coef=sum;tail-&gt;next=p;tail=p;p=p-&gt;next;temp=q;q=q-&gt;next;<span class="hljs-built_in">free</span>(temp);&#125; <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//若系数和为0.删除p，q，并将指针指向下一个结点</span>temp=p;p=p-&gt;next;<span class="hljs-built_in">free</span>(temp);temp=q;q=q-&gt;next;<span class="hljs-built_in">free</span>(temp);&#125;&#125; <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">////规则（3）：如果p指向的多项式的指数大于q的指数，将q结点加入到和多项式中</span>tail-&gt;next=q;tail=q;q=q-&gt;next;&#125;&#125;<span class="hljs-keyword">if</span>(p!=<span class="hljs-literal">NULL</span>)<span class="hljs-comment">//多项式A中还有剩余，则将剩余的结点加入到和多项式中</span>&#123;tail-&gt;next=p;tail=p;p=p-&gt;next;&#125; <span class="hljs-keyword">else</span> &#123;tail-&gt;next=q;tail=q;q=-&gt;next;&#125;&#125;</code></pre></div>]]></content>
-    
-    
-    <categories>
-      
-      <category>数据结构笔记</category>
-      
-      <category>线性表</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>笔记</tag>
-      
-      <tag>数据结构</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>【线性表】顺序表与链表的综合比较</title>
     <link href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/"/>
     <url>/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/</url>
@@ -724,7 +682,7 @@
       
       <category>数据结构笔记</category>
       
-      <category>线性表</category>
+      <category>1线性表</category>
       
     </categories>
     
@@ -753,7 +711,36 @@
       
       <category>数据结构笔记</category>
       
-      <category>线性表</category>
+      <category>1线性表</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>笔记</tag>
+      
+      <tag>数据结构</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【线性表】应用—一元多项式的表示及相加</title>
+    <link href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BA%94%E7%94%A8%E2%80%94%E4%B8%80%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%9B%B8%E5%8A%A0/"/>
+    <url>/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BA%94%E7%94%A8%E2%80%94%E4%B8%80%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%9B%B8%E5%8A%A0/</url>
+    
+    <content type="html"><![CDATA[ <table><tr><td bgcolor=#E6E6FA><font  size=5>  1. 一元多项式的表示</td></tr></table><p><img src="https://img-blog.csdnimg.cn/20200315052630347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br> <table><tr><td bgcolor=#E6E6FA><font  size=5>   2. 一元多项式的存储</td></tr></table></p><p> 一元多项式的操作可以利用线性表来处理。因此，一元多项式也有顺序存储和链式存储两种方法。<br> <img src="https://img-blog.csdnimg.cn/20200315052909253.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/2020031505304063.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>结点结构体定义如下</p><div class="hljs"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">polynode</span>&#123;</span><span class="hljs-keyword">int</span> coef;<span class="hljs-keyword">int</span> <span class="hljs-built_in">exp</span>;polynode *next;&#125;polynode,polylist;</code></pre></div> <table><tr><td bgcolor=#E6E6FA><font  size=5>   例：建立一元多项式链式存储算法</td></tr></table><p>【算法思想】通过键盘输入一组多项式的系数和指数，用尾插法建立一元多项式的链表。以输入系数0为结束标注，并约定建立多项式链表时，总是按指数从小到大排序。<br>【算法描述】</p><div class="hljs"><pre><code class="hljs c"><span class="hljs-function">polylist <span class="hljs-title">polycreate</span><span class="hljs-params">()</span> </span>&#123;polynode *head,*rear,*s;<span class="hljs-keyword">int</span> c,e;head=(polynode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(polynode));<span class="hljs-comment">//建立多项式的头结点；</span>rear=head;<span class="hljs-comment">//rear始终指向单链表的尾，便于尾插法建表</span><span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>,&amp;c,&amp;e);<span class="hljs-comment">//键入多项式的系数和指数项</span><span class="hljs-keyword">while</span>(c!=<span class="hljs-number">0</span>)<span class="hljs-comment">//若c=0，则代表多项式的输入结束</span>&#123;s=(polynode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(polynode));<span class="hljs-comment">//申请新的结点</span>s-&gt;coef=c;s-&gt;<span class="hljs-built_in">exp</span>=e;rear-&gt;next=s;<span class="hljs-comment">//在当前表尾做插入 </span>rear=s; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>,&amp;c,&amp;e);&#125;rear-&gt;next=<span class="hljs-literal">NULL</span>;<span class="hljs-comment">//将表的最后一个结点的next置NULL，以表示结束</span><span class="hljs-keyword">return</span> (head); &#125;</code></pre></div> <table><tr><td bgcolor=#E6E6FA><font  size=5>  3. 一元多项式的相加运算</td></tr></table><p><img src="https://img-blog.csdnimg.cn/20200315054815361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>【算法思想】<br>以单链表polya和polyb分别表示两个一元多项式A和B，A+B的求和运算，就等同于单链表的插入问题（将单链表polyb中的结点插入到单链表polya中），因此“和多项式”中的结点无需另生成。<br>为实现处理，设p，q分别指向单链表polya和polyb的当前项，比较p，q的结点的指数项，由此得到下列运算规则：<br>①若p-&gt;exp &lt; q-&gt;exp，则结点p所指的结点应该是“和多项式”中的一项，另指针后移；</p><p>②若p-&gt;exp = q-&gt;exp，则将两个结点中的系数增加，当和不为零时修改结点p的系数域，释放q结点；若和为零，则和多项式中无此项，从A中删去p结点，同时释放p和q结点。</p><p>③若p-&gt;exp &gt; q-&gt;exp，则结点q所指的结点应该时“和多项式”中的一项，将结点q插入结点p之前，且令指针q在原来的链表上后移</p><p>【算法描述】</p><div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">polyadd</span><span class="hljs-params">(polylist polya,polylist polyb)</span></span><span class="hljs-function"><span class="hljs-comment">//将两个多项式相加，然后将和多项式存放在polya中，并将polyb删除</span></span><span class="hljs-function"></span>&#123;polynode *p,*q,*tail,*temp;<span class="hljs-keyword">int</span> sum;p=polya-&gt;next;q=polyb-&gt;next;<span class="hljs-comment">//令p和q分别指向polya和polyb多项式链表中的第一个结点</span>tail=polya;<span class="hljs-comment">//tail指向和多项式的尾结点</span><span class="hljs-comment">/*-----初始化(略)-----*/</span><span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>&amp;&amp;q!=<span class="hljs-literal">NULL</span>) &#123;<span class="hljs-keyword">if</span>(p-&gt;<span class="hljs-built_in">exp</span>&lt;q-&gt;<span class="hljs-built_in">exp</span>)<span class="hljs-comment">//规则（1）：如果p指向的多项式的指数小于q的指数，将p结点加入到和多项式中</span>&#123;tail-&gt;next=p;tail=p;p=p-&gt;next;&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(p-&gt;<span class="hljs-built_in">exp</span>==q-&gt;<span class="hljs-built_in">exp</span>)<span class="hljs-comment">//规则(2)：若指数相等，则相应的系数相加</span>&#123;sum=p-&gt;coef+q-&gt;coef;<span class="hljs-keyword">if</span>(sum!=<span class="hljs-number">0</span>)<span class="hljs-comment">//若系数和非0，则系数和置入结点p，释放结点q，并将指针后移</span>&#123;p-&gt;coef=sum;tail-&gt;next=p;tail=p;p=p-&gt;next;temp=q;q=q-&gt;next;<span class="hljs-built_in">free</span>(temp);&#125; <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//若系数和为0.删除p，q，并将指针指向下一个结点</span>temp=p;p=p-&gt;next;<span class="hljs-built_in">free</span>(temp);temp=q;q=q-&gt;next;<span class="hljs-built_in">free</span>(temp);&#125;&#125; <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">////规则（3）：如果p指向的多项式的指数大于q的指数，将q结点加入到和多项式中</span>tail-&gt;next=q;tail=q;q=q-&gt;next;&#125;&#125;<span class="hljs-keyword">if</span>(p!=<span class="hljs-literal">NULL</span>)<span class="hljs-comment">//多项式A中还有剩余，则将剩余的结点加入到和多项式中</span>&#123;tail-&gt;next=p;tail=p;p=p-&gt;next;&#125; <span class="hljs-keyword">else</span> &#123;tail-&gt;next=q;tail=q;q=-&gt;next;&#125;&#125;</code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构笔记</category>
+      
+      <category>1线性表</category>
       
     </categories>
     
@@ -793,9 +780,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>PTA</tag>
-      
       <tag>基础</tag>
+      
+      <tag>PTA</tag>
       
     </tags>
     
@@ -805,10 +792,39 @@
   
   <entry>
     <title>【线性表】单链表及其基本运算和应用</title>
-    <link href="/2020/03/11/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20-%20%E5%89%AF%E6%9C%AC/"/>
-    <url>/2020/03/11/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20-%20%E5%89%AF%E6%9C%AC/</url>
+    <link href="/2020/03/11/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8/"/>
+    <url>/2020/03/11/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8/</url>
     
     <content type="html"><![CDATA[<table><tr><td bgcolor=#99CCFF><font  size=5> 单链表的c语言定义</td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span>ElemType data;<span class="hljs-comment">/*数据域*/</span><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> *<span class="hljs-title">next</span>;</span><span class="hljs-comment">/*指针域*/</span>&#125; Node,*Linklist;<span class="hljs-comment">/*给node起两个别名，这两个别名等效*/</span>LinkLIst L;<span class="hljs-comment">/*L为单链表的头指针，也称为单链表L*/</span></code></pre></div><p>LinkList 与 Node*同为结构指针类斜体样式型，这两种类型是等价的。</p><p>通常我们习惯上用LinkList说明指针变量，强调它是某个单链表的头指针变量，用<br>Node*来定义指向单链表中节点的指针。</p><table><tr><td bgcolor=#E6E6FA><font  size=6> 单链表的基本运算</td></tr></table><table><tr><td bgcolor=#FFC0CB><font  size=5> 一、求带头节点单链表的长度</td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">listlength</span><span class="hljs-params">(linklist L)</span></span>&#123;node *p;p=-&gt;next;j=<span class="hljs-number">0</span>;<span class="hljs-comment">/*用来存放单链表的长度*/</span><span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>)&#123;p=p-&gt;next;j++;&#125;<span class="hljs-keyword">return</span> j;&#125;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=6> 二、建表</td></tr></table><table><tr><td bgcolor=#99CCFF><font  size=5>1.建立空表 </td></tr></table><div class="hljs"><pre><code class="hljs c">InitList(linklist *L)<span class="hljs-comment">/*建立空表*/</span>&#123;L=(linklist*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(node));L-&gt;next=<span class="hljs-literal">NULL</span>;&#125;</code></pre></div><table><tr><td bgcolor=#99CCFF><font  size=5>2.头插法建表 </td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-function">linklist <span class="hljs-title">creatfromhead</span><span class="hljs-params">(linklist l)</span></span>&#123;node *s;<span class="hljs-keyword">char</span> c;<span class="hljs-keyword">int</span> flag=<span class="hljs-number">1</span>;<span class="hljs-comment">/*设置一个标志，初值为1，当输入“$”时，flag为0，建表结束*/</span><span class="hljs-keyword">while</span>(flag)&#123;c=getchar();<span class="hljs-keyword">if</span>(c!=<span class="hljs-string">'$'</span>)&#123;s(node*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(node))<span class="hljs-comment">/*申请新结点s*/</span>s-&gt;data=c;s-&gt;next=L-&gt;next;<span class="hljs-comment">/*将结点s头插入链表L*/</span>L-&gt;next=s; &#125;<span class="hljs-keyword">else</span> flag=<span class="hljs-number">0</span>;&#125;&#125;</code></pre></div><table><tr><td bgcolor=#99CCFF><font  size=5>3.尾插法建表 </td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-function">linklist <span class="hljs-title">createfromtail</span><span class="hljs-params">(linklist L)</span></span>&#123;linklist L;node *r,*s;<span class="hljs-keyword">char</span> c;<span class="hljs-keyword">int</span> flag=<span class="hljs-number">1</span>;<span class="hljs-comment">/*设置一个标志，初值为1，当输入“$”时，flag为0，建表结束*/</span>r=L;<span class="hljs-comment">/*r指针始终动态指向链表的当前表尾，以便做尾插入，其初值指向头结点*/</span><span class="hljs-keyword">while</span>(flag)&#123;c=getchar();<span class="hljs-keyword">if</span>(c!=<span class="hljs-string">'$'</span>)&#123;s=(node*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(node));s-&gt;data=c;r-&gt;next=s;r=s;<span class="hljs-comment">/*r就是当前尾结点*/</span>&#125; <span class="hljs-keyword">else</span>&#123;flag=<span class="hljs-number">0</span>;r-&gt;next=<span class="hljs-literal">NULL</span>;<span class="hljs-comment">/*将最后一个结点的next链域置为空，表示链表结束*/</span>&#125;&#125;&#125;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=6> 三、查找</td></tr></table><table><tr><td bgcolor=#99CCFF><font  size=5>1.按序号查找 </td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-function">node *<span class="hljs-title">get</span><span class="hljs-params">(linklist L,<span class="hljs-keyword">int</span> i)</span></span><span class="hljs-function"><span class="hljs-comment">/*在带头结点的单链表L中查找第i个结点，</span></span><span class="hljs-function"><span class="hljs-comment">若找到(1&lt;=i&lt;=n),则返回该结点的存储位置，否则返回NULL*/</span></span><span class="hljs-function"></span>&#123;<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;<span class="hljs-comment">/*计数器*/</span>node *p;p=L;<span class="hljs-comment">/*从头结点开始扫描*/</span><span class="hljs-keyword">while</span>((p-&gt;next!=<span class="hljs-literal">NULL</span>)&amp;&amp;(j&lt;i))&#123;p=p-&gt;next;<span class="hljs-comment">/*扫描下一结点*/</span>j++;<span class="hljs-comment">/*已扫描结点计数器*/</span>&#125;<span class="hljs-keyword">if</span>(i==j)<span class="hljs-keyword">return</span> p;<span class="hljs-comment">/*找到了第i个点*/</span><span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<span class="hljs-comment">/*找不到，i&lt;=0或i&gt;n*/</span>&#125;</code></pre></div><table><tr><td bgcolor=#99CCFF><font  size=5>2.按值查找 </td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-function">node *<span class="hljs-title">locate</span><span class="hljs-params">(linklist l,elemtype key)</span></span><span class="hljs-function"><span class="hljs-comment">/*在带头结点的单链表L中查找其结点值等于key的结点，</span></span><span class="hljs-function"><span class="hljs-comment">若是找到则返回该结点的位置p，否则返回NULL*/</span></span><span class="hljs-function"></span>&#123;node *p;p=l-&gt;next;<span class="hljs-comment">/*从表中第一个结点比较*/</span><span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>)&#123;<span class="hljs-keyword">if</span>(p-&gt;data!=key)p=p-&gt;next;<span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;<span class="hljs-comment">/*找到结点key退出循环*/</span>&#125; <span class="hljs-keyword">return</span> p; &#125;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=5> 四、单链表插入</td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">inslist</span><span class="hljs-params">(linklist L,<span class="hljs-keyword">int</span> i,elemtype e)</span></span>&#123;node *pre,*s;<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;pre=L;<span class="hljs-keyword">while</span>(pre!=<span class="hljs-literal">NULL</span>&amp;&amp;k&lt;(i<span class="hljs-number">-1</span>))<span class="hljs-comment">/*在第i个元素之前插入，则先找到第i-1个数据元素的存储位置</span><span class="hljs-comment">使pre指针指向它*/</span>&#123;pre=pre-&gt;next;k++; &#125;<span class="hljs-keyword">if</span>(!pre)<span class="hljs-comment">/*如果当前位置pre为空，表示已找完但还未数到第i个</span><span class="hljs-comment">说明插入位置不合理*/</span>&#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">"插入位置不合理"</span>);<span class="hljs-keyword">return</span> ERROR; &#125;s=(node*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(node));<span class="hljs-comment">/*为s申请一个新结点并由s指向它*/</span>s-&gt;data=e;<span class="hljs-comment">/*将待插入结点的值e赋给s的数据域*/</span>s-&gt;next=pre-&gt;next;<span class="hljs-comment">/*完成插入操作*/</span>pre-&gt;next=s;<span class="hljs-keyword">return</span> OK; &#125;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=5> 五、单链表删除</td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dellist</span><span class="hljs-params">(linklist L,<span class="hljs-keyword">int</span> i,elemtype *e)</span></span><span class="hljs-function"><span class="hljs-comment">/*在带头结点的单链表L中删除第i个元素，</span></span><span class="hljs-function"><span class="hljs-comment">并将删除的元素保存到变量*e中。*/</span></span><span class="hljs-function"></span>&#123;node *p,*r;<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;p=L;<span class="hljs-keyword">while</span>(p-&gt;next!=<span class="hljs-literal">NULL</span>&amp;&amp;k&lt;(i<span class="hljs-number">-1</span>))<span class="hljs-comment">/*寻找被删除结点i的前驱结点i-1使p指向它*/</span>&#123;p=p-&gt;next;k++; &#125;<span class="hljs-keyword">if</span>(k!=i<span class="hljs-number">-1</span>)<span class="hljs-comment">/*即循环是因为p-&gt;next=NULL而跳出来的*/</span>&#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">"删除位置i不合理"</span>);<span class="hljs-keyword">return</span> error; &#125;r=p-&gt;next;p-&gt;next=p-&gt;next-&gt;next;*e=r-&gt;data;<span class="hljs-built_in">free</span>(r);<span class="hljs-comment">/*释放被删除结点所占内存空间*/</span>&#125;</code></pre></div><table><tr><td bgcolor=#E6E6FA><font  size=6> 算法应用示例</td></tr></table><table><tr><td bgcolor=#FFC0CB><font  size=4> 求两个集合的差</td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">difference</span><span class="hljs-params">(linklist la,linklist lb)</span> </span>&#123;node *pre,*p,*q,*r;pre=la;p=la-&gt;next;<span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>) &#123; <span class="hljs-comment">/*逐个确定A表一个元素*/</span>q=lb-&gt;next;<span class="hljs-comment">/*查是否属于b表*/</span><span class="hljs-keyword">while</span>(q!=<span class="hljs-literal">NULL</span>&amp;&amp;q-&gt;data!=p-&gt;data) &#123;q=q&gt;next;&#125;<span class="hljs-keyword">if</span>(q!=<span class="hljs-literal">NULL</span>) &#123;r=p;pre-&gt;next=p-&gt;next;p=p-&gt;next;<span class="hljs-built_in">free</span>(r);&#125; <span class="hljs-keyword">else</span> &#123;pre=p;p=p-&gt;next;&#125;&#125;&#125;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=4> 带头结点单链表就地逆置问题</td></tr></table>【问题分析】逆置就是使得表中内容由原来的（a1,a2,…，ai-1，ai，ai+1， …，an）变为（an,an-1,…，ai+1，ai，ai-1， …，a1）。就地逆置就是不需要额外申请结点空间，只需要利用原有的表中的节点空间。若对顺序表中的元素进行逆置，可以借助于“交换”前后相应元素；对单链表中的元素进行逆置，则不能按“交换”思路，因为对于链表中第 i 个结点需要顺链查找第 n-i+1(链表长度为 n)个结点，逆置链表的时间复杂度将达 O（n2）。<p>【算法思路】用头插法完成</p><ul><li>【初始化】逆置链表L初始为空表，指针p指向原表当前处理结点</li><li>【头插法】依次取原链表中当前结点p<br>将其作为第一个结点插入到逆置链表L的表头L<br>q为保存原链表当前结点的下一个处理位置</li></ul><p><img src="https://img-blog.csdnimg.cn/20200315094339761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>【算法描述】</p><div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">reverselist</span><span class="hljs-params">(linklist l)</span></span><span class="hljs-function"><span class="hljs-comment">//逆置带头结点的单链表L </span></span><span class="hljs-function"></span>&#123;p=l-&gt;next;<span class="hljs-comment">//记录原表第一个元素结点的地址 </span>l-&gt;next=<span class="hljs-literal">NULL</span>;<span class="hljs-comment">//从将头结点的next域置空得新空链表</span><span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>)&#123;q=p-&gt;next;<span class="hljs-comment">/*q 指针保留原链表当前处理结点的下一个结点*/</span>p-&gt;next=l-&gt;next;l-&gt;next=p;<span class="hljs-comment">/*p 指向下一个待插入的结点*/</span>p=q;<span class="hljs-comment">/*p 指向下一个待插入的结点*/</span>&#125;&#125;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=4> 二进制数加一运算</td></tr></table><blockquote><p>建立一个带头结点的线性链表，用以存放输入的二进制数，链表中每个结点的<br>data 域存放一个二进制位。并在此链表上实现对二进制数加 1 的运算</p></blockquote><p>【问题分析】<br>①建链表：带二进制数可用带头结点的单链表存储，第一个结点存储二进制数的最高位，依次存储，最后一个结点存储二进制数的最低位。<br><strong>②二进制加法规则</strong>：实现二进制数加 1 运算，方向从低位往高位找到第一个值为 0 的位，把该位改成1，其后所有各位改成0<br><img src="https://img-blog.csdnimg.cn/20200315092153438.png" srcset="/img/loading.gif" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200315092207164.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p><p>③链表实现二进制加 1 时，从高位往低位与运算方向正好相反，从第一个结点开始找，找出最后一个值域为 0 的结点，把该结点值域赋为 1，其后所有结点的值域赋为 0。</p><p>④若在链表中未找到值域为 0 的结点，则表示该二进制数各位均为 1，此时，申请一新结点，值域为 1，插入到头结点与原链表的第一个结点之间，成为新链表的第一个结点，其后所有结点的值域赋为 0。</p><p>【算法描述】</p><div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">binadd</span><span class="hljs-params">(linklist l)</span> </span>&#123;node *q,*r,*s;q=l-&gt;next;r=l;<span class="hljs-keyword">while</span>(q!=<span class="hljs-literal">NULL</span>)<span class="hljs-comment">//找到最后一个值域为0的点</span>&#123;<span class="hljs-keyword">if</span>(q-&gt;data==<span class="hljs-number">0</span>) r=q;q=q-&gt;nest;&#125;<span class="hljs-keyword">if</span>(r!=l) <span class="hljs-comment">//能够找到值域为0的点</span>&#123;r-&gt;data=<span class="hljs-number">1</span>;<span class="hljs-comment">/*将最后一个值域为 0 的结点的值域赋为 1*/</span>&#125; <span class="hljs-keyword">else</span> <span class="hljs-comment">//该二进制数各位均为 1</span>&#123; s=(node*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(node));<span class="hljs-comment">/*申请新结点存放最高进位*/</span>s-&gt;data=<span class="hljs-number">1</span>;<span class="hljs-comment">/*值域赋为 1*/</span>s-&gt;next=l-&gt;nest;l-&gt;nest=s;<span class="hljs-comment">/*插入到头结点之后*/</span>r=s;&#125;r=r-&gt;nest;<span class="hljs-keyword">while</span>(r!=<span class="hljs-literal">NULL</span>) <span class="hljs-comment">/*将后面的所有结点的值域赋为 0*/</span>&#123; r-&gt;data=<span class="hljs-number">0</span>;r=r-&gt;nest;&#125;&#125;</code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构笔记</category>
+      
+      <category>1线性表</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>笔记</tag>
+      
+      <tag>数据结构</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【线性表】顺序表及其基本运算和应用</title>
+    <link href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20/"/>
+    <url>/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20/</url>
+    
+    <content type="html"><![CDATA[<table><tr><td bgcolor=#99CCFF><font  size=5> 顺序存储结构的c语言描述</td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXSIZE 100<span class="hljs-comment">/*此处的宏定义常量表示线性表可能达到的最大长度*/</span></span><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>ElemType elem[MAXSIZE];<span class="hljs-comment">/*线性表占用的数组空间*/</span><span class="hljs-keyword">int</span> last;<span class="hljs-comment">/*记录线性表中最后一个元素在数组elem[]中的位置（下标值），</span><span class="hljs-comment">空表置为-1*/</span> &#125;SeqList;</code></pre></div><blockquote><p>在C语言数据结构中，关于数据元素的类型定义均用“ ElemType e；”来表示，其中e是表示数据元素的变量，而ElemType则是它的类型，ElemType的含义就是“数据元素的类型”，是一个抽象的概念，是表示我们所要使用的数据元素应有的类型。<br>ElemType是数据结构上为了说明问题而用的一个词。它是element type（“元素的类型”）的简化体。因为数据结构是讨论抽象的数据结构和算法，一种结构中元素的类型不一定是整型、字符型、浮点型或者用户自定义类型，为了不重复说明，使用过程用 “elemtype” 代表所有可能的数据类型，简单明了的概括整体。<br>在算法中，除特别说明外，规定ElemType的默认是int型。</p></blockquote><table><tr><td bgcolor=#E6E6FA><font  size=6> 顺序表的基本运算</td></tr></table><table><tr><td bgcolor=#FFC0CB><font  size=5> 一、按值查找</td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Locate</span><span class="hljs-params">(SeqList L ,ElemType e)</span></span><span class="hljs-function"><span class="hljs-comment">/*在顺序表L中依次存放着线性表中的元素，</span></span><span class="hljs-function"><span class="hljs-comment">在表中查找到与e相等的元素，</span></span><span class="hljs-function"><span class="hljs-comment">若L[i]=e则找到该元素，并返回i的数值</span></span><span class="hljs-function"><span class="hljs-comment">若找不到，则返回“-1”*/</span></span><span class="hljs-function"></span>&#123;i=<span class="hljs-number">0</span>;<span class="hljs-comment">/*i为扫描计数器，初始值为0，即从第一个元素开始比较*/</span><span class="hljs-keyword">while</span>((i&lt;L.last)&amp;&amp;(L.elem[i]!=e))&#123;i++;<span class="hljs-comment">/*顺序扫描表，直到找到值为e的元素或扫描到表尾而没找到*/</span>&#125; <span class="hljs-keyword">if</span>(i&lt;=L.last)<span class="hljs-keyword">return</span> (i+<span class="hljs-number">1</span>);<span class="hljs-comment">/*若找到，则返回其序号*/</span> <span class="hljs-keyword">else</span><span class="hljs-keyword">return</span> (<span class="hljs-number">-1</span>);<span class="hljs-comment">/*若没找到，则返回空序号*/</span>  &#125;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=5> 二、插入</td></tr></table><p><em>其实是移动部分的代码</em></p><div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">InsList</span><span class="hljs-params">(SeqList *L,<span class="hljs-keyword">int</span> i,ElemType e)</span></span><span class="hljs-function"><span class="hljs-comment">/*在顺序表L中第i个元素之前插入一个元素e</span></span><span class="hljs-function"><span class="hljs-comment">表长n=L-&gt;last+1，</span></span><span class="hljs-function"><span class="hljs-comment">i的合法取值范围是1&lt;=i&lt;=L&lt;last+2*/</span></span><span class="hljs-function"></span>&#123;<span class="hljs-keyword">int</span> k;<span class="hljs-keyword">if</span>((i&lt;<span class="hljs-number">1</span>)||(i&gt;L-&gt;last+<span class="hljs-number">2</span>))<span class="hljs-comment">/*首先判断插入位置是否合法*/</span>&#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">"插入位置i值不合法"</span>);<span class="hljs-keyword">return</span> (ERROR);&#125; <span class="hljs-keyword">if</span>(L-&gt;last&gt;=maxsize<span class="hljs-number">-1</span>)&#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">"表已满无法插入"</span>);<span class="hljs-keyword">return</span> (ERROR);&#125;<span class="hljs-keyword">for</span>(k=L-&gt;last;k&gt;=i<span class="hljs-number">-1</span>;k--)<span class="hljs-comment">/*为插入元素而移动位置*/</span>&#123;L-&gt;elem[k+<span class="hljs-number">1</span>]=L-&gt;elem[k];&#125;L-&gt;elem[i<span class="hljs-number">-1</span>]=e;<span class="hljs-comment">/*在c语言中，第i个元素的下标为i-1*/</span>L-&gt;last++;<span class="hljs-keyword">return</span> (OK); &#125;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=5> 三、删除</td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Locate</span><span class="hljs-params">(SeqList *L ,<span class="hljs-keyword">int</span> i,ElemType *e)</span></span><span class="hljs-function"><span class="hljs-comment">/*在顺序表L中删除第i个数据，并用指针参数e返回其值</span></span><span class="hljs-function"><span class="hljs-comment">i的合法取值为1&lt;=i&lt;=L.last+1*/</span></span><span class="hljs-function"></span>&#123;<span class="hljs-keyword">int</span> k;<span class="hljs-keyword">while</span>((i&lt;<span class="hljs-number">1</span>)||(i&gt;L-&gt;last+<span class="hljs-number">1</span>)) &#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">"删除位置不合法！"</span>);<span class="hljs-keyword">return</span>(error);&#125;*e=L-&gt;elem[i<span class="hljs-number">-1</span>]<span class="hljs-comment">/*将删除的元素存放到e所指的变量中*/</span><span class="hljs-keyword">for</span>(k=i; k&lt;=L-&gt;last; k++) &#123;L-&gt;elem[k<span class="hljs-number">-1</span>]=L-&gt;elem[k];<span class="hljs-comment">/*将后面的元素依次前移*/</span>L-&gt;last--;<span class="hljs-keyword">return</span> (ok);&#125;&#125;</code></pre></div><table><tr><td bgcolor=#FFC0CB><font  size=5> 四、有序表合并</td></tr></table><div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(SeqList *LA,SeqList *LB,SeqList *LC)</span> </span>&#123;<span class="hljs-keyword">int</span> i,j,k,l;i=<span class="hljs-number">0</span>;j=<span class="hljs-number">0</span>;k=<span class="hljs-number">0</span>;<span class="hljs-comment">/*LC 为空表,设LC表的指示器k=0.</span><span class="hljs-comment">设两个指示器 i,j 分别指向表 LA 和 LB 的当前位置，初值均为 0*/</span><span class="hljs-keyword">while</span>(i&lt;=LA-&gt;last&amp;&amp;j&lt;=LB-&gt;last) &#123;<span class="hljs-keyword">if</span>(LA-&gt;elem[i]&lt;=LB-&gt;elem[j]) &#123;LC-&gt;elem[k]=LA-&gt;elem[i];i++;k++;&#125; <span class="hljs-keyword">else</span> &#123;LC-&gt;elem[k]=LB-&gt;elem[j];j++;k++;&#125;&#125;<span class="hljs-comment">/*：LA 表和 LB 表的当前元素比较，小的元素进 LC 表，且该表的指</span><span class="hljs-comment">示器和 LC 表的指示器 k 均加 1 移向下一个位置。如此下去，直到 LA 或 LB 表</span><span class="hljs-comment">中一个表处理完毕为止。*/</span><span class="hljs-keyword">while</span>(i&lt;=LA-&gt;last) &#123; <span class="hljs-comment">/*当表LA比表LB长时，则将表LA余下的元素赋给表LC*/</span>LC-&gt;elem[k]=LA-&gt;elem[i];i++;k++;&#125;<span class="hljs-keyword">while</span>(i&lt;=LA-&gt;last) &#123; <span class="hljs-comment">/*当表LB比表LA长时，则将表LB余下的元素赋给表LC*/</span>LC-&gt;elem[k]=LB-&gt;elem[j];j++;k++;&#125;LC-&gt;last=LA-&gt;last+LB-&gt;last+<span class="hljs-number">1</span>;&#125;</code></pre></div><table><tr><td bgcolor=#E6E6FA><font  size=6> 算法应用示例</td></tr></table><table><tr><td bgcolor=#FFC0CB><font  size=4> 分解顺序表为奇偶两部分</td></tr></table><blockquote><p>已知顺序表 L 中的数据元素类型为 int。设计算法将其调整为左右两部分，左边的元素（即排在前面的）均为奇数，右边所有元素（即排在后面的）均为偶数，并要求算法的时间复杂度为 O(n)，空间复杂度为 O（1）。</p></blockquote><p>【问题分析】<br>初见此题，可能会想到额外申请 1 个顺序表空间，之后依次从顺序表 L 中选<br>择奇数放入新表前部分，选择偶数放在新表的后半部分。但是题目要求空间复杂度为 O(1),很显然上述方法是不可行的。既然要求空间复杂度为 O(1)，说明只能借助 1 个辅助空间。</p><p>分析题目要求，其实只需要将位于表左半部分的偶数与位于表右半部分的奇数通过一个辅助变量进行交换即可，为此可以设置两个位置指示器 i 和 j,i 初值为 0，j 初值为 L-&gt;last。<br>当L-&gt;elem[i]为偶数，L-&gt;elem[j]为奇数时，则将 L-&gt;elem[i] 与 L-&gt;elem[j]交换；否则，L-&gt;elem[i]为奇数,i++, L-&gt;elem[j]为偶数，j++。这样既可以保证算法的时间复杂度为 O(n),亦可保证空间复杂度为 O（1）。<br>【算法描述】</p><div class="hljs"><pre><code class="hljs c">adjustsqlist(seqlist *l)&#123;<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>,j=l-&gt;last,t;<span class="hljs-keyword">while</span>(i&lt;j)&#123;<span class="hljs-keyword">while</span>(l-&gt;elem[i]%<span class="hljs-number">2</span>!=<span class="hljs-number">0</span>)<span class="hljs-comment">/*从表的左半部分开始检测，若为奇数，则 i 加 1,直到找到偶数为止*/</span>i++;<span class="hljs-keyword">while</span>(l-&gt;elem[j]%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>)<span class="hljs-comment">/*从表的左半部分开始检测，若为偶数，则 j 减 1,直到找到奇数为止*/</span>j--;<span class="hljs-keyword">if</span>(i&lt;j)&#123;t=l-&gt;elem[i];l-&gt;elem[i]=l-&gt;elem[j];l-&gt;elem[j]=t;&#125; &#125;&#125;</code></pre></div>]]></content>
     
     
     <categories>
@@ -844,7 +860,7 @@
       
       <category>数据结构笔记</category>
       
-      <category>线性表</category>
+      <category>1线性表</category>
       
     </categories>
     
@@ -856,6 +872,19 @@
       <tag>数据结构</tag>
       
     </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2019/12/23/hello-world/"/>
+    <url>/2019/12/23/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="hljs"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span></code></pre></div><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="hljs"><pre><code class="hljs bash">$ hexo server</code></pre></div><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="hljs"><pre><code class="hljs bash">$ hexo generate</code></pre></div><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="hljs"><pre><code class="hljs bash">$ hexo deploy</code></pre></div><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    
     
   </entry>
   
@@ -880,38 +909,9 @@
     
     <tags>
       
-      <tag>PTA</tag>
-      
       <tag>基础</tag>
       
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>练习5-3 数字金字塔</title>
-    <link href="/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/"/>
-    <url>/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/</url>
-    
-    <content type="html"><![CDATA[<p>本题要求实现函数输出n行数字金字塔。<br>函数接口定义：</p><div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pyramid</span><span class="hljs-params">( <span class="hljs-keyword">int</span> n )</span></span>;</code></pre></div><p>其中n是用户传入的参数，为[1, 9]的正整数。<br>要求函数按照如样例所示的格式打印出n行数字金字塔。<br>注意每个数字后面跟一个空格</p><div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pyramid</span><span class="hljs-params">( <span class="hljs-keyword">int</span> n )</span> </span>&#123;<span class="hljs-keyword">int</span> a=<span class="hljs-number">1</span>;<span class="hljs-keyword">int</span> b=<span class="hljs-number">1</span>;<span class="hljs-keyword">int</span> c=n;<span class="hljs-keyword">for</span>(a=<span class="hljs-number">1</span>; a&lt;=n; a+=<span class="hljs-number">1</span>) &#123;<span class="hljs-keyword">for</span>(c=n; a&lt;c<span class="hljs-number">-1</span>; c-=<span class="hljs-number">1</span>) &#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">" "</span>);&#125;<span class="hljs-keyword">if</span>(a==n) &#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d "</span>,a);<span class="hljs-keyword">for</span>(b=<span class="hljs-number">1</span>; a&gt;b; b+=<span class="hljs-number">1</span>) &#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>,a);<span class="hljs-built_in">printf</span>(<span class="hljs-string">" "</span>);&#125;&#125;<span class="hljs-keyword">else</span>&#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">" %d"</span>,a);<span class="hljs-keyword">for</span>(b=<span class="hljs-number">1</span>; a&gt;b; b+=<span class="hljs-number">1</span>) &#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">" "</span>);<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>,a);&#125;<span class="hljs-built_in">printf</span>(<span class="hljs-string">" "</span>);&#125;<span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n"</span>);&#125;&#125;<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><span class="hljs-function"></span>&#123;        <span class="hljs-keyword">int</span> n;    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;n);    pyramid(n);    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;    system(<span class="hljs-string">"pause"</span>);&#125;</code></pre></div>]]></content>
-    
-    
-    <categories>
-      
-      <category>练习题</category>
-      
-      <category>入门训练</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
       <tag>PTA</tag>
-      
-      <tag>基础</tag>
       
     </tags>
     
@@ -938,9 +938,38 @@
     
     <tags>
       
+      <tag>基础</tag>
+      
       <tag>PTA</tag>
       
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>练习5-3 数字金字塔</title>
+    <link href="/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/"/>
+    <url>/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/</url>
+    
+    <content type="html"><![CDATA[<p>本题要求实现函数输出n行数字金字塔。<br>函数接口定义：</p><div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pyramid</span><span class="hljs-params">( <span class="hljs-keyword">int</span> n )</span></span>;</code></pre></div><p>其中n是用户传入的参数，为[1, 9]的正整数。<br>要求函数按照如样例所示的格式打印出n行数字金字塔。<br>注意每个数字后面跟一个空格</p><div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pyramid</span><span class="hljs-params">( <span class="hljs-keyword">int</span> n )</span> </span>&#123;<span class="hljs-keyword">int</span> a=<span class="hljs-number">1</span>;<span class="hljs-keyword">int</span> b=<span class="hljs-number">1</span>;<span class="hljs-keyword">int</span> c=n;<span class="hljs-keyword">for</span>(a=<span class="hljs-number">1</span>; a&lt;=n; a+=<span class="hljs-number">1</span>) &#123;<span class="hljs-keyword">for</span>(c=n; a&lt;c<span class="hljs-number">-1</span>; c-=<span class="hljs-number">1</span>) &#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">" "</span>);&#125;<span class="hljs-keyword">if</span>(a==n) &#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d "</span>,a);<span class="hljs-keyword">for</span>(b=<span class="hljs-number">1</span>; a&gt;b; b+=<span class="hljs-number">1</span>) &#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>,a);<span class="hljs-built_in">printf</span>(<span class="hljs-string">" "</span>);&#125;&#125;<span class="hljs-keyword">else</span>&#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">" %d"</span>,a);<span class="hljs-keyword">for</span>(b=<span class="hljs-number">1</span>; a&gt;b; b+=<span class="hljs-number">1</span>) &#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">" "</span>);<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>,a);&#125;<span class="hljs-built_in">printf</span>(<span class="hljs-string">" "</span>);&#125;<span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n"</span>);&#125;&#125;<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><span class="hljs-function"></span>&#123;        <span class="hljs-keyword">int</span> n;    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;n);    pyramid(n);    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;    system(<span class="hljs-string">"pause"</span>);&#125;</code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>练习题</category>
+      
+      <category>入门训练</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
       <tag>基础</tag>
+      
+      <tag>PTA</tag>
       
     </tags>
     

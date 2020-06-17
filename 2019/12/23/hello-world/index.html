@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="WRY">
   <meta name="keywords" content="">
-  <title>【树】树的基本概念 - WRY&#39;s Space</title>
+  <title>Hello World - WRY&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-17 16:19">
-      2020年6月17日 下午
+    <time datetime="2019-12-23 00:00">
+      2019年12月23日 凌晨
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      770 字
+      73 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      1
        分钟
     </span>
   
@@ -204,70 +204,25 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <table><tr><td bgcolor=#E6E6FA><font  size=6>树的定义与基本术语</td></tr></table>
-<table><tr><td bgcolor=#FFC0CB><font  size=5>树的基本概念</td></tr></table>
+              <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="hljs"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span></code></pre></div>
 
-<ul>
-<li>树是 n（n≥0）个结点的有限集合 T。</li>
-<li>当 n=0 时，称为空树；</li>
-<li>当 n&gt;0 时，该集合满足如下条件：①其中必有一个称为<strong>根</strong>（root）的特定结点，它没有直接前驱，但有零个或多个直接后继。②其余 n-1 个结点可以划分成 m（m≥0）个互不相交的有限集 T1，T2，T3，…，Tm，其中Ti又是一棵树，称为<strong>根的子树</strong>。<strong>每棵子树的根结点有且仅有一个直接前驱</strong>，但有零个或多个直接后继。<br>下图给出了一棵树的逻辑结构图示，它如同一棵倒长的树。<br><img src="https://img-blog.csdnimg.cn/20200323212318362.png" srcset="/img/loading.gif" alt="在这里插入图片描述"><table><tr><td bgcolor=#FFC0CB><font  size=5>树的图解表示</td></tr></table>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="hljs"><pre><code class="hljs bash">$ hexo server</code></pre></div>
 
-</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/20200323212855495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200323212907526.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<table><tr><td bgcolor=#FFC0CB><font  size=5>树的相关术语</td></tr></table>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="hljs"><pre><code class="hljs bash">$ hexo generate</code></pre></div>
 
-<ul>
-<li><strong>结点</strong>：包括一个数据元素及若干指向其他结点的分支信息。 </li>
-<li><strong>结点的度</strong>：一个结点的==子树个数==称为此结点的度。 </li>
-<li><strong>叶结点</strong>：==度为 0 的结点==，即无后继的结点，也称为终端结点。</li>
-<li><strong>分支结点</strong>：度不为 0 的结点，也称为非终端结点。</li>
-<li><strong>结点的层次</strong>：从根结点开始定义，根结点的层次为 1，根的直接后继的层次为 2，依此类推。</li>
-<li><strong>结点的层序编号</strong>：将树中的结点按从上层到下层、同层从左到右的次序排成一个线性序列，依次给它们编以连续的自然数。</li>
-<li><strong>树的度</strong>：==树中所有结点的<strong>度</strong>的最大值。== </li>
-<li><strong>树的高度（深度）</strong>：==树中所有结点的<strong>层次</strong>的最大值。== </li>
-<li><strong>有序树</strong>：在树 T 中，如果各子树 Ti之间是有先后次序的，则称为有序树。 </li>
-<li><strong>森林</strong>：m（m≥0）棵互不相交的树的集合。将一棵非空树的根结点删去，树就变成一个森林；反之，给森林增加一个统一的根结点，森林就变成一棵树。</li>
-<li><strong>同构</strong>：对两棵树，通过对结点适当地重命名，就可以使两棵树完全相等（结点对应相等，对应结点的相关关系也相等），则称这两棵树同构。 </li>
-</ul>
-<p>我们常常借助人类家族树的术语，以便于直观理解结点间的层次关系。</p>
-<ul>
-<li>孩子结点：一个结点的直接后继称为该结点的孩子结点。</li>
-<li>双亲结点：一个结点的直接前驱称为该结点的双亲结点。</li>
-<li>兄弟结点：同一双亲结点的孩子结点之间互称兄弟结点。</li>
-<li>堂兄弟：父亲是兄弟关系或堂兄关系的结点称为堂兄弟结点。</li>
-<li>祖先结点：一个结点的祖先结点是指从根结点到该结点的路径上的所有结点。</li>
-<li>子孙结点：一个结点的直接后继和间接后继称为该结点的子孙结点。</li>
-<li>前辈：层号比该结点小的结点，都称为该结点的前辈。</li>
-<li>后辈：层号比该结点大的结点，都称为该结点的后辈。<table><tr><td bgcolor=#FFC0CB><font  size=5>树的抽象数据类型</td></tr></table>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="hljs"><pre><code class="hljs bash">$ hexo deploy</code></pre></div>
 
-</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/20200323215117652.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/%E6%A0%91/">树</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-                    
-                  </div>
                 
               </div>
               
@@ -278,9 +233,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/17/%E3%80%90%E6%A0%91%E3%80%91%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95%E5%BA%94%E7%94%A8/">
+                      <a href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20-%20%E5%89%AF%E6%9C%AC/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【树】树的基本概念</span>
+                        <span class="hidden-mobile">【线性表】顺序表及其基本运算和应用</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -288,8 +243,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/17/%E3%80%90%E4%B8%B2%E3%80%91%E4%B8%B2%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8%E4%BE%8B%E9%A2%98/">
-                        <span class="hidden-mobile">【串】串的基本概念</span>
+                      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-1%20%E6%B1%82m%E5%88%B0n%E4%B9%8B%E5%92%8C/">
+                        <span class="hidden-mobile">练习5-1 求m到n之和</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -428,7 +383,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "【树】树的基本概念&nbsp;",
+        "Hello World&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 80,
