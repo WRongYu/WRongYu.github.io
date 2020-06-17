@@ -168,6 +168,60 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20-%20%E5%89%AF%E6%9C%AC/">【线性表】顺序表及其基本运算和应用</a>
+
+      <a href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20-%20%E5%89%AF%E6%9C%AC/" class="index-excerpt">
+        
+        
+          
+        
+        <div> 顺序存储结构的c语言描述
+
+#define MAXSIZE 100/*此处的宏定义常量表示线性表可能达到的最大长度*/
+typedef struct&#123;
+	ElemType elem[MAXSIZE];/*线性表占用的数组空间*/
+	int last;/*记录线性表中最后一个元素在数组elem[]中的位置（下标值），
+	空表置为-1*/ 
+&#125;SeqList;
+
+
+在C语言数据结</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-03-01
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/%E7%BA%BF%E6%80%A7%E8%A1%A8/">线性表</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2019/12/23/hello-world/">Hello World</a>
 
       <a href="/2019/12/23/hello-world/" class="index-excerpt">
@@ -247,22 +301,23 @@ int sum(int m,int n)
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/">练习5-3 数字金字塔</a>
+      <a class="index-header" href="/2019/10/29/%E7%BB%83%E4%B9%A05-2%20%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%AD%E6%9C%80%E5%A4%A7%E8%80%85/">练习5-2 找两个数中最大者</a>
 
-      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/" class="index-excerpt">
+      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-2%20%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%AD%E6%9C%80%E5%A4%A7%E8%80%85/" class="index-excerpt">
         
         
           
         
-        <div>本题要求实现函数输出n行数字金字塔。函数接口定义：
-void pyramid( int n );
-其中n是用户传入的参数，为[1, 9]的正整数。要求函数按照如样例所示的格式打印出n行数字金字塔。注意每个数字后面跟一个空格
+        <div>本题要求对两个整数a和b，输出其中较大的数。函数接口定义
+int max( int a, int b );
+其中a和b是用户传入的参数，函数返回的是两者中较大的数
+
 #include &lt;stdio.h&gt;
-void pyramid( int n ) &#123;
-	int a=1;
-	int b=1;
-	int c=n;
-	for</div>
+int max( int a, int b )
+&#123;
+	int max;
+	if(a&gt;b)&#123;max=a;&#125;
+	else&#123;max=b;&#12</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -299,23 +354,22 @@ void pyramid( int n ) &#123;
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/10/29/%E7%BB%83%E4%B9%A05-2%20%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%AD%E6%9C%80%E5%A4%A7%E8%80%85/">练习5-2 找两个数中最大者</a>
+      <a class="index-header" href="/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/">练习5-3 数字金字塔</a>
 
-      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-2%20%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%AD%E6%9C%80%E5%A4%A7%E8%80%85/" class="index-excerpt">
+      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/" class="index-excerpt">
         
         
           
         
-        <div>本题要求对两个整数a和b，输出其中较大的数。函数接口定义
-int max( int a, int b );
-其中a和b是用户传入的参数，函数返回的是两者中较大的数
-
+        <div>本题要求实现函数输出n行数字金字塔。函数接口定义：
+void pyramid( int n );
+其中n是用户传入的参数，为[1, 9]的正整数。要求函数按照如样例所示的格式打印出n行数字金字塔。注意每个数字后面跟一个空格
 #include &lt;stdio.h&gt;
-int max( int a, int b )
-&#123;
-	int max;
-	if(a&gt;b)&#123;max=a;&#125;
-	else&#123;max=b;&#12</div>
+void pyramid( int n ) &#123;
+	int a=1;
+	int b=1;
+	int c=n;
+	for</div>
       </a>
 
       <div class="index-btm post-metas">
