@@ -218,27 +218,25 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%A1%BA%E5%BA%8F%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%92%8C%E5%BA%94%E7%94%A8%5B%E4%B8%A4%E6%A0%88%E5%85%B1%E4%BA%AB%5D/">【栈】顺序栈及其基本操作和应用[两栈共享]</a>
+      <a class="index-header" href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%93%BE%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">【栈】链栈及其基本操作</a>
 
-      <a href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%A1%BA%E5%BA%8F%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%92%8C%E5%BA%94%E7%94%A8%5B%E4%B8%A4%E6%A0%88%E5%85%B1%E4%BA%AB%5D/" class="index-excerpt">
+      <a href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%93%BE%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="index-excerpt">
         
         
           
         
-        <div> 栈的顺序实现
-
-1.定义
-
-利用一组地址连续的存储单元依次存放自栈底到栈顶的数据元素
-设一个位置指示器 top（栈顶指针）来动态地指示栈顶元素在顺序栈中的位置。
-通常以 top=-1 表示空栈。（=0的时候是栈中第一个元素） c语言描述顺序栈
+        <div> 栈的链式实现
+1.定义：链栈即采用链表作为存储结构实现的栈。为便于操作，这里采用带头结点的单链表实
+现栈。
 
 
+top 为栈顶指针，始终指向当前栈顶元素前面的头结点。
+若 top-&gt;next=NULL，则代表栈空。
 
-#define TRUE 1 
-#define FALSE 1 
-#define stack_size 50 
-typedef struct&#12</div>
+
+
+采用链栈不必预先估计栈的最大容量，只要系统有可用空间，链栈就不会出现溢出。采用链栈时，栈的各种基本操作的实现与单链表的操作类似，对于链栈，在使用完毕时，应该释放其空间。
+</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -275,25 +273,27 @@ typedef struct&#12</div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%93%BE%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">【栈】链栈及其基本操作</a>
+      <a class="index-header" href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%A1%BA%E5%BA%8F%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%92%8C%E5%BA%94%E7%94%A8%5B%E4%B8%A4%E6%A0%88%E5%85%B1%E4%BA%AB%5D/">【栈】顺序栈及其基本操作和应用[两栈共享]</a>
 
-      <a href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%93%BE%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="index-excerpt">
+      <a href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%A1%BA%E5%BA%8F%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%92%8C%E5%BA%94%E7%94%A8%5B%E4%B8%A4%E6%A0%88%E5%85%B1%E4%BA%AB%5D/" class="index-excerpt">
         
         
           
         
-        <div> 栈的链式实现
-1.定义：链栈即采用链表作为存储结构实现的栈。为便于操作，这里采用带头结点的单链表实
-现栈。
+        <div> 栈的顺序实现
+
+1.定义
+
+利用一组地址连续的存储单元依次存放自栈底到栈顶的数据元素
+设一个位置指示器 top（栈顶指针）来动态地指示栈顶元素在顺序栈中的位置。
+通常以 top=-1 表示空栈。（=0的时候是栈中第一个元素） c语言描述顺序栈
 
 
-top 为栈顶指针，始终指向当前栈顶元素前面的头结点。
-若 top-&gt;next=NULL，则代表栈空。
 
-
-
-采用链栈不必预先估计栈的最大容量，只要系统有可用空间，链栈就不会出现溢出。采用链栈时，栈的各种基本操作的实现与单链表的操作类似，对于链栈，在使用完毕时，应该释放其空间。
-</div>
+#define TRUE 1 
+#define FALSE 1 
+#define stack_size 50 
+typedef struct&#12</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -440,30 +440,14 @@ struct polynode&#123;
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/">【线性表】循环双向静态链表</a>
+      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/">【线性表】顺序表与链表的综合比较</a>
 
-      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/" class="index-excerpt">
+      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/" class="index-excerpt">
         
         
           
         
-        <div> 循环链表
-
-
-定义：首尾相接的链表
-结构：尾结点的指针域指向头结点或表的首元结点
-特点：表中所有结点都链接在一个环上
-判断循环链表空链表的条件：头指针的指针域指向自己（head-&gt;next==head） 循环链表的合并算法
-
-
-
-算法思路：
-
-遍历两表找表尾
-将第一表尾链接第二表头，将第二表尾链接第一表头 
-
-
-linklist merge_1(linklist la,linklist l</div>
+        <div>&lt;———————————–西北大学mooc摘要————————————-&gt; 1.基于空间的考虑顺序表的存储空间是静态分配的，在程序执行之前必须明确规定它的存储规模。若线性表的长度 n 变化较大，则存储规模难于预先确定。估计过大将造成空间浪费，估计太小又将使空间溢出的机会增多。在静态链表中，初始存储池虽然也是静态分配的，但若同时存在若干个结点类型相同的链表，则它们可以共享空间，使各链表之</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -500,14 +484,30 @@ linklist merge_1(linklist la,linklist l</div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/">【线性表】顺序表与链表的综合比较</a>
+      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/">【线性表】循环双向静态链表</a>
 
-      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/" class="index-excerpt">
+      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/" class="index-excerpt">
         
         
           
         
-        <div>&lt;———————————–西北大学mooc摘要————————————-&gt; 1.基于空间的考虑顺序表的存储空间是静态分配的，在程序执行之前必须明确规定它的存储规模。若线性表的长度 n 变化较大，则存储规模难于预先确定。估计过大将造成空间浪费，估计太小又将使空间溢出的机会增多。在静态链表中，初始存储池虽然也是静态分配的，但若同时存在若干个结点类型相同的链表，则它们可以共享空间，使各链表之</div>
+        <div> 循环链表
+
+
+定义：首尾相接的链表
+结构：尾结点的指针域指向头结点或表的首元结点
+特点：表中所有结点都链接在一个环上
+判断循环链表空链表的条件：头指针的指针域指向自己（head-&gt;next==head） 循环链表的合并算法
+
+
+
+算法思路：
+
+遍历两表找表尾
+将第一表尾链接第二表头，将第二表尾链接第一表头 
+
+
+linklist merge_1(linklist la,linklist l</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -649,9 +649,9 @@ LinkList 与 Node*同为结构指针类斜体样式型，这两种类</div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20-%20%E5%89%AF%E6%9C%AC/">【线性表】顺序表及其基本运算和应用</a>
+      <a class="index-header" href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20/">【线性表】顺序表及其基本运算和应用</a>
 
-      <a href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20-%20%E5%89%AF%E6%9C%AC/" class="index-excerpt">
+      <a href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20/" class="index-excerpt">
         
         
           
