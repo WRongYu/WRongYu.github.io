@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="WRY">
   <meta name="keywords" content="">
-  <title>【查找】基于线性表的查找法 - WRY&#39;s Space</title>
+  <title>【蓝桥杯】10B省赛B:年号字串 - WRY&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-17 17:34">
-      2020年6月17日 下午
+    <time datetime="2020-06-23 14:22">
+      2020年6月23日 下午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      916 字
+      212 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      3
        分钟
     </span>
   
@@ -204,95 +204,43 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <table><tr><td bgcolor=#E6E6FA><font  size=6> 查找的主要方法</td></tr></table>
-
-<p><img src="https://img-blog.csdnimg.cn/20200617180500107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<table><tr><td bgcolor=#E6E6FA><font  size=6>基于线性表的查找法</td></tr></table>
-<table><tr><td bgcolor=#FFC0CB><font  size=5> 一、顺序查找法</td></tr></table>
-
-<blockquote>
-<p>顺序查找法的特点是，用所给关键字与线性表中各元素的关键字逐个比较，直到成功或失败。存储结构通常为顺序结构，也可为链式结构。</p>
-</blockquote>
-<p>顺序结构数据类型的定义：</p>
-<div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LIST_SIZE 20</span>
-<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span>
-KeyType key;
-OtherType other_data;
-&#125; RecordType;
-<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span>
-RecordType r[LIST_SIZE+<span class="hljs-number">1</span>]; <span class="hljs-comment">/* r[0]为工作单元 */</span>
-<span class="hljs-keyword">int</span> length;
-&#125; RecordList;</code></pre></div>
-<table><tr><td bgcolor=#99CCFF><font  size=5>[算法思想] </td></tr></table>
-
-<p>在表的一端设置一个称为“监视哨”的附加单元，存放要查找元素的关键字。从表的另一端开始查找，如果在“监视哨”找到要查找元素的关键字，返回失败信息，否则返回相应下标。</p>
-<table><tr><td bgcolor=#99CCFF><font  size=5>[算法描述-设置监视哨的顺序查找法] 
-</td></tr></table>
-
-<div class="hljs"><pre><code class="hljs c"><span class="hljs-keyword">int</span> SeqSearch（RecordList l, KeyType k）
-<span class="hljs-comment">/*在顺序表 l 中顺序查找其关键字等于 k</span>
-<span class="hljs-comment">   的元素，若找到，则函数值为该元素在表中的位置，否则为 0*/</span>
-&#123;
-  l.r[<span class="hljs-number">0</span>].key = k; <span class="hljs-comment">//其中 l.r[0] 为“监视哨”，可以起到防止越界的作用。</span>
-  i = l.length;
-  <span class="hljs-keyword">while</span> (l.r[i].key != k)
-    i--;
-  <span class="hljs-keyword">return</span>(i);
-&#125;</code></pre></div>
-<table><tr><td bgcolor=#99CCFF><font  size=5>[算法分析] </td></tr></table>
-
-<p>用平均查找长度（ASL）分析顺序查找算法的性能。假设列表长度为 n，那么查找第 i个数据元素时需进行 n-i+1 次比较，即 Ci=n-i+1。又假设查找每个数据元素的概率相等，即 Pi=1/n，则顺序查找算法的平均查找长度为：<br><img src="https://img-blog.csdnimg.cn/20200617181323368.png" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>为便于比较，下面给出不用“监视哨”的算法</p>
-<table><tr><td bgcolor=#99CCFF><font  size=5>[算法描述-不设置监视哨的顺序查找法] </td></tr></table>
-
-<div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">SeqSearch</span><span class="hljs-params">(RecordList l, KeyType k)</span></span>
-<span class="hljs-function"><span class="hljs-comment">/*不用“监视哨”法，在顺序表中查找关键字等于 k 的元素*/</span></span>
+              <h1 id="试题-C-数列求值"><a href="#试题-C-数列求值" class="headerlink" title="试题 C: 数列求值"></a>试题 C: 数列求值</h1><p><img src="https://img-blog.csdnimg.cn/20200622223345882.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这道题目其实就是一道斐波那契数列变形，而且题目直接告诉你从第四项开始每一项等于前三项的和直接可以写出递推式。但是这么大的数肯定超出long long 了，对每一步mod10000即可得到正确答案</p>
+<h2 id="代码实现1"><a href="#代码实现1" class="headerlink" title="代码实现1"></a>代码实现1</h2><div class="hljs"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
-  i = l.length;
-  <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">1</span> &amp;&amp; l.r[i].key != k)
-    i--;
-  <span class="hljs-keyword">if</span> (i &gt;= <span class="hljs-number">1</span>)
-    <span class="hljs-keyword">return</span> (i) <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);
+   <span class="hljs-keyword">int</span> a1 = <span class="hljs-number">1</span>;
+   <span class="hljs-keyword">int</span> a2 = <span class="hljs-number">1</span>;
+   <span class="hljs-keyword">int</span> a3 = <span class="hljs-number">1</span>;
+   <span class="hljs-keyword">int</span> a4 = <span class="hljs-number">0</span>;
+   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">4</span>; i &lt;= <span class="hljs-number">20190324</span>; i++)
+   &#123;
+      a4 = (a1 + a2 + a3) % <span class="hljs-number">10000</span>;
+      a1 = a2;
+      a2 = a3;
+      a3 = a4;
+   &#125;
+   <span class="hljs-built_in">cout</span> &lt;&lt; a4;
 &#125;</code></pre></div>
+<p>4659</p>
+<h2 id="代码实现2"><a href="#代码实现2" class="headerlink" title="代码实现2"></a>代码实现2</h2><div class="hljs"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> mod = <span class="hljs-number">1e4</span>;
+<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> dp[<span class="hljs-number">20190325</span>];
 
-<blockquote>
-<p>算法 2 与算法 1 相比，循环控制条件中增加了 i&gt;=1，用以判断查找过程是否越界。加 上“监视哨”可省去这个条件，从而提高查找效率。</p>
-</blockquote>
-<table><tr><td bgcolor=#FFC0CB><font  size=5> 二、折半（二分）查找法</td></tr></table>
-
-<blockquote>
-<p>折半查找法又称为==二分查找法==，这种方法对待查找的列表有两个要求：<br>（1）必须采用顺序存储结构；（2）必须按关键字大小有序排列。</p>
-</blockquote>
-<table><tr><td bgcolor=#99CCFF><font  size=5>[算法思想] </td></tr></table>
-
-<p>首先，将表中间位置记录的关键字与查找关键字比较，如果两者相等，则查找成功；<br>否则利用中间位置记录将表分成前、后两个子表。<br>如果中间位置记录的关键字大于查找关键字，则进一步查找前一子表，否则进一步查找后一子表。<br>重复以上过程，直到找到满足条件的记录，使查找成功，或直到子表不存在为止，此时查找不成功。</p>
-<p>下图给出了用折半查找法查找 12、50 的具体过程，其中 mid=(low+high)/2，当 high&lt;low 时，表示不存在这样的子表空间，查找失败<br><img src="https://img-blog.csdnimg.cn/2020061719005599.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200617190041928.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<table><tr><td bgcolor=#99CCFF><font  size=5>[算法描述-折半查找法] 
-</td></tr></table>
-
-<div class="hljs"><pre><code class="hljs c"><span class="hljs-keyword">int</span> BinSrch （RecordList l, KeyType k）
-<span class="hljs-comment">/*在有序表 l 中折半查找其关键字等于 k 的元素，若找到，则函数值为该元素在表中的</span>
-<span class="hljs-comment">位置*/</span>
-&#123;
-  low = <span class="hljs-number">1</span>;
-  high = l.length; <span class="hljs-comment">/*置区间初值*/</span>
-  <span class="hljs-keyword">while</span> (low &lt;= high) &#123;
-    mid = (low + high) / <span class="hljs-number">2</span>;
-    <span class="hljs-keyword">if</span> (k == l.r[mid].key)
-      <span class="hljs-keyword">return</span>（mid）; <span class="hljs-comment">/*找到待查元素*/</span>
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (k &lt; l.r[mid].key)
-      high = mid - <span class="hljs-number">1</span>; <span class="hljs-comment">/*未找到，则继续在前半区间进行查找*/</span>
-    <span class="hljs-keyword">else</span>
-      low = mid + <span class="hljs-number">1</span>; <span class="hljs-comment">/*继续在后半区间进行查找*/</span>
-  &#125;
-  <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+   dp[<span class="hljs-number">1</span>] = dp[<span class="hljs-number">2</span>] = dp[<span class="hljs-number">3</span>] = <span class="hljs-number">1</span>;
+   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">4</span>; i &lt;= <span class="hljs-number">20190324</span>; i++)
+   &#123;
+      dp[i] = (dp[i - <span class="hljs-number">1</span>] + dp[i - <span class="hljs-number">2</span>] + dp[i - <span class="hljs-number">3</span>]) % mod;
+   &#125;
+   <span class="hljs-built_in">cout</span> &lt;&lt; dp[<span class="hljs-number">20190324</span>];
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
-
-<table><tr><td bgcolor=#99CCFF><font  size=5>[算法分析] </td></tr></table>
-ppt里 略
-
-<table><tr><td bgcolor=#FFC0CB><font  size=5>三、 分块查找法</td></tr></table>
-
-<p><img src="https://img-blog.csdnimg.cn/20200617191330525.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 
             </article>
             <hr>
@@ -302,9 +250,11 @@ ppt里 略
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">算法笔记</a>
+                      <a class="hover-with-bg" href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/">练习题</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E6%9F%A5%E6%89%BE/">查找</a>
+                      <a class="hover-with-bg" href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/%E7%AE%97%E6%B3%95/%E9%80%92%E5%BD%92/">递归</a>
                     
                   </div>
                 
@@ -312,9 +262,7 @@ ppt里 略
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
                     
                   </div>
                 
@@ -327,7 +275,7 @@ ppt里 略
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/22/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BB%E5%B9%B4%E5%8F%B7%E5%AD%97%E4%B8%B2/">
+                      <a href="/2020/06/23/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BE%E8%BF%B7%E5%AE%AB/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">【蓝桥杯】10B省赛B:年号字串</span>
                         <span class="visible-mobile">上一篇</span>
@@ -337,8 +285,8 @@ ppt里 略
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/17/%E3%80%90%E9%98%9F%E5%88%97%E3%80%91%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B/">
-                        <span class="hidden-mobile">【队列】队列的应用举例</span>
+                      <a href="/2020/06/22/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BB%E5%B9%B4%E5%8F%B7%E5%AD%97%E4%B8%B2/">
+                        <span class="hidden-mobile">【蓝桥杯】10B省赛B:年号字串</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -477,7 +425,7 @@ ppt里 略
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "【查找】基于线性表的查找法&nbsp;",
+        "【蓝桥杯】10B省赛B:年号字串&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 80,
