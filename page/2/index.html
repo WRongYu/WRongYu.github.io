@@ -168,6 +168,67 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/17/%E3%80%90%E6%A0%91%E3%80%91%E6%A0%91%E3%80%81%E6%A3%AE%E6%9E%97%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%85%B3%E7%B3%BB/">【树】树、森林和二叉树的关系</a>
+
+      <a href="/2020/06/17/%E3%80%90%E6%A0%91%E3%80%91%E6%A0%91%E3%80%81%E6%A3%AE%E6%9E%97%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%85%B3%E7%B3%BB/" class="index-excerpt">
+        
+        
+          
+        
+        <div>树的存储结构
+1.双亲表示法
+
+
+这种方法用一组连续的空间来存储树中的结点，在保存每个结点的同时附设一个指示器来指示其双亲结点在表中的位置，其结点的结构如下图所示：
+
+
+
+双亲表示法的形式说明如下：
+
+#define MAX 100
+typedef struct TNode
+&#123;
+  DataType data;
+  int parent;
+&#125; TNode;
+
+
+树可以定义为：
+</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-17
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/06/17/%E3%80%90%E6%A0%91%E3%80%91%E7%94%B1%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E7%A1%AE%E5%AE%9A%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91/">【树】由遍历序列确定的二叉树</a>
 
       <a href="/2020/06/17/%E3%80%90%E6%A0%91%E3%80%91%E7%94%B1%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E7%A1%AE%E5%AE%9A%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91/" class="index-excerpt">
@@ -590,58 +651,6 @@ typedef enum
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>&nbsp;2020-03-25
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-            
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/03/24/%E3%80%90%E6%A0%91%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8/">【树】二叉树的基本概念与性质</a>
-
-      <a href="/2020/03/24/%E3%80%90%E6%A0%91%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8/" class="index-excerpt">
-        
-        
-          
-        
-        <div>二叉树的定义与基本操作
-
-1.定义：把满足以下两个条件的树型结构叫做二叉树（Binary Tree）： 
-
-（1） 每个结点的度都不大于 2； 
-（2） 每个结点的孩子结点次序不能任意颠倒。
-
-由此定义可看出，一个二叉树中的每个结点只能含有 0、1 或 2 个孩子，而且每个孩子有左右之分。位于左边的孩子叫做左孩子，位于右边的孩子叫做右孩子。
-
-二叉树的性质
-性质1：在二叉树的第 i 层上至多有 2</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-03-24
           </div>
         
         
