@@ -168,14 +168,30 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/">【线性表】顺序表与链表的综合比较</a>
+      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/">【线性表】循环双向静态链表</a>
 
-      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/" class="index-excerpt">
+      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/" class="index-excerpt">
         
         
           
         
-        <div>&lt;———————————–西北大学mooc摘要————————————-&gt; 1.基于空间的考虑顺序表的存储空间是静态分配的，在程序执行之前必须明确规定它的存储规模。若线性表的长度 n 变化较大，则存储规模难于预先确定。估计过大将造成空间浪费，估计太小又将使空间溢出的机会增多。在静态链表中，初始存储池虽然也是静态分配的，但若同时存在若干个结点类型相同的链表，则它们可以共享空间，使各链表之</div>
+        <div> 循环链表
+
+
+定义：首尾相接的链表
+结构：尾结点的指针域指向头结点或表的首元结点
+特点：表中所有结点都链接在一个环上
+判断循环链表空链表的条件：头指针的指针域指向自己（head-&gt;next==head） 循环链表的合并算法
+
+
+
+算法思路：
+
+遍历两表找表尾
+将第一表尾链接第二表头，将第二表尾链接第一表头 
+
+
+linklist merge_1(linklist la,linklist l</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -210,30 +226,14 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/">【线性表】循环双向静态链表</a>
+      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/">【线性表】顺序表与链表的综合比较</a>
 
-      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/" class="index-excerpt">
+      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/" class="index-excerpt">
         
         
           
         
-        <div> 循环链表
-
-
-定义：首尾相接的链表
-结构：尾结点的指针域指向头结点或表的首元结点
-特点：表中所有结点都链接在一个环上
-判断循环链表空链表的条件：头指针的指针域指向自己（head-&gt;next==head） 循环链表的合并算法
-
-
-
-算法思路：
-
-遍历两表找表尾
-将第一表尾链接第二表头，将第二表尾链接第一表头 
-
-
-linklist merge_1(linklist la,linklist l</div>
+        <div>&lt;———————————–西北大学mooc摘要————————————-&gt; 1.基于空间的考虑顺序表的存储空间是静态分配的，在程序执行之前必须明确规定它的存储规模。若线性表的长度 n 变化较大，则存储规模难于预先确定。估计过大将造成空间浪费，估计太小又将使空间溢出的机会增多。在静态链表中，初始存储池虽然也是静态分配的，但若同时存在若干个结点类型相同的链表，则它们可以共享空间，使各链表之</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -548,22 +548,23 @@ int sum(int m,int n)
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/">练习5-3 数字金字塔</a>
+      <a class="index-header" href="/2019/10/29/%E7%BB%83%E4%B9%A05-2%20%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%AD%E6%9C%80%E5%A4%A7%E8%80%85/">练习5-2 找两个数中最大者</a>
 
-      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/" class="index-excerpt">
+      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-2%20%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%AD%E6%9C%80%E5%A4%A7%E8%80%85/" class="index-excerpt">
         
         
           
         
-        <div>本题要求实现函数输出n行数字金字塔。函数接口定义：
-void pyramid( int n );
-其中n是用户传入的参数，为[1, 9]的正整数。要求函数按照如样例所示的格式打印出n行数字金字塔。注意每个数字后面跟一个空格
+        <div>本题要求对两个整数a和b，输出其中较大的数。函数接口定义
+int max( int a, int b );
+其中a和b是用户传入的参数，函数返回的是两者中较大的数
+
 #include &lt;stdio.h&gt;
-void pyramid( int n ) &#123;
-	int a=1;
-	int b=1;
-	int c=n;
-	for</div>
+int max( int a, int b )
+&#123;
+	int max;
+	if(a&gt;b)&#123;max=a;&#125;
+	else&#123;max=b;&#12</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -598,23 +599,22 @@ void pyramid( int n ) &#123;
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/10/29/%E7%BB%83%E4%B9%A05-2%20%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%AD%E6%9C%80%E5%A4%A7%E8%80%85/">练习5-2 找两个数中最大者</a>
+      <a class="index-header" href="/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/">练习5-3 数字金字塔</a>
 
-      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-2%20%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%AD%E6%9C%80%E5%A4%A7%E8%80%85/" class="index-excerpt">
+      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/" class="index-excerpt">
         
         
           
         
-        <div>本题要求对两个整数a和b，输出其中较大的数。函数接口定义
-int max( int a, int b );
-其中a和b是用户传入的参数，函数返回的是两者中较大的数
-
+        <div>本题要求实现函数输出n行数字金字塔。函数接口定义：
+void pyramid( int n );
+其中n是用户传入的参数，为[1, 9]的正整数。要求函数按照如样例所示的格式打印出n行数字金字塔。注意每个数字后面跟一个空格
 #include &lt;stdio.h&gt;
-int max( int a, int b )
-&#123;
-	int max;
-	if(a&gt;b)&#123;max=a;&#125;
-	else&#123;max=b;&#12</div>
+void pyramid( int n ) &#123;
+	int a=1;
+	int b=1;
+	int c=n;
+	for</div>
       </a>
 
       <div class="index-btm post-metas">
