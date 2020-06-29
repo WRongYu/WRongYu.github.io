@@ -621,14 +621,30 @@ typedef struct&#12</div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/">【线性表】顺序表与链表的综合比较</a>
+      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/">【线性表】循环双向静态链表</a>
 
-      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/" class="index-excerpt">
+      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/" class="index-excerpt">
         
         
           
         
-        <div>&lt;———————————–西北大学mooc摘要————————————-&gt; 1.基于空间的考虑顺序表的存储空间是静态分配的，在程序执行之前必须明确规定它的存储规模。若线性表的长度 n 变化较大，则存储规模难于预先确定。估计过大将造成空间浪费，估计太小又将使空间溢出的机会增多。在静态链表中，初始存储池虽然也是静态分配的，但若同时存在若干个结点类型相同的链表，则它们可以共享空间，使各链表之</div>
+        <div> 循环链表
+
+
+定义：首尾相接的链表
+结构：尾结点的指针域指向头结点或表的首元结点
+特点：表中所有结点都链接在一个环上
+判断循环链表空链表的条件：头指针的指针域指向自己（head-&gt;next==head） 循环链表的合并算法
+
+
+
+算法思路：
+
+遍历两表找表尾
+将第一表尾链接第二表头，将第二表尾链接第一表头 
+
+
+linklist merge_1(linklist la,linklist l</div>
       </a>
 
       <div class="index-btm post-metas">
