@@ -222,6 +222,64 @@ struct polynode&#123;
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/">【线性表】循环双向静态链表</a>
+
+      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/" class="index-excerpt">
+        
+        
+          
+        
+        <div> 循环链表
+
+
+定义：首尾相接的链表
+结构：尾结点的指针域指向头结点或表的首元结点
+特点：表中所有结点都链接在一个环上
+判断循环链表空链表的条件：头指针的指针域指向自己（head-&gt;next==head） 循环链表的合并算法
+
+
+
+算法思路：
+
+遍历两表找表尾
+将第一表尾链接第二表头，将第二表尾链接第一表头 
+
+
+linklist merge_1(linklist la,linklist l</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-03-15
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/">【线性表】顺序表与链表的综合比较</a>
 
       <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/" class="index-excerpt">
@@ -591,61 +649,11 @@ int max( int a, int b )
     </div>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/">练习5-3 数字金字塔</a>
-
-      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-3%20%E6%95%B0%E5%AD%97%E9%87%91%E5%AD%97%E5%A1%94/" class="index-excerpt">
-        
-        
-          
-        
-        <div>本题要求实现函数输出n行数字金字塔。函数接口定义：
-void pyramid( int n );
-其中n是用户传入的参数，为[1, 9]的正整数。要求函数按照如样例所示的格式打印出n行数字金字塔。注意每个数字后面跟一个空格
-#include &lt;stdio.h&gt;
-void pyramid( int n ) &#123;
-	int a=1;
-	int b=1;
-	int c=n;
-	for</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-10-29
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/">练习题</a>
-            
-              <a href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/%E5%9F%BA%E7%A1%80%E8%AE%AD%E7%BB%83/">基础训练</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/PTA/">PTA</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

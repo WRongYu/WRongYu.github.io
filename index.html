@@ -168,6 +168,59 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/01/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BF%E7%89%B9%E5%88%AB%E6%95%B0%E7%9A%84%E5%92%8C%20-%20%E5%89%AF%E6%9C%AC/">【蓝桥杯】10B省赛F特别数的和</a>
+
+      <a href="/2020/07/01/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BF%E7%89%B9%E5%88%AB%E6%95%B0%E7%9A%84%E5%92%8C%20-%20%E5%89%AF%E6%9C%AC/" class="index-excerpt">
+        
+        
+          
+        
+        <div>试题 F: 特别数的和
+解题思路没啥算法，直接枚举加check即可
+代码实现#include &lt;cstdio&gt;
+#include &lt;iostream&gt;
+using namespace std;
+bool check(int x)
+&#123;
+    int res = 0;
+    while (x)
+    &#123;
+        res = x % 10;
+  </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-01
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/">练习题</a>
+            
+              <a href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/%E5%9F%BA%E7%A1%80%E8%AE%AD%E7%BB%83/">基础训练</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/06/25/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BF%E7%89%B9%E5%88%AB%E6%95%B0%E7%9A%84%E5%92%8C/">【蓝桥杯】10B省赛F特别数的和</a>
 
       <a href="/2020/06/25/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BF%E7%89%B9%E5%88%AB%E6%95%B0%E7%9A%84%E5%92%8C/" class="index-excerpt">
@@ -273,8 +326,9 @@ bool check(int x)
         
           
         
-        <div>试题 E: 迷宫
-</div>
+        <div>试题 E: 迷宫)
+解题思路其实这道题目看到==最短路==，最容易想到==BFS（广搜）==。但是这道题目不是要你求最短路长度而是求出最短路的路径，提交一个字符串，其实别想差，最简单的就是将方向数组的每一步上，下，左，右，和D,U,L,R相对应，只需要在结构体中添加一个字符串记录即可。方向数组的顺序要按照字典序从小到大的顺序D,L,R,U来跑。
+ps：本来想试着文件输入迷宫地图，但是发现文件的输入</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -607,58 +661,11 @@ typedef struct Node
     </div>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/17/%E3%80%90%E6%A0%91%E3%80%91%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%8F%8A%E5%85%B6%E6%9E%84%E9%80%A0/">【树】哈夫曼树及其构造</a>
-
-      <a href="/2020/06/17/%E3%80%90%E6%A0%91%E3%80%91%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%8F%8A%E5%85%B6%E6%9E%84%E9%80%A0/" class="index-excerpt">
-        
-        
-          
-        
-        <div> 1．哈夫曼树的基本概念
-
-
-结点间的路径和路径长度路径是指从一个结点到另一个结点之间的分支序列。路径长度是指从一个结点到另一个结点所经过的分支数目。 
-结点的权和带权路径长度在实际的应用中，==给树的每个结点赋予一个具有某种实际意义的实数，称该实数为这个结点的权==。在树型结构中，把从树根到某一结点的路径长度与该结点的权的乘积，叫做该结点的带权路径长度。
-树的带权路径长度树的带权路径长度为树中从</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-17
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-            
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   
