@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="WRY">
   <meta name="keywords" content="">
-  <title>【蓝桥杯】10B省赛F特别数的和 - WRY&#39;s Space</title>
+  <title>【蓝桥杯】10B省赛G完全二叉树的权值 - WRY&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      109 字
+      311 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      4
        分钟
     </span>
   
@@ -204,36 +204,38 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="试题-F-特别数的和"><a href="#试题-F-特别数的和" class="headerlink" title="试题 F: 特别数的和"></a>试题 F: 特别数的和</h1><p><img src="https://img-blog.csdnimg.cn/20200625225218571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>没啥算法，直接枚举加check即可</p>
+              <h1 id="试题-G-完全二叉树的权值"><a href="#试题-G-完全二叉树的权值" class="headerlink" title="试题 G: 完全二叉树的权值"></a>试题 G: 完全二叉树的权值</h1><p><img src="https://img-blog.csdnimg.cn/20200907133510555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200907133519631.png#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>其实就是求每一层的和的最大值，至于最大值相同时输出最小的那一层，根本不要考虑，因为找到最大值以后你就拿后面层数的权值和和最大值比较只要小于就不更新，那么层数也不会更新。<br>是边输入，边处理的，因为是二叉树那么我除了第一层输入一个数，然后将长度*2，那么长度就为2代表第二层需要输入2个数，然后每次边输入，边处理即可。完全二叉树不是满二叉树，最后一层不一定满。</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><div class="hljs"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
 <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
-<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>
-<span class="hljs-function"></span>&#123;
-    <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">while</span> (x)
-    &#123;
-        res = x % <span class="hljs-number">10</span>;
-        <span class="hljs-keyword">if</span> (res == <span class="hljs-number">0</span> || res == <span class="hljs-number">1</span> || res == <span class="hljs-number">2</span> || res == <span class="hljs-number">9</span>)
-            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-        x /= <span class="hljs-number">10</span>;
-    &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-&#125;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> LL;
+
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
     <span class="hljs-keyword">int</span> n;
     <span class="hljs-built_in">cin</span> &gt;&gt; n;
-    <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)
+    LL maxv = INT_MIN;	<span class="hljs-comment">//INT_MIN是在limits.h头文件中,代表INT型最小值 ,这里记录权值和最大 </span>
+	LL maxv_d = <span class="hljs-number">0</span>;	<span class="hljs-comment">//最大的权值和的层数 </span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, length = <span class="hljs-number">1</span>, depth = <span class="hljs-number">1</span>; i &lt; n; depth++, length *= <span class="hljs-number">2</span>)
     &#123;
-        <span class="hljs-keyword">if</span> (check(i))
+        LL sum = <span class="hljs-number">0</span>;	<span class="hljs-comment">//每一层的和 </span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; length &amp;&amp; i &lt; n; j++, i++ )
         &#123;
-            sum += i;
+            <span class="hljs-keyword">int</span> x;
+            <span class="hljs-built_in">cin</span> &gt;&gt; x;
+            sum += x;
+        &#125;
+
+        <span class="hljs-keyword">if</span> (sum &gt; maxv)
+        &#123;
+            maxv = sum;
+            maxv_d = depth;
         &#125;
     &#125;
-    <span class="hljs-built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; maxv_d &lt;&lt; <span class="hljs-built_in">endl</span>;
+
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
 
@@ -412,7 +414,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "【蓝桥杯】10B省赛F特别数的和&nbsp;",
+        "【蓝桥杯】10B省赛G完全二叉树的权值&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 80,

@@ -168,25 +168,16 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/01/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BF%E7%89%B9%E5%88%AB%E6%95%B0%E7%9A%84%E5%92%8C%20-%20%E5%89%AF%E6%9C%AC/">【蓝桥杯】10B省赛F特别数的和</a>
+      <a class="index-header" href="/2020/07/01/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BG%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9D%83%E5%80%BC/">【蓝桥杯】10B省赛G完全二叉树的权值</a>
 
-      <a href="/2020/07/01/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BF%E7%89%B9%E5%88%AB%E6%95%B0%E7%9A%84%E5%92%8C%20-%20%E5%89%AF%E6%9C%AC/" class="index-excerpt">
+      <a href="/2020/07/01/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BG%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9D%83%E5%80%BC/" class="index-excerpt">
         
         
           
         
-        <div>试题 F: 特别数的和
-解题思路没啥算法，直接枚举加check即可
-代码实现#include &lt;cstdio&gt;
-#include &lt;iostream&gt;
-using namespace std;
-bool check(int x)
-&#123;
-    int res = 0;
-    while (x)
-    &#123;
-        res = x % 10;
-  </div>
+        <div>试题 G: 完全二叉树的权值
+解题思路其实就是求每一层的和的最大值，至于最大值相同时输出最小的那一层，根本不要考虑，因为找到最大值以后你就拿后面层数的权值和和最大值比较只要小于就不更新，那么层数也不会更新。是边输入，边处理的，因为是二叉树那么我除了第一层输入一个数，然后将长度*2，那么长度就为2代表第二层需要输入2个数，然后每次边输入，边处理即可。完全二叉树不是满二叉树，最后一层不一定满。
+代码实</div>
       </a>
 
       <div class="index-btm post-metas">
