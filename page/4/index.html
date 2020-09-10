@@ -168,32 +168,31 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BA%94%E7%94%A8%E2%80%94%E4%B8%80%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%9B%B8%E5%8A%A0/">【线性表】应用—一元多项式的表示及相加</a>
+      <a class="index-header" href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%93%BE%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">【栈】链栈及其基本操作</a>
 
-      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BA%94%E7%94%A8%E2%80%94%E4%B8%80%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%9B%B8%E5%8A%A0/" class="index-excerpt">
+      <a href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%93%BE%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="index-excerpt">
         
         
           
         
-        <div>   1. 一元多项式的表示
+        <div> 栈的链式实现
+1.定义：链栈即采用链表作为存储结构实现的栈。为便于操作，这里采用带头结点的单链表实
+现栈。
 
-    2. 一元多项式的存储
- 一元多项式的操作可以利用线性表来处理。因此，一元多项式也有顺序存储和链式存储两种方法。 )结点结构体定义如下
-struct polynode&#123;
-	int coef;
-	int exp;
-	polynode *next;
-&#125;polynode,polylist;
 
-    例：建立一元多项式链式存储算法
+top 为栈顶指针，始终指向当前栈顶元素前面的头结点。
+若 top-&gt;next=NULL，则代表栈空。
 
-【算法思想</div>
+
+
+采用链栈不必预先估计栈的最大容量，只要系统有可用空间，链栈就不会出现溢出。采用链栈时，栈的各种基本操作的实现与单链表的操作类似，对于链栈，在使用完毕时，应该释放其空间。
+</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-03-15
+            <i class="iconfont icon-date"></i>&nbsp;2020-03-17
           </div>
         
         
@@ -222,14 +221,133 @@ struct polynode&#123;
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/">【线性表】顺序表与链表的综合比较</a>
+      <a class="index-header" href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%A1%BA%E5%BA%8F%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%92%8C%E5%BA%94%E7%94%A8%5B%E4%B8%A4%E6%A0%88%E5%85%B1%E4%BA%AB%5D/">【栈】顺序栈及其基本操作和应用[两栈共享]</a>
 
-      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/" class="index-excerpt">
+      <a href="/2020/03/17/%E3%80%90%E6%A0%88%E3%80%91%E9%A1%BA%E5%BA%8F%E6%A0%88%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%92%8C%E5%BA%94%E7%94%A8%5B%E4%B8%A4%E6%A0%88%E5%85%B1%E4%BA%AB%5D/" class="index-excerpt">
         
         
           
         
-        <div>&lt;———————————–西北大学mooc摘要————————————-&gt; 1.基于空间的考虑顺序表的存储空间是静态分配的，在程序执行之前必须明确规定它的存储规模。若线性表的长度 n 变化较大，则存储规模难于预先确定。估计过大将造成空间浪费，估计太小又将使空间溢出的机会增多。在静态链表中，初始存储池虽然也是静态分配的，但若同时存在若干个结点类型相同的链表，则它们可以共享空间，使各链表之</div>
+        <div> 栈的顺序实现
+
+1.定义
+
+利用一组地址连续的存储单元依次存放自栈底到栈顶的数据元素
+设一个位置指示器 top（栈顶指针）来动态地指示栈顶元素在顺序栈中的位置。
+通常以 top=-1 表示空栈。（=0的时候是栈中第一个元素） c语言描述顺序栈
+
+
+
+#define TRUE 1 
+#define FALSE 1 
+#define stack_size 50 
+typedef struct&#12</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-03-17
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/03/16/%E3%80%90%E6%A0%88%E3%80%91%E6%A0%88%E7%9A%84%E5%AE%9A%E4%B9%89/">【栈】栈的定义</a>
+
+      <a href="/2020/03/16/%E3%80%90%E6%A0%88%E3%80%91%E6%A0%88%E7%9A%84%E5%AE%9A%E4%B9%89/" class="index-excerpt">
+        
+        
+          
+        
+        <div> 栈的定义
+
+
+栈作为一种限定性线性表，是将线性表的插入和删除运算限制为仅在表的一端进行。
+栈顶：通常将表中允许进行插入、删除操作的一端称为栈顶 (Top)
+栈底：同时表的另一端被称为栈底 (Bottom)
+栈顶指示器：用来指示动态变化的栈顶位置。
+空栈：当栈中没有元素时称为空栈。
+满栈：无法申请到栈区可用空间。
+栈的常见运算：栈的插入操作被形象地称为进栈或入栈，删除操作称为出栈或退栈。
+上溢：栈</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-03-16
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BA%94%E7%94%A8%E2%80%94%E4%B8%80%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%9B%B8%E5%8A%A0/">【线性表】应用—一元多项式的表示及相加</a>
+
+      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BA%94%E7%94%A8%E2%80%94%E4%B8%80%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%9B%B8%E5%8A%A0/" class="index-excerpt">
+        
+        
+          
+        
+        <div>   1. 一元多项式的表示
+
+    2. 一元多项式的存储
+ 一元多项式的操作可以利用线性表来处理。因此，一元多项式也有顺序存储和链式存储两种方法。 )结点结构体定义如下
+struct polynode&#123;
+	int coef;
+	int exp;
+	polynode *next;
+&#125;polynode,polylist;
+
+    例：建立一元多项式链式存储算法
+
+【算法思想</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -288,6 +406,48 @@ struct polynode&#123;
 
 
 linklist merge_1(linklist la,linklist l</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-03-15
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/">【线性表】顺序表与链表的综合比较</a>
+
+      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8E%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%AF%94%E8%BE%83/" class="index-excerpt">
+        
+        
+          
+        
+        <div>&lt;———————————–西北大学mooc摘要————————————-&gt; 1.基于空间的考虑顺序表的存储空间是静态分配的，在程序执行之前必须明确规定它的存储规模。若线性表的长度 n 变化较大，则存储规模难于预先确定。估计过大将造成空间浪费，估计太小又将使空间溢出的机会增多。在静态链表中，初始存储池虽然也是静态分配的，但若同时存在若干个结点类型相同的链表，则它们可以共享空间，使各链表之</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -421,58 +581,6 @@ LinkList 与 Node*同为结构指针类斜体样式型，这两种类</div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20/">【线性表】顺序表及其基本运算和应用</a>
-
-      <a href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20/" class="index-excerpt">
-        
-        
-          
-        
-        <div> 顺序存储结构的c语言描述
-
-#define MAXSIZE 100/*此处的宏定义常量表示线性表可能达到的最大长度*/
-typedef struct&#123;
-	ElemType elem[MAXSIZE];/*线性表占用的数组空间*/
-	int last;/*记录线性表中最后一个元素在数组elem[]中的位置（下标值），
-	空表置为-1*/ 
-&#125;SeqList;
-
-
-在C语言数据结</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-03-01
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-            
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20-%20%E5%89%AF%E6%9C%AC/">【线性表】顺序表及其基本运算和应用</a>
 
       <a href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20-%20%E5%89%AF%E6%9C%AC/" class="index-excerpt">
@@ -525,65 +633,37 @@ typedef struct&#123;
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/23/hello-world/">Hello World</a>
+      <a class="index-header" href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20/">【线性表】顺序表及其基本运算和应用</a>
 
-      <a href="/2019/12/23/hello-world/" class="index-excerpt">
+      <a href="/2020/03/01/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%8F%8A%E5%85%B6%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8%20/" class="index-excerpt">
         
         
           
         
-        <div>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick</div>
+        <div> 顺序存储结构的c语言描述
+
+#define MAXSIZE 100/*此处的宏定义常量表示线性表可能达到的最大长度*/
+typedef struct&#123;
+	ElemType elem[MAXSIZE];/*线性表占用的数组空间*/
+	int last;/*记录线性表中最后一个元素在数组elem[]中的位置（下标值），
+	空表置为-1*/ 
+&#125;SeqList;
+
+
+在C语言数据结</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-23
-          </div>
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/10/29/%E7%BB%83%E4%B9%A05-2%20%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%AD%E6%9C%80%E5%A4%A7%E8%80%85/">练习5-2 找两个数中最大者</a>
-
-      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-2%20%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%AD%E6%9C%80%E5%A4%A7%E8%80%85/" class="index-excerpt">
-        
-        
-          
-        
-        <div>本题要求对两个整数a和b，输出其中较大的数。函数接口定义
-int max( int a, int b );
-其中a和b是用户传入的参数，函数返回的是两者中较大的数
-
-#include &lt;stdio.h&gt;
-int max( int a, int b )
-&#123;
-	int max;
-	if(a&gt;b)&#123;max=a;&#125;
-	else&#123;max=b;&#12</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-10-29
+            <i class="iconfont icon-date"></i>&nbsp;2020-03-01
           </div>
         
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/">练习题</a>
-            
-              <a href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/%E5%9F%BA%E7%A1%80%E8%AE%AD%E7%BB%83/">基础训练</a>
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
             
           </div>
         
@@ -591,57 +671,9 @@ int max( int a, int b )
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/PTA/">PTA</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
             
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/10/29/%E7%BB%83%E4%B9%A05-1%20%E6%B1%82m%E5%88%B0n%E4%B9%8B%E5%92%8C/">练习5-1 求m到n之和</a>
-
-      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-1%20%E6%B1%82m%E5%88%B0n%E4%B9%8B%E5%92%8C/" class="index-excerpt">
-        
-        
-          
-        
-        <div>本题要求实现一个计算m~n（m&lt;n）之间所有整数的和的简单函数。函数接口定义：
-int sum( int m, int n );
-其中m和n是用户传入的参数，保证有m&lt;n。函数返回的是m~n之间所有整数的和。
-#include&lt;stdio.h&gt;
-int sum(int m,int n)
-&#123;
-	int sum=0;
-	while(m&lt;=n)&#123;
-	su</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-10-29
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/">练习题</a>
-            
-              <a href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/%E5%9F%BA%E7%A1%80%E8%AE%AD%E7%BB%83/">基础训练</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/PTA/">PTA</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
             
           </div>
         

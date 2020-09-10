@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="WRY">
   <meta name="keywords" content="">
-  <title>【线性表】应用—一元多项式的表示及相加 - WRY&#39;s Space</title>
+  <title>【蓝桥杯】10B省赛H等差数列 - WRY&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-03-15 00:00">
-      2020年3月15日 凌晨
+    <time datetime="2020-07-01 11:48">
+      2020年7月1日 中午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      958 字
+      349 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      4
        分钟
     </span>
   
@@ -204,111 +204,31 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-               <table><tr><td bgcolor=#E6E6FA><font  size=5>  1. 一元多项式的表示</td></tr></table>
+              <h1 id="试题-H-等差数列"><a href="#试题-H-等差数列" class="headerlink" title="试题 H: 等差数列"></a>试题 H: 等差数列</h1><p><img src="https://img-blog.csdnimg.cn/20200907180636681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/202009071806419.png#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>等差数列每两个相邻的等差数列相差一个公差d，而不相邻的两个等差数列中的元素，相差的是多个公差d，那就是公差的倍数，那我们只需要找出题目中给出的这些数之间的差值的最大公约数，那公约数就是这个等差数列的公差。<br>就拿题目给的输入案例来举例：<br>2 6 4 10 20<br>从小到大排序，或者从大到下排序后（不排序也可以，需要你记录下最大和最小项，后面算项数的时候需要用到）<br>2 4 6 10 20<br>他们之前的相邻的差值是：<br>2 2 4 10<br>最大公约数就是：2<br>那公差就是2，那在根据公式算出等数列的大小：(an-a1)/d+1=n，首项和某项差n-1个公差，所以+1就是等差数列的大小。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><div class="hljs"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
 
-<p><img src="https://img-blog.csdnimg.cn/20200315052630347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br> <table><tr><td bgcolor=#E6E6FA><font  size=5>   2. 一元多项式的存储</td></tr></table></p>
-<p> 一元多项式的操作可以利用线性表来处理。因此，一元多项式也有顺序存储和链式存储两种方法。<br> <img src="https://img-blog.csdnimg.cn/20200315052909253.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/2020031505304063.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>结点结构体定义如下</p>
-<div class="hljs"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">polynode</span>&#123;</span>
-	<span class="hljs-keyword">int</span> coef;
-	<span class="hljs-keyword">int</span> <span class="hljs-built_in">exp</span>;
-	polynode *next;
-&#125;polynode,polylist;</code></pre></div>
-
- <table><tr><td bgcolor=#E6E6FA><font  size=5>   例：建立一元多项式链式存储算法</td></tr></table>
-
-<p>【算法思想】通过键盘输入一组多项式的系数和指数，用尾插法建立一元多项式的链表。以输入系数0为结束标注，并约定建立多项式链表时，总是按指数从小到大排序。<br>【算法描述】</p>
-<div class="hljs"><pre><code class="hljs c"><span class="hljs-function">polylist <span class="hljs-title">polycreate</span><span class="hljs-params">()</span> </span>&#123;
-	polynode *head,*rear,*s;
-	<span class="hljs-keyword">int</span> c,e;
-	head=(polynode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(polynode));
-	<span class="hljs-comment">//建立多项式的头结点；</span>
-	rear=head;
-	<span class="hljs-comment">//rear始终指向单链表的尾，便于尾插法建表</span>
-	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>,&amp;c,&amp;e);
-	<span class="hljs-comment">//键入多项式的系数和指数项</span>
-	<span class="hljs-keyword">while</span>(c!=<span class="hljs-number">0</span>)
-	<span class="hljs-comment">//若c=0，则代表多项式的输入结束</span>
-	&#123;
-		s=(polynode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(polynode));
-		<span class="hljs-comment">//申请新的结点</span>
-		s-&gt;coef=c;
-		s-&gt;<span class="hljs-built_in">exp</span>=e;
-		rear-&gt;next=s;
-		<span class="hljs-comment">//在当前表尾做插入 </span>
-		rear=s; 
-		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>,&amp;c,&amp;e);
-	&#125;
-	rear-&gt;next=<span class="hljs-literal">NULL</span>;
-	<span class="hljs-comment">//将表的最后一个结点的next置NULL，以表示结束</span>
-	<span class="hljs-keyword">return</span> (head); 
-&#125;</code></pre></div>
- <table><tr><td bgcolor=#E6E6FA><font  size=5>  3. 一元多项式的相加运算</td></tr></table>
-
-<p><img src="https://img-blog.csdnimg.cn/20200315054815361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>【算法思想】<br>以单链表polya和polyb分别表示两个一元多项式A和B，A+B的求和运算，就等同于单链表的插入问题（将单链表polyb中的结点插入到单链表polya中），因此“和多项式”中的结点无需另生成。<br>为实现处理，设p，q分别指向单链表polya和polyb的当前项，比较p，q的结点的指数项，由此得到下列运算规则：<br>①若p-&gt;exp &lt; q-&gt;exp，则结点p所指的结点应该是“和多项式”中的一项，另指针后移；</p>
-<p>②若p-&gt;exp = q-&gt;exp，则将两个结点中的系数增加，当和不为零时修改结点p的系数域，释放q结点；若和为零，则和多项式中无此项，从A中删去p结点，同时释放p和q结点。</p>
-<p>③若p-&gt;exp &gt; q-&gt;exp，则结点q所指的结点应该时“和多项式”中的一项，将结点q插入结点p之前，且令指针q在原来的链表上后移</p>
-<p>【算法描述】</p>
-<div class="hljs"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">polyadd</span><span class="hljs-params">(polylist polya,polylist polyb)</span></span>
-<span class="hljs-function"><span class="hljs-comment">//将两个多项式相加，然后将和多项式存放在polya中，并将polyb删除</span></span>
-<span class="hljs-function"></span>&#123;
-	polynode *p,*q,*tail,*temp;
-	<span class="hljs-keyword">int</span> sum;
-	p=polya-&gt;next;
-	q=polyb-&gt;next;
-	<span class="hljs-comment">//令p和q分别指向polya和polyb多项式链表中的第一个结点</span>
-	tail=polya;
-	<span class="hljs-comment">//tail指向和多项式的尾结点</span>
-
-	<span class="hljs-comment">/*-----初始化(略)-----*/</span>
-
-	<span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>&amp;&amp;q!=<span class="hljs-literal">NULL</span>) &#123;
-		<span class="hljs-keyword">if</span>(p-&gt;<span class="hljs-built_in">exp</span>&lt;q-&gt;<span class="hljs-built_in">exp</span>)
-		<span class="hljs-comment">//规则（1）：如果p指向的多项式的指数小于q的指数，将p结点加入到和多项式中</span>
-		&#123;
-			tail-&gt;next=p;
-			tail=p;
-			p=p-&gt;next;
-		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(p-&gt;<span class="hljs-built_in">exp</span>==q-&gt;<span class="hljs-built_in">exp</span>)
-		<span class="hljs-comment">//规则(2)：若指数相等，则相应的系数相加</span>
-		&#123;
-			sum=p-&gt;coef+q-&gt;coef;
-			<span class="hljs-keyword">if</span>(sum!=<span class="hljs-number">0</span>)
-			<span class="hljs-comment">//若系数和非0，则系数和置入结点p，释放结点q，并将指针后移</span>
-			&#123;
-				p-&gt;coef=sum;
-				tail-&gt;next=p;
-				tail=p;
-				p=p-&gt;next;
-				temp=q;
-				q=q-&gt;next;
-				<span class="hljs-built_in">free</span>(temp);
-			&#125; <span class="hljs-keyword">else</span> &#123;
-			<span class="hljs-comment">//若系数和为0.删除p，q，并将指针指向下一个结点</span>
-				temp=p;
-				p=p-&gt;next;
-				<span class="hljs-built_in">free</span>(temp);
-				temp=q;
-				q=q-&gt;next;
-				<span class="hljs-built_in">free</span>(temp);
-			&#125;
-		&#125; <span class="hljs-keyword">else</span> &#123;
-		<span class="hljs-comment">////规则（3）：如果p指向的多项式的指数大于q的指数，将q结点加入到和多项式中</span>
-			tail-&gt;next=q;
-			tail=q;
-			q=q-&gt;next;
-		&#125;
-	&#125;
-	<span class="hljs-keyword">if</span>(p!=<span class="hljs-literal">NULL</span>)
-	<span class="hljs-comment">//多项式A中还有剩余，则将剩余的结点加入到和多项式中</span>
-	&#123;	
-		tail-&gt;next=p;
-		tail=p;
-		p=p-&gt;next;
-	&#125; <span class="hljs-keyword">else</span> &#123;
-		tail-&gt;next=q;
-		tail=q;
-		q=-&gt;next;
-	&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">int</span> n;
+    <span class="hljs-built_in">cin</span> &gt;&gt; n;
+    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> maxv = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> maxv_d = <span class="hljs-number">0</span>;<span class="hljs-comment">//最大的权值的层数</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, length = <span class="hljs-number">1</span>, depth = <span class="hljs-number">1</span>; i &lt; n; depth++, length *= <span class="hljs-number">2</span>)&#123;
+        <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> sum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; length &amp;&amp; i &lt; n; j++, i++)&#123;
+            <span class="hljs-keyword">int</span> x;
+            <span class="hljs-built_in">cin</span> &gt;&gt; x;
+            sum += x;
+        &#125;
+        <span class="hljs-keyword">if</span>(sum&gt;maxv)&#123;
+            maxv = sum;
+            maxv_d = depth;
+        &#125;
+    &#125;
+    <span class="hljs-built_in">cout</span> &lt;&lt; maxv_d &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
 
             </article>
@@ -319,7 +239,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">数据结构笔记</a>
+                      <a class="hover-with-bg" href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/">练习题</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BB%83%E4%B9%A0%E9%A2%98/%E5%9F%BA%E7%A1%80%E8%AE%AD%E7%BB%83/">基础训练</a>
                     
                   </div>
                 
@@ -327,9 +249,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                      <a class="hover-with-bg" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
                     
                   </div>
                 
@@ -342,9 +262,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/03/16/%E3%80%90%E6%A0%88%E3%80%91%E6%A0%88%E7%9A%84%E5%AE%9A%E4%B9%89/">
+                      <a href="/2020/09/07/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BG%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9D%83%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【栈】栈的定义</span>
+                        <span class="hidden-mobile">【蓝桥杯】10B省赛G完全二叉树的权值</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -352,8 +272,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/03/15/%E3%80%90%E7%BA%BF%E6%80%A7%E8%A1%A8%E3%80%91%E5%BE%AA%E7%8E%AF.%E5%8F%8C%E5%90%91.%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8/">
-                        <span class="hidden-mobile">【线性表】循环双向静态链表</span>
+                      <a href="/2020/06/25/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BF%E7%89%B9%E5%88%AB%E6%95%B0%E7%9A%84%E5%92%8C/">
+                        <span class="hidden-mobile">【蓝桥杯】10B省赛F特别数的和</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -492,7 +412,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "【线性表】应用—一元多项式的表示及相加&nbsp;",
+        "【蓝桥杯】10B省赛H等差数列&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 80,
