@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      15 字
+      1.1k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      15
        分钟
     </span>
   
@@ -205,8 +205,90 @@
             
             <article class="markdown-body">
               <h1 id="试题-J-灵能传输"><a href="#试题-J-灵能传输" class="headerlink" title="试题 J: 灵能传输"></a>试题 J: 灵能传输</h1><p><img src="https://img-blog.csdnimg.cn/20200910134424311.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200910134431202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200910134434980.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><div class="hljs"><pre><code class="hljs cpp">
-</code></pre></div>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>1.分析题目条件<br>题中允许对高阶圣堂武士进行的变换操作是 a[ i - 1 ] += a[ i ]，a[ i + 1 ] += a[ i ]，a[ i ] = - a[ i ]  ，i 属于 [2 , n-1]<br>需要通过若干次变换操作，得到最小的 max{ | a[ i ] | }<br>这个变换操作很复杂，不易求解。</p>
+<p>2.前缀和形式<br>尝试转化为前缀和形式，a[ 1 ] ~ a[ n ] 求取前缀和，记为 s[ 1 ] ~ s[ n ]<br>此时的 a[ 1 ] ~ a[ n ] 变为 s[ 1 ]，s[ 2 ] - s[ 1 ]，s[ 3 ] - s[ 2 ] …… s[ n ] - s[ n - 1 ]<br>看看转化后的变换操作：<br>如对 i = 2 使用变换操作 ，那么 s[ 1 ] —&gt; s[ 2 ]，s[ 2 ] —&gt; s[ 1 ]，s[ 3 ] —&gt; s[ 3 ]<br>发现对 i 进行变换操作，会导致 s[ i - 1 ] 和 s[ i ] 交换<br>如此，前缀和形式的变换操作是不是简单的多了！</p>
+<p>3.完善前缀和数列<br>经上分析，我们可以在 s[ 1 ] ~ s[ n - 1 ] 之间的数进行任意交换，使 s[ 1 ]，s[ 2 ] - s[ 1 ]，s[ 3 ] - s[ 2 ]…，s[ n ] - s[ n - 1 ] 之间差的绝对值的最大值最小<br>等等！只有第一项是 s[ 1 ] 的形式，后面都是相减的形式，这是不是很难受<br>补上 s[ 0 ] = 0<br>这样，我们的题目就转化成为了<br>在 s[ 1 ] ~ s[ n - 1 ] 之间的数进行任意交换，使 s[ 1 ] - s[ 0 ]，s[ 2 ] - s[ 1 ]，s[ 3 ] - s[ 2 ]…，s[ n ] - s[ n - 1 ] 之间差的绝对值的最大值最小</p>
+<p>4.求解<br>如果 s[ 0 ] ~ s[ n ] 之间都能随意交换，那差的绝对值的最大值最小显然是排序后，这时数列单调，两个数之差必然是最小哒。<br>但条件固定了 s[ 0 ] 和 s[ n ] 这两个点！<br><img src="https://img-blog.csdnimg.cn/2020091015304938.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<p>这意味着固定了起点和终点，要想得到差的最小值当然还是需要排序，但取数就不能是一个一个取了。<br>排序后起点和终点一般情况就不再是在两端，而是在中间。由于我们要的是差的绝对值，所以我们以 s[ 0 ] 做起点还是以 s[ n ] 做起点都是可以的！<br>我们设 min{ s[ 0 ]，s[ n ] } 做起点，max{ s[ 0 ]，s[ n ] }做终点；还需要注意的是特殊情况，即 s[ 0 ] == s[ n ] 时，我们须确保起点的下标要小于终点的下标，不然会发生取数产生重叠区。<br><img src="https://img-blog.csdnimg.cn/20200910153052257.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc2NTEyOA==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<p>如上图所示，取数以起点开始到最小值，再到最大值，最后到达终点。<br>还有一个问题，那就是上图中存在两段重叠区。重叠区取数也必须要保证向左时和向右时差的绝对值的最大值最小！<br>隔一个数取一个数显然是最好的解决办法了，向左取数时候就留下了间隔一个数的一组数，留下之后反方向向右取的数。<br>取数完成后遍历一遍找到差绝对值的最大值，输出。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><div class="hljs"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;limits.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">300010</span>;
+
+<span class="hljs-keyword">int</span> n;
+<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> sum[N], a[N], s0, sn;
+<span class="hljs-keyword">bool</span> st[N];
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">int</span> T;
+    <span class="hljs-built_in">cin</span> &gt;&gt; T;<span class="hljs-comment">//输入多组数据</span>
+    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> result[T];
+    <span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (T--)<span class="hljs-comment">//对于每组数据分别处理</span>
+    &#123;
+        <span class="hljs-built_in">cin</span> &gt;&gt; n;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;
+            <span class="hljs-built_in">cin</span> &gt;&gt; sum[i];
+            sum[i] += sum[i - <span class="hljs-number">1</span>];
+        &#125;<span class="hljs-comment">//求前缀和序列</span>
+        sum[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> s0 = sum[<span class="hljs-number">0</span>], sn = sum[n];<span class="hljs-comment">//首先标记s0和sn</span>
+        <span class="hljs-keyword">if</span> (s0 &gt; sn)
+        &#123;
+            swap(s0, sn);
+        &#125;
+        sort(sum, sum + n + <span class="hljs-number">1</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; i++)
+        &#123;
+            <span class="hljs-keyword">if</span> (s0 == sum[i])
+            &#123;
+                s0 = i; <span class="hljs-comment">//下标</span>
+                <span class="hljs-keyword">break</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = n; i &gt;= <span class="hljs-number">0</span>; i--)
+        &#123;
+            <span class="hljs-keyword">if</span> (sn == sum[i])
+            &#123;
+                sn = i; <span class="hljs-comment">//下标</span>
+                <span class="hljs-keyword">break</span>;
+            &#125;
+        &#125;<span class="hljs-comment">//寻找s0和sn的下标</span>
+        <span class="hljs-comment">//每拎出来（访问）一个数，就用bool数组标记一下</span>
+        <span class="hljs-built_in">memset</span>(st, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span> st);
+        <span class="hljs-comment">//初始化函数，将某一块内存的内容全部设为指定值</span>
+        <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = n;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = s0; i &gt;= <span class="hljs-number">0</span>; i -= <span class="hljs-number">2</span>)
+        &#123;
+            a[l++] = sum[i];
+            st[i] = <span class="hljs-literal">true</span>;
+        &#125;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = sn; i &lt;= n; i += <span class="hljs-number">2</span>)
+        &#123;
+            a[r--] = sum[i];
+            st[i] = <span class="hljs-literal">true</span>;
+        &#125;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; i++)&#123;
+            <span class="hljs-keyword">if</span>(!st[i])&#123;
+                a[l++] = sum[i];
+            &#125;
+        &#125;
+        <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> res = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;
+            res = max(res, <span class="hljs-built_in">abs</span>(a[i] - a[i - <span class="hljs-number">1</span>]));
+        &#125;
+        result[j] = res;
+        j++;
+    &#125;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; j; i++)&#123;
+        <span class="hljs-built_in">cout</span> &lt;&lt; result[i] &lt;&lt; <span class="hljs-built_in">endl</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
 
             </article>
             <hr>
@@ -238,6 +320,12 @@
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/09/11/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%919B%E7%9C%81%E8%B5%9BB%E6%98%8E%E7%A0%81/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【蓝桥杯】9B省赛B:明码</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">

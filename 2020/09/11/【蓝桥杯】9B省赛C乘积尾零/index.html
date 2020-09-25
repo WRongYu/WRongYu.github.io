@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="WRY">
   <meta name="keywords" content="">
-  <title>练习5-1 求m到n之和 - WRY&#39;s Space</title>
+  <title>【蓝桥杯】9B省赛C:乘积尾零 - WRY&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2019-10-29 00:00">
-      2019年10月29日 凌晨
+    <time datetime="2020-09-11 13:00">
+      2020年9月11日 下午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      127 字
+      547 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      8
        分钟
     </span>
   
@@ -204,27 +204,66 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>本题要求实现一个计算m~n（m&lt;n）之间所有整数的和的简单函数。<br>函数接口定义：</p>
-<div class="hljs"><pre><code class="hljs excel"><span class="hljs-built_in">int</span> <span class="hljs-built_in">sum</span>( <span class="hljs-built_in">int</span> m, <span class="hljs-built_in">int</span> <span class="hljs-built_in">n</span> );</code></pre></div>
-<p>其中m和n是用户传入的参数，保证有m&lt;n。函数返回的是m~n之间所有整数的和。</p>
-<div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m,<span class="hljs-keyword">int</span> n)</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-keyword">int</span> sum=<span class="hljs-number">0</span>;
-	<span class="hljs-keyword">while</span>(m&lt;=n)&#123;
-	sum = sum +m;
-	m=m+<span class="hljs-number">1</span>;&#125;
-	<span class="hljs-keyword">return</span> sum;
-&#125;
+              <h1 id="试题-C-乘积尾零"><a href="#试题-C-乘积尾零" class="headerlink" title="试题 C: 乘积尾零"></a>试题 C: 乘积尾零</h1><p>如下的10行数据，每行有10个整数，请你求出它们的乘积的末尾有多少个零？</p>
+<p>5650 4542 3554 473 946 4114 3871 9073 90 4329<br>2758 7949 6113 5659 5245 7432 3051 4434 6704 3594<br>9937 1173 6866 3397 4759 7557 3070 2287 1453 9899<br>1486 5722 3135 1170 4014 5510 5120 729 2880 9019<br>2049 698 4582 4346 4427 646 9742 7340 1230 7683<br>5693 7015 6887 7381 4172 4341 2909 2027 7355 5649<br>6701 6645 1671 5978 2704 9926 295 3125 3878 6785<br>2066 4247 4800 1578 6652 4616 1113 6205 3264 2915<br>3966 5291 2904 1285 2193 1428 2265 8730 9436 7074<br>689 5510 8243 6114 337 4096 8199 7313 3685 211 </p>
+<p>注意：需要提交的是一个整数，表示末尾零的个数。不要填写任何多余内容。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>①直接将所有数相乘，然后每乘一个数就把后面0全部去掉记一下，不过中间会爆long long，这个好办，每次乘完只保留后4位非0数字，例如216037就只保留6037<br>②正解：所有的0都一定是2*5产生的，所以将每个数拆成一堆2乘上一堆5再乘上一个数，之后统计下有多少个2和多少个5取少的那个就是答案</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><div class="hljs"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-keyword">int</span> data[] = &#123;<span class="hljs-number">5650</span>, <span class="hljs-number">4542</span>, <span class="hljs-number">3554</span>, <span class="hljs-number">473</span>, <span class="hljs-number">946</span>, <span class="hljs-number">4114</span>, <span class="hljs-number">3871</span>, <span class="hljs-number">9073</span>, <span class="hljs-number">90</span>, <span class="hljs-number">4329</span>,
+              <span class="hljs-number">2758</span>, <span class="hljs-number">7949</span>, <span class="hljs-number">6113</span>, <span class="hljs-number">5659</span>, <span class="hljs-number">5245</span>, <span class="hljs-number">7432</span>, <span class="hljs-number">3051</span>, <span class="hljs-number">4434</span>, <span class="hljs-number">6704</span>, <span class="hljs-number">3594</span>,
+              <span class="hljs-number">9937</span>, <span class="hljs-number">1173</span>, <span class="hljs-number">6866</span>, <span class="hljs-number">3397</span>, <span class="hljs-number">4759</span>, <span class="hljs-number">7557</span>, <span class="hljs-number">3070</span>, <span class="hljs-number">2287</span>, <span class="hljs-number">1453</span>, <span class="hljs-number">9899</span>,
+              <span class="hljs-number">1486</span>, <span class="hljs-number">5722</span>, <span class="hljs-number">3135</span>, <span class="hljs-number">1170</span>, <span class="hljs-number">4014</span>, <span class="hljs-number">5510</span>, <span class="hljs-number">5120</span>, <span class="hljs-number">729</span>, <span class="hljs-number">2880</span>, <span class="hljs-number">9019</span>,
+              <span class="hljs-number">2049</span>, <span class="hljs-number">698</span>, <span class="hljs-number">4582</span>, <span class="hljs-number">4346</span>, <span class="hljs-number">4427</span>, <span class="hljs-number">646</span>, <span class="hljs-number">9742</span>, <span class="hljs-number">7340</span>, <span class="hljs-number">1230</span>, <span class="hljs-number">7683</span>,
+              <span class="hljs-number">5693</span>, <span class="hljs-number">7015</span>, <span class="hljs-number">6887</span>, <span class="hljs-number">7381</span>, <span class="hljs-number">4172</span>, <span class="hljs-number">4341</span>, <span class="hljs-number">2909</span>, <span class="hljs-number">2027</span>, <span class="hljs-number">7355</span>, <span class="hljs-number">5649</span>,
+              <span class="hljs-number">6701</span>, <span class="hljs-number">6645</span>, <span class="hljs-number">1671</span>, <span class="hljs-number">5978</span>, <span class="hljs-number">2704</span>, <span class="hljs-number">9926</span>, <span class="hljs-number">295</span>, <span class="hljs-number">3125</span>, <span class="hljs-number">3878</span>, <span class="hljs-number">6785</span>,
+              <span class="hljs-number">2066</span>, <span class="hljs-number">4247</span>, <span class="hljs-number">4800</span>, <span class="hljs-number">1578</span>, <span class="hljs-number">6652</span>, <span class="hljs-number">4616</span>, <span class="hljs-number">1113</span>, <span class="hljs-number">6205</span>, <span class="hljs-number">3264</span>, <span class="hljs-number">2915</span>,
+              <span class="hljs-number">3966</span>, <span class="hljs-number">5291</span>, <span class="hljs-number">2904</span>, <span class="hljs-number">1285</span>, <span class="hljs-number">2193</span>, <span class="hljs-number">1428</span>, <span class="hljs-number">2265</span>, <span class="hljs-number">8730</span>, <span class="hljs-number">9436</span>, <span class="hljs-number">7074</span>,
+              <span class="hljs-number">689</span>, <span class="hljs-number">5510</span>, <span class="hljs-number">8243</span>, <span class="hljs-number">6114</span>, <span class="hljs-number">337</span>, <span class="hljs-number">4096</span>, <span class="hljs-number">8199</span>, <span class="hljs-number">7313</span>, <span class="hljs-number">3685</span>, <span class="hljs-number">211</span>&#125;;
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span></span>
+<span class="hljs-class">&#123;</span>
+    <span class="hljs-keyword">int</span> a2, a5; <span class="hljs-comment">//用来储存每个数质因子中2和5的个数；</span>
+&#125;;
+<span class="hljs-function">node <span class="hljs-title">count</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span></span>; <span class="hljs-comment">//计算num 质因子中2和5的数量，并存在结构体中</span>
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;    
-    <span class="hljs-keyword">int</span> m, n;
-
-    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>, &amp;m, &amp;n);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"sum = %d\n"</span>, sum(m, n));
-
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">int</span> len = <span class="hljs-keyword">sizeof</span>(data) / <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>);
+    <span class="hljs-keyword">int</span> a5 = <span class="hljs-number">0</span>, a2 = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++)
+    &#123;
+        a2 += count(data[i]).a2;
+        a5 += count(data[i]).a5;
+    &#125;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>, a2 &lt; a5 ? a2 : a5);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-function">node <span class="hljs-title">count</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span></span>
+<span class="hljs-function"></span>&#123;
+    node temp;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i  &lt; num; i++)
+    &#123;
+        <span class="hljs-keyword">int</span> result = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span> (num % i == <span class="hljs-number">0</span>)
+        &#123;
+            result++;
+            num /= i;
+        &#125;
+        <span class="hljs-keyword">if</span> (i == <span class="hljs-number">2</span>)
+            temp.a2 = result;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i == <span class="hljs-number">5</span>)
+            temp.a5 = result;
+    &#125;
+    <span class="hljs-keyword">if</span> (num != <span class="hljs-number">1</span>)
+    &#123;
+        <span class="hljs-keyword">if</span> (num == <span class="hljs-number">2</span>)
+            temp.a2 = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (num == <span class="hljs-number">5</span>)
+            temp.a5 = <span class="hljs-number">1</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> temp;
 &#125;</code></pre></div>
+
             </article>
             <hr>
             <div>
@@ -243,7 +282,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/PTA/">PTA</a>
+                      <a class="hover-with-bg" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
                     
                   </div>
                 
@@ -256,18 +295,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2019/12/23/hello-world/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hello World</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-2%20%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%AD%E6%9C%80%E5%A4%A7%E8%80%85/">
-                        <span class="hidden-mobile">练习5-2 找两个数中最大者</span>
+                      <a href="/2020/09/11/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%919B%E7%9C%81%E8%B5%9BB%E6%98%8E%E7%A0%81/">
+                        <span class="hidden-mobile">【蓝桥杯】9B省赛B:明码</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -406,7 +439,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "练习5-1 求m到n之和&nbsp;",
+        "【蓝桥杯】9B省赛C:乘积尾零&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 80,

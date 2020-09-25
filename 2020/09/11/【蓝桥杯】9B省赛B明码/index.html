@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="WRY">
   <meta name="keywords" content="">
-  <title>练习5-1 求m到n之和 - WRY&#39;s Space</title>
+  <title>【蓝桥杯】9B省赛B:明码 - WRY&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2019-10-29 00:00">
-      2019年10月29日 凌晨
+    <time datetime="2020-09-11 12:54">
+      2020年9月11日 下午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      127 字
+      1k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      14
        分钟
     </span>
   
@@ -204,27 +204,64 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>本题要求实现一个计算m~n（m&lt;n）之间所有整数的和的简单函数。<br>函数接口定义：</p>
-<div class="hljs"><pre><code class="hljs excel"><span class="hljs-built_in">int</span> <span class="hljs-built_in">sum</span>( <span class="hljs-built_in">int</span> m, <span class="hljs-built_in">int</span> <span class="hljs-built_in">n</span> );</code></pre></div>
-<p>其中m和n是用户传入的参数，保证有m&lt;n。函数返回的是m~n之间所有整数的和。</p>
-<div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m,<span class="hljs-keyword">int</span> n)</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-keyword">int</span> sum=<span class="hljs-number">0</span>;
-	<span class="hljs-keyword">while</span>(m&lt;=n)&#123;
-	sum = sum +m;
-	m=m+<span class="hljs-number">1</span>;&#125;
-	<span class="hljs-keyword">return</span> sum;
-&#125;
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;    
-    <span class="hljs-keyword">int</span> m, n;
-
-    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d %d"</span>, &amp;m, &amp;n);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"sum = %d\n"</span>, sum(m, n));
-
+              <h1 id="试题-B-明码"><a href="#试题-B-明码" class="headerlink" title="试题 B: 明码"></a>试题 B: 明码</h1><p>汉字的字形存在于字库中，即便在今天，16点阵的字库也仍然使用广泛。<br>16点阵的字库把每个汉字看成是16x16个像素信息。并把这些信息记录在字节中。</p>
+<p>一个字节可以存储8位信息，用32个字节就可以存一个汉字的字形了。<br>把每个字节转为2进制表示，1表示墨迹，0表示底色。每行2个字节，<br>一共16行，布局是：</p>
+<div class="hljs"><pre><code>第1字节，第2字节
+第3字节，第4字节
+....
+第31字节, 第32字节</code></pre></div><p>这道题目是给你一段多个汉字组成的信息，每个汉字用32个字节表示，这里给出了字节作为有符号整数的值。</p>
+<p>题目的要求隐藏在这些信息中。你的任务是复原这些汉字的字形，从中看出题目的要求，并根据要求填写答案。</p>
+<p>这段信息是（一共10个汉字）：<br>4 0 4 0 4 0 4 32 -1 -16 4 32 4 32 4 32 4 32 4 32 8 32 8 32 16 34 16 34 32 30 -64 0<br>16 64 16 64 34 68 127 126 66 -124 67 4 66 4 66 -124 126 100 66 36 66 4 66 4 66 4 126 4 66 40 0 16<br>4 0 4 0 4 0 4 32 -1 -16 4 32 4 32 4 32 4 32 4 32 8 32 8 32 16 34 16 34 32 30 -64 0<br>0 -128 64 -128 48 -128 17 8 1 -4 2 8 8 80 16 64 32 64 -32 64 32 -96 32 -96 33 16 34 8 36 14 40 4<br>4 0 3 0 1 0 0 4 -1 -2 4 0 4 16 7 -8 4 16 4 16 4 16 8 16 8 16 16 16 32 -96 64 64<br>16 64 20 72 62 -4 73 32 5 16 1 0 63 -8 1 0 -1 -2 0 64 0 80 63 -8 8 64 4 64 1 64 0 -128<br>0 16 63 -8 1 0 1 0 1 0 1 4 -1 -2 1 0 1 0 1 0 1 0 1 0 1 0 1 0 5 0 2 0<br>2 0 2 0 7 -16 8 32 24 64 37 -128 2 -128 12 -128 113 -4 2 8 12 16 18 32 33 -64 1 0 14 0 112 0<br>1 0 1 0 1 0 9 32 9 16 17 12 17 4 33 16 65 16 1 32 1 64 0 -128 1 0 2 0 12 0 112 0<br>0 0 0 0 7 -16 24 24 48 12 56 12 0 56 0 -32 0 -64 0 -128 0 0 0 0 1 -128 3 -64 1 -128 0 0 </p>
+<p>注意：需要提交的是一个整数，不要填写任何多余内容。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>一个字节相当于一个字符（数字），由八位二进制数组成。<br>32个字节总共代表一个汉字，也就是对这32个十进制数逐个转化为八位二进制数(即题目所说的一个字节可以存储8位信息，把每个字节转为2进制表示)以一行两个十进制数的格式打印出来，总共16行二进制数的矩阵(即题目所说的16点阵)，就能看出是什么汉字的形状了。</p>
+<p>这里要注意的是的是负数如何装换成二进制，只需要将这个负数的相反数的二进制求出来并对每一位取反（这个过程叫取原码的反码），取反之后进行补码就行。</p>
+<p>总共有10个汉字，我逐个打印每一个汉字，每次可以输入一行32个数字。</p>
+<p>最后显示的十个汉字是：九的九次方等于多少？<br>答案为：387420489</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bitset&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">int</span> n, m;
+    <span class="hljs-built_in">string</span> str1, str2;
+    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span>&gt;&gt;n&gt;&gt;m)&#123;
+        <span class="hljs-function"><span class="hljs-built_in">bitset</span>&lt;8&gt; <span class="hljs-title">b</span><span class="hljs-params">(n)</span></span>;
+        <span class="hljs-comment">//长度为８，将n化为二进制保存，前面用０补充</span>
+        <span class="hljs-comment">//bitset类似数组的结构，每个元素只能是0或1，每个元素仅用1bit空间</span>
+        str1 = b.to_string(); <span class="hljs-comment">//将数字常量转化为字符串。返回值是转化好的字符串</span>
+        <span class="hljs-keyword">int</span> len1 = str1.length();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len1; i++)
+        &#123;
+            <span class="hljs-keyword">if</span> (str1[i] == <span class="hljs-string">'0'</span>)
+            &#123;
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">" "</span>);
+            &#125;
+            <span class="hljs-keyword">else</span> 
+            &#123;
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">"*"</span>);
+            &#125;
+        &#125;
+        <span class="hljs-function"><span class="hljs-built_in">bitset</span>&lt;8&gt; <span class="hljs-title">c</span><span class="hljs-params">(m)</span></span>;
+        str2 = c.to_string(); 
+        <span class="hljs-keyword">int</span> len2 = str2.length();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len2; i++)
+        &#123;
+            <span class="hljs-keyword">if</span> (str2[i] == <span class="hljs-string">'0'</span>)
+            &#123;
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">" "</span>);
+            &#125;
+            <span class="hljs-keyword">else</span> 
+            &#123;
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">"*"</span>);
+            &#125;
+        &#125;
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n"</span>);
+    &#125;
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
+
+
             </article>
             <hr>
             <div>
@@ -243,7 +280,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/PTA/">PTA</a>
+                      <a class="hover-with-bg" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
                     
                   </div>
                 
@@ -256,9 +293,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2019/12/23/hello-world/">
+                      <a href="/2020/09/11/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%919B%E7%9C%81%E8%B5%9BC%E4%B9%98%E7%A7%AF%E5%B0%BE%E9%9B%B6/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hello World</span>
+                        <span class="hidden-mobile">【蓝桥杯】9B省赛C:乘积尾零</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -266,8 +303,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2019/10/29/%E7%BB%83%E4%B9%A05-2%20%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%95%B0%E4%B8%AD%E6%9C%80%E5%A4%A7%E8%80%85/">
-                        <span class="hidden-mobile">练习5-2 找两个数中最大者</span>
+                      <a href="/2020/09/10/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%9110B%E7%9C%81%E8%B5%9BJ%E7%81%B5%E8%83%BD%E4%BC%A0%E8%BE%93/">
+                        <span class="hidden-mobile">【蓝桥杯】10B省赛J灵能传输</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -406,7 +443,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "练习5-1 求m到n之和&nbsp;",
+        "【蓝桥杯】9B省赛B:明码&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 80,
